@@ -4,11 +4,11 @@
   
     
     <entry>
-      <title>Hello World</title>
-      <link href="/hello-world/"/>
-      <url>/hello-world/</url>
+      <title>test</title>
+      <link href="/test/"/>
+      <url>/test/</url>
       
-        <content type="html"><![CDATA[<p>Welcome</p>]]></content>
+        <content type="html"><![CDATA[<p>Hey!!!</p>]]></content>
       
       
       
@@ -17,11 +17,11 @@
     
     
     <entry>
-      <title>test</title>
-      <link href="/test/"/>
-      <url>/test/</url>
+      <title>Hello World</title>
+      <link href="/hello-world/"/>
+      <url>/hello-world/</url>
       
-        <content type="html"><![CDATA[<p>Hey!!!</p>]]></content>
+        <content type="html"><![CDATA[<p>Welcome</p>]]></content>
       
       
       
