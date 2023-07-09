@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang=en>
+  <head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Description This section contains reference information for all AWS resource and property types that are supported by AWS CloudFormation.^1 Resource type identifiers always take the following form: se">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CloudFormation Resource and Property Types Reference">
+<meta property="og:url" content="https://www.anthonyrussano.com/cloudformation-resource-and-property-types-reference/index.html">
+<meta property="og:site_name" content="anthonyrussano.com">
+<meta property="og:description" content="Description This section contains reference information for all AWS resource and property types that are supported by AWS CloudFormation.^1 Resource type identifiers always take the following form: se">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-07-09T07:30:03.859Z">
+<meta property="article:modified_time" content="2023-07-09T07:30:03.859Z">
+<meta property="article:author" content="Anthony Russano">
+<meta property="article:tag" content="CloudFormation">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="https://res.cloudinary.com/alchemist-cookbook/image/upload/v1674087936/christianity.jpg">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="https://res.cloudinary.com/alchemist-cookbook/image/upload/v1674087936/christianity.jpg" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="https://res.cloudinary.com/alchemist-cookbook/image/upload/v1674087936/christianity.jpg">
+        
+      
+    
+    <!-- title -->
+    <title>CloudFormation Resource and Property Types Reference</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+    <body class="max-width mx-auto px3 ltr">
+      
+        <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="../index.html">Home</a></li><!--
+     --><!--
+       --><li><a href="../archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://talk.anthonyrussano.com">Talk</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="../cloudformation-commands-for-aws-cli/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="../what-is-aws-cloudformation/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="mailto:?subject=CloudFormation Resource and Property Types Reference&body=Check out this article: https://www.anthonyrussano.com/cloudformation-resource-and-property-types-reference/"><i
+        class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+</ul>
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Description"><span class="toc-number">1.</span> <span class="toc-text">Description</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Service-resource-type"><span class="toc-number">2.</span> <span class="toc-text">Service resource type:</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ACM-PCA"><span class="toc-number">2.1.</span> <span class="toc-text">ACM PCA</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amplify-Console"><span class="toc-number">2.2.</span> <span class="toc-text">Amplify Console</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amplify-UI-Builder"><span class="toc-number">2.3.</span> <span class="toc-text">Amplify UI Builder</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#API-Gateway"><span class="toc-number">2.4.</span> <span class="toc-text">API Gateway</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#API-Gateway-V2"><span class="toc-number">2.5.</span> <span class="toc-text">API Gateway V2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AppConfig"><span class="toc-number">2.6.</span> <span class="toc-text">AppConfig</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-AppFlow"><span class="toc-number">2.7.</span> <span class="toc-text">Amazon AppFlow</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AppIntegrations"><span class="toc-number">2.8.</span> <span class="toc-text">AppIntegrations</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Application-Auto-Scaling"><span class="toc-number">2.9.</span> <span class="toc-text">Application Auto Scaling</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#App-Mesh"><span class="toc-number">2.10.</span> <span class="toc-text">App Mesh</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#App-Runner"><span class="toc-number">2.11.</span> <span class="toc-text">App Runner</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AppStream-2-0"><span class="toc-number">2.12.</span> <span class="toc-text">AppStream 2.0</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-AppSync"><span class="toc-number">2.13.</span> <span class="toc-text">AWS AppSync</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-Managed-Service-for-Prometheus"><span class="toc-number">2.14.</span> <span class="toc-text">Amazon Managed Service for Prometheus</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ASK"><span class="toc-number">2.15.</span> <span class="toc-text">ASK</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Athena"><span class="toc-number">2.16.</span> <span class="toc-text">Athena</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Audit-Manager"><span class="toc-number">2.17.</span> <span class="toc-text">Audit Manager</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-Auto-Scaling"><span class="toc-number">2.18.</span> <span class="toc-text">AWS Auto Scaling</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-Backup"><span class="toc-number">2.19.</span> <span class="toc-text">AWS Backup</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-Batch"><span class="toc-number">2.20.</span> <span class="toc-text">AWS Batch</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-Budgets"><span class="toc-number">2.21.</span> <span class="toc-text">AWS Budgets</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-Certificate-Manager"><span class="toc-number">2.22.</span> <span class="toc-text">AWS Certificate Manager</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Chatbot"><span class="toc-number">2.23.</span> <span class="toc-text">Chatbot</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-Cloud9"><span class="toc-number">2.24.</span> <span class="toc-text">AWS Cloud9</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CloudFormation"><span class="toc-number">2.25.</span> <span class="toc-text">CloudFormation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CloudFront"><span class="toc-number">2.26.</span> <span class="toc-text">CloudFront</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-Cloud-Map"><span class="toc-number">2.27.</span> <span class="toc-text">AWS Cloud Map</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CloudTrail"><span class="toc-number">2.28.</span> <span class="toc-text">CloudTrail</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CloudWatch"><span class="toc-number">2.29.</span> <span class="toc-text">CloudWatch</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CloudWatch-Application-Insights"><span class="toc-number">2.30.</span> <span class="toc-text">CloudWatch Application Insights</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CloudWatch-Logs"><span class="toc-number">2.31.</span> <span class="toc-text">CloudWatch Logs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CloudWatch-Synthetics"><span class="toc-number">2.32.</span> <span class="toc-text">CloudWatch Synthetics</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CodeArtifact"><span class="toc-number">2.33.</span> <span class="toc-text">CodeArtifact</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CodeBuild"><span class="toc-number">2.34.</span> <span class="toc-text">CodeBuild</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CodeCommit"><span class="toc-number">2.35.</span> <span class="toc-text">CodeCommit</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CodeDeploy"><span class="toc-number">2.36.</span> <span class="toc-text">CodeDeploy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CodeGuru-Profiler"><span class="toc-number">2.37.</span> <span class="toc-text">CodeGuru Profiler</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CodeGuru-Reviewer"><span class="toc-number">2.38.</span> <span class="toc-text">CodeGuru Reviewer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CodePipeline"><span class="toc-number">2.39.</span> <span class="toc-text">CodePipeline</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-CodeStar"><span class="toc-number">2.40.</span> <span class="toc-text">AWS CodeStar</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-CodeStar-Connections"><span class="toc-number">2.41.</span> <span class="toc-text">AWS CodeStar Connections</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-CodeStar-Notifications"><span class="toc-number">2.42.</span> <span class="toc-text">AWS CodeStar Notifications</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-Cognito"><span class="toc-number">2.43.</span> <span class="toc-text">Amazon Cognito</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-Config"><span class="toc-number">2.44.</span> <span class="toc-text">AWS Config</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-Connect"><span class="toc-number">2.45.</span> <span class="toc-text">Amazon Connect</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-Connect-Customer-Profiles"><span class="toc-number">2.46.</span> <span class="toc-text">Amazon Connect Customer Profiles</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cost-Explorer"><span class="toc-number">2.47.</span> <span class="toc-text">Cost Explorer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CUR"><span class="toc-number">2.48.</span> <span class="toc-text">CUR</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DataBrew"><span class="toc-number">2.49.</span> <span class="toc-text">DataBrew</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-Data-Lifecycle-Manager"><span class="toc-number">2.50.</span> <span class="toc-text">Amazon Data Lifecycle Manager</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-Data-Pipeline"><span class="toc-number">2.51.</span> <span class="toc-text">AWS Data Pipeline</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DataSync"><span class="toc-number">2.52.</span> <span class="toc-text">DataSync</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DAX"><span class="toc-number">2.53.</span> <span class="toc-text">DAX</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Detective"><span class="toc-number">2.54.</span> <span class="toc-text">Detective</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DeviceFarm"><span class="toc-number">2.55.</span> <span class="toc-text">DeviceFarm</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DevOpsGuru"><span class="toc-number">2.56.</span> <span class="toc-text">DevOpsGuru</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-Directory-Service"><span class="toc-number">2.57.</span> <span class="toc-text">AWS Directory Service</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-DMS"><span class="toc-number">2.58.</span> <span class="toc-text">AWS DMS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-DocumentDB"><span class="toc-number">2.59.</span> <span class="toc-text">Amazon DocumentDB</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DynamoDB"><span class="toc-number">2.60.</span> <span class="toc-text">DynamoDB</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-EC2"><span class="toc-number">2.61.</span> <span class="toc-text">Amazon EC2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-EC2-Auto-Scaling"><span class="toc-number">2.62.</span> <span class="toc-text">Amazon EC2 Auto Scaling</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-ECR"><span class="toc-number">2.63.</span> <span class="toc-text">Amazon ECR</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-ECS"><span class="toc-number">2.64.</span> <span class="toc-text">Amazon ECS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-EFS"><span class="toc-number">2.65.</span> <span class="toc-text">Amazon EFS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-EKS"><span class="toc-number">2.66.</span> <span class="toc-text">Amazon EKS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Elastic-Beanstalk"><span class="toc-number">2.67.</span> <span class="toc-text">Elastic Beanstalk</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Elastic-Load-Balancing"><span class="toc-number">2.68.</span> <span class="toc-text">Elastic Load Balancing</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Elastic-Load-Balancing-V2"><span class="toc-number">2.69.</span> <span class="toc-text">Elastic Load Balancing V2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-EMR"><span class="toc-number">2.70.</span> <span class="toc-text">Amazon EMR</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-EMR-on-EKS"><span class="toc-number">2.71.</span> <span class="toc-text">Amazon EMR on EKS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ElastiCache"><span class="toc-number">2.72.</span> <span class="toc-text">ElastiCache</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-EventBridge"><span class="toc-number">2.73.</span> <span class="toc-text">Amazon EventBridge</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-EventBridge-Schemas"><span class="toc-number">2.74.</span> <span class="toc-text">Amazon EventBridge Schemas</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Evidently"><span class="toc-number">2.75.</span> <span class="toc-text">Evidently</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FinSpace"><span class="toc-number">2.76.</span> <span class="toc-text">FinSpace</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-FIS"><span class="toc-number">2.77.</span> <span class="toc-text">AWS FIS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Firewall-Manager"><span class="toc-number">2.78.</span> <span class="toc-text">Firewall Manager</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-Fraud-Detector"><span class="toc-number">2.79.</span> <span class="toc-text">Amazon Fraud Detector</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-FSx"><span class="toc-number">2.80.</span> <span class="toc-text">Amazon FSx</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GameLift"><span class="toc-number">2.81.</span> <span class="toc-text">GameLift</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Global-Accelerator"><span class="toc-number">2.82.</span> <span class="toc-text">Global Accelerator</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-Glue"><span class="toc-number">2.83.</span> <span class="toc-text">AWS Glue</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-Ground-Station"><span class="toc-number">2.84.</span> <span class="toc-text">AWS Ground Station</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GuardDuty"><span class="toc-number">2.85.</span> <span class="toc-text">GuardDuty</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HealthLake"><span class="toc-number">2.86.</span> <span class="toc-text">HealthLake</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IAM"><span class="toc-number">2.87.</span> <span class="toc-text">IAM</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IAM-Access-Analyzer"><span class="toc-number">2.88.</span> <span class="toc-text">IAM Access Analyzer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Image-Builder"><span class="toc-number">2.89.</span> <span class="toc-text">Image Builder</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Incident-Manager"><span class="toc-number">2.90.</span> <span class="toc-text">Incident Manager</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Incident-Manager-Contacts"><span class="toc-number">2.91.</span> <span class="toc-text">Incident Manager Contacts</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-Inspector"><span class="toc-number">2.92.</span> <span class="toc-text">Amazon Inspector</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-IoT"><span class="toc-number">2.93.</span> <span class="toc-text">AWS IoT</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-IoT-1-Click"><span class="toc-number">2.94.</span> <span class="toc-text">AWS IoT 1-Click</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-IoT-Analytics"><span class="toc-number">2.95.</span> <span class="toc-text">AWS IoT Analytics</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-IoT-Core-Device-Advisor"><span class="toc-number">2.96.</span> <span class="toc-text">AWS IoT Core Device Advisor</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-IoT-Events"><span class="toc-number">2.97.</span> <span class="toc-text">AWS IoT Events</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-IoT-Fleet-Hub"><span class="toc-number">2.98.</span> <span class="toc-text">AWS IoT Fleet Hub</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-IoT-Greengrass"><span class="toc-number">2.99.</span> <span class="toc-text">AWS IoT Greengrass</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-IoT-Greengrass-V2"><span class="toc-number">2.100.</span> <span class="toc-text">AWS IoT Greengrass V2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-IoT-SiteWise"><span class="toc-number">2.101.</span> <span class="toc-text">AWS IoT SiteWise</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-IoT-Things-Graph"><span class="toc-number">2.102.</span> <span class="toc-text">AWS IoT Things Graph</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-IoT-Wireless"><span class="toc-number">2.103.</span> <span class="toc-text">AWS IoT Wireless</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-IVS"><span class="toc-number">2.104.</span> <span class="toc-text">Amazon IVS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-Kendra"><span class="toc-number">2.105.</span> <span class="toc-text">Amazon Kendra</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-Keyspaces"><span class="toc-number">2.106.</span> <span class="toc-text">Amazon Keyspaces</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Kinesis"><span class="toc-number">2.107.</span> <span class="toc-text">Kinesis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Kinesis-Data-Analytics"><span class="toc-number">2.108.</span> <span class="toc-text">Kinesis Data Analytics</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Kinesis-Data-Analytics-V2"><span class="toc-number">2.109.</span> <span class="toc-text">Kinesis Data Analytics V2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Kinesis-Data-Firehose"><span class="toc-number">2.110.</span> <span class="toc-text">Kinesis Data Firehose</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-KMS"><span class="toc-number">2.111.</span> <span class="toc-text">AWS KMS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Lake-Formation"><span class="toc-number">2.112.</span> <span class="toc-text">Lake Formation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Lambda"><span class="toc-number">2.113.</span> <span class="toc-text">Lambda</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Lex"><span class="toc-number">2.114.</span> <span class="toc-text">Lex</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#License-Manager"><span class="toc-number">2.115.</span> <span class="toc-text">License Manager</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Lightsail"><span class="toc-number">2.116.</span> <span class="toc-text">Lightsail</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-Location"><span class="toc-number">2.117.</span> <span class="toc-text">Amazon Location</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Lookout-for-Equipment"><span class="toc-number">2.118.</span> <span class="toc-text">Lookout for Equipment</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Lookout-for-Metrics"><span class="toc-number">2.119.</span> <span class="toc-text">Lookout for Metrics</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Lookout-for-Vision"><span class="toc-number">2.120.</span> <span class="toc-text">Lookout for Vision</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Macie"><span class="toc-number">2.121.</span> <span class="toc-text">Macie</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-Managed-Blockchain"><span class="toc-number">2.122.</span> <span class="toc-text">Amazon Managed Blockchain</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MediaConnect"><span class="toc-number">2.123.</span> <span class="toc-text">MediaConnect</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MediaConvert"><span class="toc-number">2.124.</span> <span class="toc-text">MediaConvert</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MediaLive"><span class="toc-number">2.125.</span> <span class="toc-text">MediaLive</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MediaPackage"><span class="toc-number">2.126.</span> <span class="toc-text">MediaPackage</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MediaStore"><span class="toc-number">2.127.</span> <span class="toc-text">MediaStore</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-MQ"><span class="toc-number">2.128.</span> <span class="toc-text">Amazon MQ</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-MemoryDB"><span class="toc-number">2.129.</span> <span class="toc-text">Amazon MemoryDB</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-MSK"><span class="toc-number">2.130.</span> <span class="toc-text">Amazon MSK</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MWAA"><span class="toc-number">2.131.</span> <span class="toc-text">MWAA</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-Neptune"><span class="toc-number">2.132.</span> <span class="toc-text">Amazon Neptune</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Network-Firewall"><span class="toc-number">2.133.</span> <span class="toc-text">Network Firewall</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Network-Manager"><span class="toc-number">2.134.</span> <span class="toc-text">Network Manager</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-Nimble-Studio"><span class="toc-number">2.135.</span> <span class="toc-text">Amazon Nimble Studio</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OpenSearch-Service-legacy-Elasticsearch-resource"><span class="toc-number">2.136.</span> <span class="toc-text">OpenSearch Service (legacy Elasticsearch resource)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OpenSearch-Service"><span class="toc-number">2.137.</span> <span class="toc-text">OpenSearch Service</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OpsWorks"><span class="toc-number">2.138.</span> <span class="toc-text">OpsWorks</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OpsWorks-CM"><span class="toc-number">2.139.</span> <span class="toc-text">OpsWorks-CM</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Panorama"><span class="toc-number">2.140.</span> <span class="toc-text">Panorama</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-Pinpoint"><span class="toc-number">2.141.</span> <span class="toc-text">Amazon Pinpoint</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-Pinpoint-Email"><span class="toc-number">2.142.</span> <span class="toc-text">Amazon Pinpoint Email</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#QLDB"><span class="toc-number">2.143.</span> <span class="toc-text">QLDB</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-QuickSight"><span class="toc-number">2.144.</span> <span class="toc-text">Amazon QuickSight</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-RAM"><span class="toc-number">2.145.</span> <span class="toc-text">AWS RAM</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-RDS"><span class="toc-number">2.146.</span> <span class="toc-text">Amazon RDS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-Redshift"><span class="toc-number">2.147.</span> <span class="toc-text">Amazon Redshift</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RefactorSpaces"><span class="toc-number">2.148.</span> <span class="toc-text">RefactorSpaces</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Rekognition"><span class="toc-number">2.149.</span> <span class="toc-text">Rekognition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ResilienceHub"><span class="toc-number">2.150.</span> <span class="toc-text">ResilienceHub</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Resource-Groups"><span class="toc-number">2.151.</span> <span class="toc-text">Resource Groups</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-RoboMaker"><span class="toc-number">2.152.</span> <span class="toc-text">AWS RoboMaker</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Route-53"><span class="toc-number">2.153.</span> <span class="toc-text">Route 53</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Route-53-Recovery-Control"><span class="toc-number">2.154.</span> <span class="toc-text">Route 53 Recovery Control</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Route-53-Recovery-Readiness"><span class="toc-number">2.155.</span> <span class="toc-text">Route 53 Recovery Readiness</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Route-53-Resolver"><span class="toc-number">2.156.</span> <span class="toc-text">Route 53 Resolver</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RUM"><span class="toc-number">2.157.</span> <span class="toc-text">RUM</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-S3"><span class="toc-number">2.158.</span> <span class="toc-text">Amazon S3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-S3-Object-Lambda"><span class="toc-number">2.159.</span> <span class="toc-text">Amazon S3 Object Lambda</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-S3-on-Outposts"><span class="toc-number">2.160.</span> <span class="toc-text">Amazon S3 on Outposts</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-SageMaker"><span class="toc-number">2.161.</span> <span class="toc-text">Amazon SageMaker</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Secrets-Manager"><span class="toc-number">2.162.</span> <span class="toc-text">Secrets Manager</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-Service-Catalog"><span class="toc-number">2.163.</span> <span class="toc-text">AWS Service Catalog</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-Service-Catalog-AppRegistry"><span class="toc-number">2.164.</span> <span class="toc-text">AWS Service Catalog AppRegistry</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Security-Hub"><span class="toc-number">2.165.</span> <span class="toc-text">Security Hub</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-SES"><span class="toc-number">2.166.</span> <span class="toc-text">Amazon SES</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Signer"><span class="toc-number">2.167.</span> <span class="toc-text">Signer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-SimpleDB"><span class="toc-number">2.168.</span> <span class="toc-text">Amazon SimpleDB</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-SNS"><span class="toc-number">2.169.</span> <span class="toc-text">Amazon SNS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-SQS"><span class="toc-number">2.170.</span> <span class="toc-text">Amazon SQS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-SSO"><span class="toc-number">2.171.</span> <span class="toc-text">AWS SSO</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-Functions"><span class="toc-number">2.172.</span> <span class="toc-text">Step Functions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Systems-Manager"><span class="toc-number">2.173.</span> <span class="toc-text">Systems Manager</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-Timestream"><span class="toc-number">2.174.</span> <span class="toc-text">Amazon Timestream</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-Transfer-Family"><span class="toc-number">2.175.</span> <span class="toc-text">AWS Transfer Family</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-WAF"><span class="toc-number">2.176.</span> <span class="toc-text">AWS WAF</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-WAF-Regional"><span class="toc-number">2.177.</span> <span class="toc-text">AWS WAF Regional</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-WAF-V2"><span class="toc-number">2.178.</span> <span class="toc-text">AWS WAF V2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Wisdom"><span class="toc-number">2.179.</span> <span class="toc-text">Wisdom</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#WorkSpaces"><span class="toc-number">2.180.</span> <span class="toc-text">WorkSpaces</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#X-Ray"><span class="toc-number">2.181.</span> <span class="toc-text">X-Ray</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Shared-property-types"><span class="toc-number">2.182.</span> <span class="toc-text">Shared property types</span></a></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+          
+            <div class="content index py4 ">
+              
+                    <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        CloudFormation Resource and Property Types Reference
+    </h1>
+
+
+
+      <div class="meta">
+        <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <span class="p-name" itemprop="name">
+            Anthony Russano
+                    
+          </span>
+        </span>
+        
+    <div class="postdate">
+      
+        <time datetime="2023-07-09T07:30:03.859Z" class="dt-published" itemprop="datePublished">2023-07-09</time>
+        
+        (Updated: <time datetime="2023-07-09T07:30:03.859Z" class="dt-updated" itemprop="dateModified">2023-07-09</time>)
+        
+      
+    </div>
+
+
+          
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="../categories/DevOps/">DevOps</a> › <a class="category-link" href="../categories/DevOps/Infrastructure-as-Code/">Infrastructure as Code</a> › <a class="category-link" href="../categories/DevOps/Infrastructure-as-Code/Infrastructure-Provisioning/">Infrastructure Provisioning</a> › <a class="category-link" href="../categories/DevOps/Infrastructure-as-Code/Infrastructure-Provisioning/AWS-CloudFormation/">AWS CloudFormation</a>
+    </div>
+
+
+            
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="../tags/CloudFormation/" rel="tag">CloudFormation</a>
+    </div>
+
+
+      </div>
+  </header>
+  
+
+    <div class="content e-content" itemprop="articleBody">
+      <h2 id="Description">Description</h2>
+<p>This section contains reference information for all AWS resource and property types that are supported by AWS CloudFormation.<a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html">^1</a></p>
+<p>Resource type identifiers always take the following form:</p>
+<p><code>service-provider::service-name::data-type-name</code></p>
+<h2 id="Service-resource-type">Service resource type:</h2>
+<h3 id="ACM-PCA">ACM PCA</h3>
+<h3 id="Amplify-Console">Amplify Console</h3>
+<h3 id="Amplify-UI-Builder">Amplify UI Builder</h3>
+<h3 id="API-Gateway">API Gateway</h3>
+<h3 id="API-Gateway-V2">API Gateway V2</h3>
+<h3 id="AppConfig">AppConfig</h3>
+<h3 id="Amazon-AppFlow">Amazon AppFlow</h3>
+<h3 id="AppIntegrations">AppIntegrations</h3>
+<h3 id="Application-Auto-Scaling">Application Auto Scaling</h3>
+<h3 id="App-Mesh">App Mesh</h3>
+<h3 id="App-Runner">App Runner</h3>
+<h3 id="AppStream-2-0">AppStream 2.0</h3>
+<h3 id="AWS-AppSync">AWS AppSync</h3>
+<h3 id="Amazon-Managed-Service-for-Prometheus">Amazon Managed Service for Prometheus</h3>
+<h3 id="ASK">ASK</h3>
+<h3 id="Athena">Athena</h3>
+<h3 id="Audit-Manager">Audit Manager</h3>
+<h3 id="AWS-Auto-Scaling">AWS Auto Scaling</h3>
+<h3 id="AWS-Backup">AWS Backup</h3>
+<h3 id="AWS-Batch">AWS Batch</h3>
+<h3 id="AWS-Budgets">AWS Budgets</h3>
+<h3 id="AWS-Certificate-Manager">AWS Certificate Manager</h3>
+<h3 id="Chatbot">Chatbot</h3>
+<h3 id="AWS-Cloud9">AWS Cloud9</h3>
+<h3 id="CloudFormation">CloudFormation</h3>
+<h3 id="CloudFront">CloudFront</h3>
+<h3 id="AWS-Cloud-Map">AWS Cloud Map</h3>
+<h3 id="CloudTrail">CloudTrail</h3>
+<h3 id="CloudWatch">CloudWatch</h3>
+<h3 id="CloudWatch-Application-Insights">CloudWatch Application Insights</h3>
+<h3 id="CloudWatch-Logs">CloudWatch Logs</h3>
+<h3 id="CloudWatch-Synthetics">CloudWatch Synthetics</h3>
+<h3 id="CodeArtifact">CodeArtifact</h3>
+<h3 id="CodeBuild">CodeBuild</h3>
+<h3 id="CodeCommit">CodeCommit</h3>
+<h3 id="CodeDeploy">CodeDeploy</h3>
+<h3 id="CodeGuru-Profiler">CodeGuru Profiler</h3>
+<h3 id="CodeGuru-Reviewer">CodeGuru Reviewer</h3>
+<h3 id="CodePipeline">CodePipeline</h3>
+<h3 id="AWS-CodeStar">AWS CodeStar</h3>
+<h3 id="AWS-CodeStar-Connections">AWS CodeStar Connections</h3>
+<h3 id="AWS-CodeStar-Notifications">AWS CodeStar Notifications</h3>
+<h3 id="Amazon-Cognito">Amazon Cognito</h3>
+<h3 id="AWS-Config">AWS Config</h3>
+<h3 id="Amazon-Connect">Amazon Connect</h3>
+<h3 id="Amazon-Connect-Customer-Profiles">Amazon Connect Customer Profiles</h3>
+<h3 id="Cost-Explorer">Cost Explorer</h3>
+<h3 id="CUR">CUR</h3>
+<h3 id="DataBrew">DataBrew</h3>
+<h3 id="Amazon-Data-Lifecycle-Manager">Amazon Data Lifecycle Manager</h3>
+<h3 id="AWS-Data-Pipeline">AWS Data Pipeline</h3>
+<h3 id="DataSync">DataSync</h3>
+<h3 id="DAX">DAX</h3>
+<h3 id="Detective">Detective</h3>
+<h3 id="DeviceFarm">DeviceFarm</h3>
+<h3 id="DevOpsGuru">DevOpsGuru</h3>
+<h3 id="AWS-Directory-Service">AWS Directory Service</h3>
+<h3 id="AWS-DMS">AWS DMS</h3>
+<h3 id="Amazon-DocumentDB">Amazon DocumentDB</h3>
+<h3 id="DynamoDB">DynamoDB</h3>
+<h3 id="Amazon-EC2">Amazon EC2</h3>
+<h3 id="Amazon-EC2-Auto-Scaling">Amazon EC2 Auto Scaling</h3>
+<h3 id="Amazon-ECR">Amazon ECR</h3>
+<h3 id="Amazon-ECS">Amazon ECS</h3>
+<h3 id="Amazon-EFS">Amazon EFS</h3>
+<h3 id="Amazon-EKS">Amazon EKS</h3>
+<h3 id="Elastic-Beanstalk">Elastic Beanstalk</h3>
+<h3 id="Elastic-Load-Balancing">Elastic Load Balancing</h3>
+<h3 id="Elastic-Load-Balancing-V2">Elastic Load Balancing V2</h3>
+<h3 id="Amazon-EMR">Amazon EMR</h3>
+<h3 id="Amazon-EMR-on-EKS">Amazon EMR on EKS</h3>
+<h3 id="ElastiCache">ElastiCache</h3>
+<h3 id="Amazon-EventBridge">Amazon EventBridge</h3>
+<h3 id="Amazon-EventBridge-Schemas">Amazon EventBridge Schemas</h3>
+<h3 id="Evidently">Evidently</h3>
+<h3 id="FinSpace">FinSpace</h3>
+<h3 id="AWS-FIS">AWS FIS</h3>
+<h3 id="Firewall-Manager">Firewall Manager</h3>
+<h3 id="Amazon-Fraud-Detector">Amazon Fraud Detector</h3>
+<h3 id="Amazon-FSx">Amazon FSx</h3>
+<h3 id="GameLift">GameLift</h3>
+<h3 id="Global-Accelerator">Global Accelerator</h3>
+<h3 id="AWS-Glue">AWS Glue</h3>
+<h3 id="AWS-Ground-Station">AWS Ground Station</h3>
+<h3 id="GuardDuty">GuardDuty</h3>
+<h3 id="HealthLake">HealthLake</h3>
+<h3 id="IAM">IAM</h3>
+<h3 id="IAM-Access-Analyzer">IAM Access Analyzer</h3>
+<h3 id="Image-Builder">Image Builder</h3>
+<h3 id="Incident-Manager">Incident Manager</h3>
+<h3 id="Incident-Manager-Contacts">Incident Manager Contacts</h3>
+<h3 id="Amazon-Inspector">Amazon Inspector</h3>
+<h3 id="AWS-IoT">AWS IoT</h3>
+<h3 id="AWS-IoT-1-Click">AWS IoT 1-Click</h3>
+<h3 id="AWS-IoT-Analytics">AWS IoT Analytics</h3>
+<h3 id="AWS-IoT-Core-Device-Advisor">AWS IoT Core Device Advisor</h3>
+<h3 id="AWS-IoT-Events">AWS IoT Events</h3>
+<h3 id="AWS-IoT-Fleet-Hub">AWS IoT Fleet Hub</h3>
+<h3 id="AWS-IoT-Greengrass">AWS IoT Greengrass</h3>
+<h3 id="AWS-IoT-Greengrass-V2">AWS IoT Greengrass V2</h3>
+<h3 id="AWS-IoT-SiteWise">AWS IoT SiteWise</h3>
+<h3 id="AWS-IoT-Things-Graph">AWS IoT Things Graph</h3>
+<h3 id="AWS-IoT-Wireless">AWS IoT Wireless</h3>
+<h3 id="Amazon-IVS">Amazon IVS</h3>
+<h3 id="Amazon-Kendra">Amazon Kendra</h3>
+<h3 id="Amazon-Keyspaces">Amazon Keyspaces</h3>
+<h3 id="Kinesis">Kinesis</h3>
+<h3 id="Kinesis-Data-Analytics">Kinesis Data Analytics</h3>
+<h3 id="Kinesis-Data-Analytics-V2">Kinesis Data Analytics V2</h3>
+<h3 id="Kinesis-Data-Firehose">Kinesis Data Firehose</h3>
+<h3 id="AWS-KMS">AWS KMS</h3>
+<h3 id="Lake-Formation">Lake Formation</h3>
+<h3 id="Lambda">Lambda</h3>
+<h3 id="Lex">Lex</h3>
+<h3 id="License-Manager">License Manager</h3>
+<h3 id="Lightsail">Lightsail</h3>
+<h3 id="Amazon-Location">Amazon Location</h3>
+<h3 id="Lookout-for-Equipment">Lookout for Equipment</h3>
+<h3 id="Lookout-for-Metrics">Lookout for Metrics</h3>
+<h3 id="Lookout-for-Vision">Lookout for Vision</h3>
+<h3 id="Macie">Macie</h3>
+<h3 id="Amazon-Managed-Blockchain">Amazon Managed Blockchain</h3>
+<h3 id="MediaConnect">MediaConnect</h3>
+<h3 id="MediaConvert">MediaConvert</h3>
+<h3 id="MediaLive">MediaLive</h3>
+<h3 id="MediaPackage">MediaPackage</h3>
+<h3 id="MediaStore">MediaStore</h3>
+<h3 id="Amazon-MQ">Amazon MQ</h3>
+<h3 id="Amazon-MemoryDB">Amazon MemoryDB</h3>
+<h3 id="Amazon-MSK">Amazon MSK</h3>
+<h3 id="MWAA">MWAA</h3>
+<h3 id="Amazon-Neptune">Amazon Neptune</h3>
+<h3 id="Network-Firewall">Network Firewall</h3>
+<h3 id="Network-Manager">Network Manager</h3>
+<h3 id="Amazon-Nimble-Studio">Amazon Nimble Studio</h3>
+<h3 id="OpenSearch-Service-legacy-Elasticsearch-resource">OpenSearch Service (legacy Elasticsearch resource)</h3>
+<h3 id="OpenSearch-Service">OpenSearch Service</h3>
+<h3 id="OpsWorks">OpsWorks</h3>
+<h3 id="OpsWorks-CM">OpsWorks-CM</h3>
+<h3 id="Panorama">Panorama</h3>
+<h3 id="Amazon-Pinpoint">Amazon Pinpoint</h3>
+<h3 id="Amazon-Pinpoint-Email">Amazon Pinpoint Email</h3>
+<h3 id="QLDB">QLDB</h3>
+<h3 id="Amazon-QuickSight">Amazon QuickSight</h3>
+<h3 id="AWS-RAM">AWS RAM</h3>
+<h3 id="Amazon-RDS">Amazon RDS</h3>
+<h3 id="Amazon-Redshift">Amazon Redshift</h3>
+<h3 id="RefactorSpaces">RefactorSpaces</h3>
+<h3 id="Rekognition">Rekognition</h3>
+<h3 id="ResilienceHub">ResilienceHub</h3>
+<h3 id="Resource-Groups">Resource Groups</h3>
+<h3 id="AWS-RoboMaker">AWS RoboMaker</h3>
+<h3 id="Route-53">Route 53</h3>
+<h3 id="Route-53-Recovery-Control">Route 53 Recovery Control</h3>
+<h3 id="Route-53-Recovery-Readiness">Route 53 Recovery Readiness</h3>
+<h3 id="Route-53-Resolver">Route 53 Resolver</h3>
+<h3 id="RUM">RUM</h3>
+<h3 id="Amazon-S3">Amazon S3</h3>
+<h3 id="Amazon-S3-Object-Lambda">Amazon S3 Object Lambda</h3>
+<h3 id="Amazon-S3-on-Outposts">Amazon S3 on Outposts</h3>
+<h3 id="Amazon-SageMaker">Amazon SageMaker</h3>
+<h3 id="Secrets-Manager">Secrets Manager</h3>
+<h3 id="AWS-Service-Catalog">AWS Service Catalog</h3>
+<h3 id="AWS-Service-Catalog-AppRegistry">AWS Service Catalog AppRegistry</h3>
+<h3 id="Security-Hub">Security Hub</h3>
+<h3 id="Amazon-SES">Amazon SES</h3>
+<h3 id="Signer">Signer</h3>
+<h3 id="Amazon-SimpleDB">Amazon SimpleDB</h3>
+<h3 id="Amazon-SNS">Amazon SNS</h3>
+<h3 id="Amazon-SQS">Amazon SQS</h3>
+<h3 id="AWS-SSO">AWS SSO</h3>
+<h3 id="Step-Functions">Step Functions</h3>
+<h3 id="Systems-Manager">Systems Manager</h3>
+<h3 id="Amazon-Timestream">Amazon Timestream</h3>
+<h3 id="AWS-Transfer-Family">AWS Transfer Family</h3>
+<h3 id="AWS-WAF">AWS WAF</h3>
+<h3 id="AWS-WAF-Regional">AWS WAF Regional</h3>
+<h3 id="AWS-WAF-V2">AWS WAF V2</h3>
+<h3 id="Wisdom">Wisdom</h3>
+<h3 id="WorkSpaces">WorkSpaces</h3>
+<h3 id="X-Ray">X-Ray</h3>
+<h3 id="Shared-property-types">Shared property types</h3>
+<p><a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html">^1</a></p>
+
+    </div>
+</article>
+
+  <div>
+    <a
+      target="_blank" rel="noopener" href="https://github.com/anthonyrussano/anthonyrussano.com/new/master/site/source/_posts">
+      New</a> -
+    <a target="_blank" rel="noopener" href='https://github.com/anthonyrussano/anthonyrussano.com/edit/master/site/source/_posts/DevOps/Infrastructure as Code/Infrastructure Provisioning/AWS CloudFormation/cloudformation-resources-and-properties.md'>
+      Edit</a> -
+    <a
+      target="_blank" rel="noopener" href='https://github.com/anthonyrussano/anthonyrussano.com/commits/master/site/source/_posts/DevOps/Infrastructure as Code/Infrastructure Provisioning/AWS CloudFormation/cloudformation-resources-and-properties.md'>
+      History</a> -
+    <a target="_blank" rel="noopener" href='https://github.com/anthonyrussano/anthonyrussano.com/raw/master/site/source/_posts/DevOps/Infrastructure as Code/Infrastructure Provisioning/AWS CloudFormation/cloudformation-resources-and-properties.md'>
+      Source</a>
+  </div>
+  
+
+                      
+                        <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="../index.html">Home</a></li>
+        
+          <li><a href="../archives/">Writing</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="https://talk.anthonyrussano.com">Talk</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Description"><span class="toc-number">1.</span> <span class="toc-text">Description</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Service-resource-type"><span class="toc-number">2.</span> <span class="toc-text">Service resource type:</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ACM-PCA"><span class="toc-number">2.1.</span> <span class="toc-text">ACM PCA</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amplify-Console"><span class="toc-number">2.2.</span> <span class="toc-text">Amplify Console</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amplify-UI-Builder"><span class="toc-number">2.3.</span> <span class="toc-text">Amplify UI Builder</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#API-Gateway"><span class="toc-number">2.4.</span> <span class="toc-text">API Gateway</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#API-Gateway-V2"><span class="toc-number">2.5.</span> <span class="toc-text">API Gateway V2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AppConfig"><span class="toc-number">2.6.</span> <span class="toc-text">AppConfig</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-AppFlow"><span class="toc-number">2.7.</span> <span class="toc-text">Amazon AppFlow</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AppIntegrations"><span class="toc-number">2.8.</span> <span class="toc-text">AppIntegrations</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Application-Auto-Scaling"><span class="toc-number">2.9.</span> <span class="toc-text">Application Auto Scaling</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#App-Mesh"><span class="toc-number">2.10.</span> <span class="toc-text">App Mesh</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#App-Runner"><span class="toc-number">2.11.</span> <span class="toc-text">App Runner</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AppStream-2-0"><span class="toc-number">2.12.</span> <span class="toc-text">AppStream 2.0</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-AppSync"><span class="toc-number">2.13.</span> <span class="toc-text">AWS AppSync</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-Managed-Service-for-Prometheus"><span class="toc-number">2.14.</span> <span class="toc-text">Amazon Managed Service for Prometheus</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ASK"><span class="toc-number">2.15.</span> <span class="toc-text">ASK</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Athena"><span class="toc-number">2.16.</span> <span class="toc-text">Athena</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Audit-Manager"><span class="toc-number">2.17.</span> <span class="toc-text">Audit Manager</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-Auto-Scaling"><span class="toc-number">2.18.</span> <span class="toc-text">AWS Auto Scaling</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-Backup"><span class="toc-number">2.19.</span> <span class="toc-text">AWS Backup</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-Batch"><span class="toc-number">2.20.</span> <span class="toc-text">AWS Batch</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-Budgets"><span class="toc-number">2.21.</span> <span class="toc-text">AWS Budgets</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-Certificate-Manager"><span class="toc-number">2.22.</span> <span class="toc-text">AWS Certificate Manager</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Chatbot"><span class="toc-number">2.23.</span> <span class="toc-text">Chatbot</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-Cloud9"><span class="toc-number">2.24.</span> <span class="toc-text">AWS Cloud9</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CloudFormation"><span class="toc-number">2.25.</span> <span class="toc-text">CloudFormation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CloudFront"><span class="toc-number">2.26.</span> <span class="toc-text">CloudFront</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-Cloud-Map"><span class="toc-number">2.27.</span> <span class="toc-text">AWS Cloud Map</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CloudTrail"><span class="toc-number">2.28.</span> <span class="toc-text">CloudTrail</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CloudWatch"><span class="toc-number">2.29.</span> <span class="toc-text">CloudWatch</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CloudWatch-Application-Insights"><span class="toc-number">2.30.</span> <span class="toc-text">CloudWatch Application Insights</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CloudWatch-Logs"><span class="toc-number">2.31.</span> <span class="toc-text">CloudWatch Logs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CloudWatch-Synthetics"><span class="toc-number">2.32.</span> <span class="toc-text">CloudWatch Synthetics</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CodeArtifact"><span class="toc-number">2.33.</span> <span class="toc-text">CodeArtifact</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CodeBuild"><span class="toc-number">2.34.</span> <span class="toc-text">CodeBuild</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CodeCommit"><span class="toc-number">2.35.</span> <span class="toc-text">CodeCommit</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CodeDeploy"><span class="toc-number">2.36.</span> <span class="toc-text">CodeDeploy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CodeGuru-Profiler"><span class="toc-number">2.37.</span> <span class="toc-text">CodeGuru Profiler</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CodeGuru-Reviewer"><span class="toc-number">2.38.</span> <span class="toc-text">CodeGuru Reviewer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CodePipeline"><span class="toc-number">2.39.</span> <span class="toc-text">CodePipeline</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-CodeStar"><span class="toc-number">2.40.</span> <span class="toc-text">AWS CodeStar</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-CodeStar-Connections"><span class="toc-number">2.41.</span> <span class="toc-text">AWS CodeStar Connections</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-CodeStar-Notifications"><span class="toc-number">2.42.</span> <span class="toc-text">AWS CodeStar Notifications</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-Cognito"><span class="toc-number">2.43.</span> <span class="toc-text">Amazon Cognito</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-Config"><span class="toc-number">2.44.</span> <span class="toc-text">AWS Config</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-Connect"><span class="toc-number">2.45.</span> <span class="toc-text">Amazon Connect</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-Connect-Customer-Profiles"><span class="toc-number">2.46.</span> <span class="toc-text">Amazon Connect Customer Profiles</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cost-Explorer"><span class="toc-number">2.47.</span> <span class="toc-text">Cost Explorer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CUR"><span class="toc-number">2.48.</span> <span class="toc-text">CUR</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DataBrew"><span class="toc-number">2.49.</span> <span class="toc-text">DataBrew</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-Data-Lifecycle-Manager"><span class="toc-number">2.50.</span> <span class="toc-text">Amazon Data Lifecycle Manager</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-Data-Pipeline"><span class="toc-number">2.51.</span> <span class="toc-text">AWS Data Pipeline</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DataSync"><span class="toc-number">2.52.</span> <span class="toc-text">DataSync</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DAX"><span class="toc-number">2.53.</span> <span class="toc-text">DAX</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Detective"><span class="toc-number">2.54.</span> <span class="toc-text">Detective</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DeviceFarm"><span class="toc-number">2.55.</span> <span class="toc-text">DeviceFarm</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DevOpsGuru"><span class="toc-number">2.56.</span> <span class="toc-text">DevOpsGuru</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-Directory-Service"><span class="toc-number">2.57.</span> <span class="toc-text">AWS Directory Service</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-DMS"><span class="toc-number">2.58.</span> <span class="toc-text">AWS DMS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-DocumentDB"><span class="toc-number">2.59.</span> <span class="toc-text">Amazon DocumentDB</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DynamoDB"><span class="toc-number">2.60.</span> <span class="toc-text">DynamoDB</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-EC2"><span class="toc-number">2.61.</span> <span class="toc-text">Amazon EC2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-EC2-Auto-Scaling"><span class="toc-number">2.62.</span> <span class="toc-text">Amazon EC2 Auto Scaling</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-ECR"><span class="toc-number">2.63.</span> <span class="toc-text">Amazon ECR</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-ECS"><span class="toc-number">2.64.</span> <span class="toc-text">Amazon ECS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-EFS"><span class="toc-number">2.65.</span> <span class="toc-text">Amazon EFS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-EKS"><span class="toc-number">2.66.</span> <span class="toc-text">Amazon EKS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Elastic-Beanstalk"><span class="toc-number">2.67.</span> <span class="toc-text">Elastic Beanstalk</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Elastic-Load-Balancing"><span class="toc-number">2.68.</span> <span class="toc-text">Elastic Load Balancing</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Elastic-Load-Balancing-V2"><span class="toc-number">2.69.</span> <span class="toc-text">Elastic Load Balancing V2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-EMR"><span class="toc-number">2.70.</span> <span class="toc-text">Amazon EMR</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-EMR-on-EKS"><span class="toc-number">2.71.</span> <span class="toc-text">Amazon EMR on EKS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ElastiCache"><span class="toc-number">2.72.</span> <span class="toc-text">ElastiCache</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-EventBridge"><span class="toc-number">2.73.</span> <span class="toc-text">Amazon EventBridge</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-EventBridge-Schemas"><span class="toc-number">2.74.</span> <span class="toc-text">Amazon EventBridge Schemas</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Evidently"><span class="toc-number">2.75.</span> <span class="toc-text">Evidently</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FinSpace"><span class="toc-number">2.76.</span> <span class="toc-text">FinSpace</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-FIS"><span class="toc-number">2.77.</span> <span class="toc-text">AWS FIS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Firewall-Manager"><span class="toc-number">2.78.</span> <span class="toc-text">Firewall Manager</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-Fraud-Detector"><span class="toc-number">2.79.</span> <span class="toc-text">Amazon Fraud Detector</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-FSx"><span class="toc-number">2.80.</span> <span class="toc-text">Amazon FSx</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GameLift"><span class="toc-number">2.81.</span> <span class="toc-text">GameLift</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Global-Accelerator"><span class="toc-number">2.82.</span> <span class="toc-text">Global Accelerator</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-Glue"><span class="toc-number">2.83.</span> <span class="toc-text">AWS Glue</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-Ground-Station"><span class="toc-number">2.84.</span> <span class="toc-text">AWS Ground Station</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GuardDuty"><span class="toc-number">2.85.</span> <span class="toc-text">GuardDuty</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HealthLake"><span class="toc-number">2.86.</span> <span class="toc-text">HealthLake</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IAM"><span class="toc-number">2.87.</span> <span class="toc-text">IAM</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IAM-Access-Analyzer"><span class="toc-number">2.88.</span> <span class="toc-text">IAM Access Analyzer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Image-Builder"><span class="toc-number">2.89.</span> <span class="toc-text">Image Builder</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Incident-Manager"><span class="toc-number">2.90.</span> <span class="toc-text">Incident Manager</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Incident-Manager-Contacts"><span class="toc-number">2.91.</span> <span class="toc-text">Incident Manager Contacts</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-Inspector"><span class="toc-number">2.92.</span> <span class="toc-text">Amazon Inspector</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-IoT"><span class="toc-number">2.93.</span> <span class="toc-text">AWS IoT</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-IoT-1-Click"><span class="toc-number">2.94.</span> <span class="toc-text">AWS IoT 1-Click</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-IoT-Analytics"><span class="toc-number">2.95.</span> <span class="toc-text">AWS IoT Analytics</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-IoT-Core-Device-Advisor"><span class="toc-number">2.96.</span> <span class="toc-text">AWS IoT Core Device Advisor</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-IoT-Events"><span class="toc-number">2.97.</span> <span class="toc-text">AWS IoT Events</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-IoT-Fleet-Hub"><span class="toc-number">2.98.</span> <span class="toc-text">AWS IoT Fleet Hub</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-IoT-Greengrass"><span class="toc-number">2.99.</span> <span class="toc-text">AWS IoT Greengrass</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-IoT-Greengrass-V2"><span class="toc-number">2.100.</span> <span class="toc-text">AWS IoT Greengrass V2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-IoT-SiteWise"><span class="toc-number">2.101.</span> <span class="toc-text">AWS IoT SiteWise</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-IoT-Things-Graph"><span class="toc-number">2.102.</span> <span class="toc-text">AWS IoT Things Graph</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-IoT-Wireless"><span class="toc-number">2.103.</span> <span class="toc-text">AWS IoT Wireless</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-IVS"><span class="toc-number">2.104.</span> <span class="toc-text">Amazon IVS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-Kendra"><span class="toc-number">2.105.</span> <span class="toc-text">Amazon Kendra</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-Keyspaces"><span class="toc-number">2.106.</span> <span class="toc-text">Amazon Keyspaces</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Kinesis"><span class="toc-number">2.107.</span> <span class="toc-text">Kinesis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Kinesis-Data-Analytics"><span class="toc-number">2.108.</span> <span class="toc-text">Kinesis Data Analytics</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Kinesis-Data-Analytics-V2"><span class="toc-number">2.109.</span> <span class="toc-text">Kinesis Data Analytics V2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Kinesis-Data-Firehose"><span class="toc-number">2.110.</span> <span class="toc-text">Kinesis Data Firehose</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-KMS"><span class="toc-number">2.111.</span> <span class="toc-text">AWS KMS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Lake-Formation"><span class="toc-number">2.112.</span> <span class="toc-text">Lake Formation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Lambda"><span class="toc-number">2.113.</span> <span class="toc-text">Lambda</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Lex"><span class="toc-number">2.114.</span> <span class="toc-text">Lex</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#License-Manager"><span class="toc-number">2.115.</span> <span class="toc-text">License Manager</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Lightsail"><span class="toc-number">2.116.</span> <span class="toc-text">Lightsail</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-Location"><span class="toc-number">2.117.</span> <span class="toc-text">Amazon Location</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Lookout-for-Equipment"><span class="toc-number">2.118.</span> <span class="toc-text">Lookout for Equipment</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Lookout-for-Metrics"><span class="toc-number">2.119.</span> <span class="toc-text">Lookout for Metrics</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Lookout-for-Vision"><span class="toc-number">2.120.</span> <span class="toc-text">Lookout for Vision</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Macie"><span class="toc-number">2.121.</span> <span class="toc-text">Macie</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-Managed-Blockchain"><span class="toc-number">2.122.</span> <span class="toc-text">Amazon Managed Blockchain</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MediaConnect"><span class="toc-number">2.123.</span> <span class="toc-text">MediaConnect</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MediaConvert"><span class="toc-number">2.124.</span> <span class="toc-text">MediaConvert</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MediaLive"><span class="toc-number">2.125.</span> <span class="toc-text">MediaLive</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MediaPackage"><span class="toc-number">2.126.</span> <span class="toc-text">MediaPackage</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MediaStore"><span class="toc-number">2.127.</span> <span class="toc-text">MediaStore</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-MQ"><span class="toc-number">2.128.</span> <span class="toc-text">Amazon MQ</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-MemoryDB"><span class="toc-number">2.129.</span> <span class="toc-text">Amazon MemoryDB</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-MSK"><span class="toc-number">2.130.</span> <span class="toc-text">Amazon MSK</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MWAA"><span class="toc-number">2.131.</span> <span class="toc-text">MWAA</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-Neptune"><span class="toc-number">2.132.</span> <span class="toc-text">Amazon Neptune</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Network-Firewall"><span class="toc-number">2.133.</span> <span class="toc-text">Network Firewall</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Network-Manager"><span class="toc-number">2.134.</span> <span class="toc-text">Network Manager</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-Nimble-Studio"><span class="toc-number">2.135.</span> <span class="toc-text">Amazon Nimble Studio</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OpenSearch-Service-legacy-Elasticsearch-resource"><span class="toc-number">2.136.</span> <span class="toc-text">OpenSearch Service (legacy Elasticsearch resource)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OpenSearch-Service"><span class="toc-number">2.137.</span> <span class="toc-text">OpenSearch Service</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OpsWorks"><span class="toc-number">2.138.</span> <span class="toc-text">OpsWorks</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OpsWorks-CM"><span class="toc-number">2.139.</span> <span class="toc-text">OpsWorks-CM</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Panorama"><span class="toc-number">2.140.</span> <span class="toc-text">Panorama</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-Pinpoint"><span class="toc-number">2.141.</span> <span class="toc-text">Amazon Pinpoint</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-Pinpoint-Email"><span class="toc-number">2.142.</span> <span class="toc-text">Amazon Pinpoint Email</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#QLDB"><span class="toc-number">2.143.</span> <span class="toc-text">QLDB</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-QuickSight"><span class="toc-number">2.144.</span> <span class="toc-text">Amazon QuickSight</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-RAM"><span class="toc-number">2.145.</span> <span class="toc-text">AWS RAM</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-RDS"><span class="toc-number">2.146.</span> <span class="toc-text">Amazon RDS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-Redshift"><span class="toc-number">2.147.</span> <span class="toc-text">Amazon Redshift</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RefactorSpaces"><span class="toc-number">2.148.</span> <span class="toc-text">RefactorSpaces</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Rekognition"><span class="toc-number">2.149.</span> <span class="toc-text">Rekognition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ResilienceHub"><span class="toc-number">2.150.</span> <span class="toc-text">ResilienceHub</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Resource-Groups"><span class="toc-number">2.151.</span> <span class="toc-text">Resource Groups</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-RoboMaker"><span class="toc-number">2.152.</span> <span class="toc-text">AWS RoboMaker</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Route-53"><span class="toc-number">2.153.</span> <span class="toc-text">Route 53</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Route-53-Recovery-Control"><span class="toc-number">2.154.</span> <span class="toc-text">Route 53 Recovery Control</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Route-53-Recovery-Readiness"><span class="toc-number">2.155.</span> <span class="toc-text">Route 53 Recovery Readiness</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Route-53-Resolver"><span class="toc-number">2.156.</span> <span class="toc-text">Route 53 Resolver</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RUM"><span class="toc-number">2.157.</span> <span class="toc-text">RUM</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-S3"><span class="toc-number">2.158.</span> <span class="toc-text">Amazon S3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-S3-Object-Lambda"><span class="toc-number">2.159.</span> <span class="toc-text">Amazon S3 Object Lambda</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-S3-on-Outposts"><span class="toc-number">2.160.</span> <span class="toc-text">Amazon S3 on Outposts</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-SageMaker"><span class="toc-number">2.161.</span> <span class="toc-text">Amazon SageMaker</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Secrets-Manager"><span class="toc-number">2.162.</span> <span class="toc-text">Secrets Manager</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-Service-Catalog"><span class="toc-number">2.163.</span> <span class="toc-text">AWS Service Catalog</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-Service-Catalog-AppRegistry"><span class="toc-number">2.164.</span> <span class="toc-text">AWS Service Catalog AppRegistry</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Security-Hub"><span class="toc-number">2.165.</span> <span class="toc-text">Security Hub</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-SES"><span class="toc-number">2.166.</span> <span class="toc-text">Amazon SES</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Signer"><span class="toc-number">2.167.</span> <span class="toc-text">Signer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-SimpleDB"><span class="toc-number">2.168.</span> <span class="toc-text">Amazon SimpleDB</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-SNS"><span class="toc-number">2.169.</span> <span class="toc-text">Amazon SNS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-SQS"><span class="toc-number">2.170.</span> <span class="toc-text">Amazon SQS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-SSO"><span class="toc-number">2.171.</span> <span class="toc-text">AWS SSO</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-Functions"><span class="toc-number">2.172.</span> <span class="toc-text">Step Functions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Systems-Manager"><span class="toc-number">2.173.</span> <span class="toc-text">Systems Manager</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Amazon-Timestream"><span class="toc-number">2.174.</span> <span class="toc-text">Amazon Timestream</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-Transfer-Family"><span class="toc-number">2.175.</span> <span class="toc-text">AWS Transfer Family</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-WAF"><span class="toc-number">2.176.</span> <span class="toc-text">AWS WAF</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-WAF-Regional"><span class="toc-number">2.177.</span> <span class="toc-text">AWS WAF Regional</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AWS-WAF-V2"><span class="toc-number">2.178.</span> <span class="toc-text">AWS WAF V2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Wisdom"><span class="toc-number">2.179.</span> <span class="toc-text">Wisdom</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#WorkSpaces"><span class="toc-number">2.180.</span> <span class="toc-text">WorkSpaces</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#X-Ray"><span class="toc-number">2.181.</span> <span class="toc-text">X-Ray</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Shared-property-types"><span class="toc-number">2.182.</span> <span class="toc-text">Shared property types</span></a></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="mailto:?subject=CloudFormation Resource and Property Types Reference&body=Check out this article: https://www.anthonyrussano.com/cloudformation-resource-and-property-types-reference/"><i
+        class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+                          
+                            <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2023
+    Anthony Russano
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="../index.html">Home</a></li><!--
+     --><!--
+       --><li><a href="../archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://talk.anthonyrussano.com">Talk</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+            </div>
+            <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+              <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+    
+
+          
+
+                        <!-- clipboard -->
+                        
+                          
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+                              
+                                    <script type="text/javascript">
+                                      $(function () {
+                                        // copy-btn HTML
+                                        var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+                                        btn += '<i class="fa-regular fa-clone"></i>';
+                                        btn += '</span>';
+                                        // mount it!
+                                        $(".highlight table").before(btn);
+                                        var clip = new ClipboardJS('.btn-copy', {
+                                          text: function (trigger) {
+                                            return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str, it) => str + it.innerText + '\n', '')
+                                          }
+                                        });
+                                        clip.on('success', function (e) {
+                                          e.trigger.setAttribute('aria-label', "Copied!");
+                                          e.clearSelection();
+                                        })
+                                      })
+                                    </script>
+                                    
+                                      
+<script src="js/main.js"></script>
+
+                                        <!-- search -->
+                                        
+                                          
+<script src="js/search.js"></script>
+
+                                            <script type="text/javascript">
+                                              $(function () {
+
+                                                var $inputArea = $("input#search-input");
+                                                var $resultArea = document.querySelector("div#search-result");
+
+                                                $inputArea.focus(function () {
+                                                  var search_path = "search.xml";
+                                                  if (search_path.length == 0) {
+                                                    search_path = "search.xml";
+                                                  }
+                                                  var path = "/" + search_path;
+                                                  searchFunc(path, 'search-input', 'search-result');
+                                                });
+
+                                                $inputArea.keydown(function (e) {
+                                                  if (e.which == 13) {
+                                                    e.preventDefault();
+                                                  }
+                                                });
+
+                                                var observer = new MutationObserver(function (mutationsList, observer) {
+                                                  if (mutationsList.length == 1) {
+                                                    if (mutationsList[0].addedNodes.length) {
+                                                      $(".search-no-result").hide();
+                                                    } else if (mutationsList[0].removedNodes.length) {
+                                                      $(".search-no-result").show(200);
+                                                    }
+                                                  }
+                                                });
+
+                                                observer.observe($resultArea, { childList: true });
+
+                                              });
+                                            </script>
+                                            
+                                              <!-- Baidu Analytics -->
+                                              
+                                                  <!-- Cloudflare Analytics -->
+                                                  
+                                                      <!-- Disqus Comments -->
+                                                      
+                                                          <!-- utterances Comments -->
+                                                          
+    </body>
+
+    </html>

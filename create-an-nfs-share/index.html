@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang=en>
+  <head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Description This article demonstrates how to configure and connect to an NFS Share. Requirements Server Setup Install required packages $ sudo apt install nfs-kernel-server Create the Directory that w">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Create an NFS Share">
+<meta property="og:url" content="https://www.anthonyrussano.com/create-an-nfs-share/index.html">
+<meta property="og:site_name" content="anthonyrussano.com">
+<meta property="og:description" content="Description This article demonstrates how to configure and connect to an NFS Share. Requirements Server Setup Install required packages $ sudo apt install nfs-kernel-server Create the Directory that w">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-07-09T07:30:03.859Z">
+<meta property="article:modified_time" content="2023-07-09T07:30:03.859Z">
+<meta property="article:author" content="Anthony Russano">
+<meta property="article:tag" content="Networking">
+<meta property="article:tag" content="Internet Protocols">
+<meta property="article:tag" content="Network File Systems">
+<meta property="article:tag" content="Internet Protocol Based Network Software">
+<meta property="article:tag" content="Application Layer Protocols">
+<meta property="article:tag" content="Network File Transfer Protocols">
+<meta property="article:tag" content="Distributed File Systems">
+<meta property="article:tag" content="File Sharing">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="https://res.cloudinary.com/alchemist-cookbook/image/upload/v1674087936/christianity.jpg">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="https://res.cloudinary.com/alchemist-cookbook/image/upload/v1674087936/christianity.jpg" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="https://res.cloudinary.com/alchemist-cookbook/image/upload/v1674087936/christianity.jpg">
+        
+      
+    
+    <!-- title -->
+    <title>Create an NFS Share</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+    <body class="max-width mx-auto px3 ltr">
+      
+        <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="../index.html">Home</a></li><!--
+     --><!--
+       --><li><a href="../archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://talk.anthonyrussano.com">Talk</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="../what-is-ssl/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="../what-is-network-file-system/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="mailto:?subject=Create an NFS Share&body=Check out this article: https://www.anthonyrussano.com/create-an-nfs-share/"><i
+        class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+</ul>
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Description"><span class="toc-number">1.</span> <span class="toc-text">Description</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Requirements"><span class="toc-number">2.</span> <span class="toc-text">Requirements</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Server-Setup"><span class="toc-number">3.</span> <span class="toc-text">Server Setup</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Install-required-packages"><span class="toc-number">3.1.</span> <span class="toc-text">Install required packages</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-the-Directory-that-will-be-Exported"><span class="toc-number">3.2.</span> <span class="toc-text">Create the Directory that will be Exported</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Apply-permissions"><span class="toc-number">3.3.</span> <span class="toc-text">Apply permissions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Edit-the-etc-exports-file"><span class="toc-number">3.4.</span> <span class="toc-text">Edit the &#x2F;etc&#x2F;exports file:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Restart-the-NFS-Service"><span class="toc-number">3.5.</span> <span class="toc-text">Restart the NFS Service</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Client-Setup"><span class="toc-number">4.</span> <span class="toc-text">Client Setup</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Install-the-required-packages"><span class="toc-number">4.1.</span> <span class="toc-text">Install the required packages</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Edit-the-etc-fstab-file"><span class="toc-number">4.2.</span> <span class="toc-text">Edit the &#x2F;etc&#x2F;fstab file</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Auto-Mount"><span class="toc-number">4.2.1.</span> <span class="toc-text">Auto Mount</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Manual-Mount"><span class="toc-number">4.2.2.</span> <span class="toc-text">Manual Mount</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sources"><span class="toc-number">5.</span> <span class="toc-text">Sources</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+          
+            <div class="content index py4 ">
+              
+                    <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Create an NFS Share
+    </h1>
+
+
+
+      <div class="meta">
+        <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <span class="p-name" itemprop="name">
+            Anthony Russano
+                    
+          </span>
+        </span>
+        
+    <div class="postdate">
+      
+        <time datetime="2023-07-09T07:30:03.859Z" class="dt-published" itemprop="datePublished">2023-07-09</time>
+        
+        (Updated: <time datetime="2023-07-09T07:30:03.859Z" class="dt-updated" itemprop="dateModified">2023-07-09</time>)
+        
+      
+    </div>
+
+
+          
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="../categories/DevOps/">DevOps</a> › <a class="category-link" href="../categories/DevOps/Network-and-Security/">Network and Security</a> › <a class="category-link" href="../categories/DevOps/Network-and-Security/Remote-Access/">Remote Access</a> › <a class="category-link" href="../categories/DevOps/Network-and-Security/Remote-Access/Network-File-System/">Network File System</a>
+    </div>
+
+
+            
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="../tags/Application-Layer-Protocols/" rel="tag">Application Layer Protocols</a>, <a class="p-category" href="../tags/Distributed-File-Systems/" rel="tag">Distributed File Systems</a>, <a class="p-category" href="../tags/File-Sharing/" rel="tag">File Sharing</a>, <a class="p-category" href="../tags/Internet-Protocol-Based-Network-Software/" rel="tag">Internet Protocol Based Network Software</a>, <a class="p-category" href="../tags/Internet-Protocols/" rel="tag">Internet Protocols</a>, <a class="p-category" href="../tags/Network-File-Systems/" rel="tag">Network File Systems</a>, <a class="p-category" href="../tags/Network-File-Transfer-Protocols/" rel="tag">Network File Transfer Protocols</a>, <a class="p-category" href="../tags/Networking/" rel="tag">Networking</a>
+    </div>
+
+
+      </div>
+  </header>
+  
+
+    <div class="content e-content" itemprop="articleBody">
+      <h2 id="Description">Description</h2>
+<p>This article demonstrates how to configure and connect to an NFS Share.</p>
+<h2 id="Requirements">Requirements</h2>
+<h2 id="Server-Setup">Server Setup</h2>
+<h3 id="Install-required-packages">Install required packages</h3>
+<p><code>$ sudo apt install nfs-kernel-server</code></p>
+<h3 id="Create-the-Directory-that-will-be-Exported">Create the Directory that will be Exported</h3>
+<p><code>$ sudo mkdir -p /export</code></p>
+<h3 id="Apply-permissions">Apply permissions</h3>
+<blockquote>
+<p>Caution: In this example we will be configuring the NFS share to be accessed without authentication.</p>
+</blockquote>
+<p><code>$ sudo chmod -R 777 /export</code></p>
+<blockquote>
+<p>Please Note: Setting 777 permissions to a file or directory means that it will be readable, writable, and executable by all users.</p>
+</blockquote>
+<h3 id="Edit-the-etc-exports-file">Edit the <code>/etc/exports</code> file:</h3>
+<p><code>$ sudo nano /etc/exports</code></p>
+<p>The <code>exports</code> file defines which file systems are exported to remote hosts.</p>
+<p>To export the folder we just created, add the following two line to <code>/etc/exports</code> file:</p>
+<p><code>/export 192.168.1.0/24(rw,fsid=0,nohide,insecure,no_subtree_check,async)</code></p>
+<p>This will publish the <code>/export</code> folder on the local subnet, <code>192.168.1.0/24</code>.</p>
+<h3 id="Restart-the-NFS-Service">Restart the NFS Service</h3>
+<p>To apply the changes, restart the <code>nfs-kernel-server</code> service:</p>
+<p><code>$ sudo systemctl restart nfs-kernel-server</code></p>
+<h2 id="Client-Setup">Client Setup</h2>
+<p>The client configuration is relatively simple.</p>
+<p>Follow these steps tp setup and test the NFS Mountpoint on the Client.</p>
+<h3 id="Install-the-required-packages">Install the required packages</h3>
+<p><code>$ sudo apt install nfs-common</code></p>
+<p>Create the directory on the client filesystem where the NFS share will be mounted:</p>
+<p><code>$ sudo mkdir /mnt/&lt;hostname&gt;</code></p>
+<h3 id="Edit-the-etc-fstab-file">Edit the <code>/etc/fstab</code> file</h3>
+<h4 id="Auto-Mount">Auto Mount</h4>
+<p>To ensure the NFS shared folder is mounted by the client on every reboot, add the following line to <code>/etc/fstab</code>:</p>
+<p><code>&lt;nfs-server-IP&gt;:/export   /mnt   nfs    auto  0  0</code></p>
+<h4 id="Manual-Mount">Manual Mount</h4>
+<p>If the client will not consistently and reliably have access to the NFS server (i.e. a laptop that connects to multiple private/public networks), then use the <code>noauto</code> option in the <code>/etc/fstab</code> file instead, so that it will ‘‘not’’ automatically try to mount the filesystem at boot.</p>
+<p><code>&lt;nfs-server-IP&gt;:/export   /mnt/whitefoot   nfs    noauto  0  0</code></p>
+<p>In this scenario, the user can manually mount the share using the following command:</p>
+<p><code>$ sudo mount /mnt/whitefoot</code></p>
+<h2 id="Sources">Sources</h2>
+<p><a target="_blank" rel="noopener" href="https://www.thegeekdiary.com/understanding-the-etc-exports-file/">^1</a> <a target="_blank" rel="noopener" href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/5/html/deployment_guide/s1-nfs-server-config-exports">^2</a> <a target="_blank" rel="noopener" href="https://unix.stackexchange.com/questions/427597/implications-of-using-nfsv4-fsid-0-and-exporting-the-nfs-root-to-entire-lan-or">^3</a> <a target="_blank" rel="noopener" href="https://linux.die.net/man/5/exports">^4</a> <a target="_blank" rel="noopener" href="https://www.raspberrypi.org/documentation/computers/remote-access.html#network-file-system-nfs">^5</a> <a target="_blank" rel="noopener" href="https://askubuntu.com/questions/292043/how-to-unmount-nfs-when-server-is-gone">^6</a> <a target="_blank" rel="noopener" href="https://devconnected.com/how-to-mount-and-unmount-drives-on-linux/">^7</a> <a target="_blank" rel="noopener" href="https://linuxize.com/post/how-to-mount-an-nfs-share-in-linux/#:~:text=Automatically%20Mounting%20NFS%20File%20Systems%20with%20%2Fetc%2Ffstab,-Generally%2C%20you%20will&amp;text=The%20%2Fetc%2Ffstab%20file%20contains,the%20%2Fetc%2Ffstab%20file.">^8</a> <a target="_blank" rel="noopener" href="https://superuser.com/questions/1038136/what-is-the-noauto-mount-flag-for">^9</a> <a target="_blank" rel="noopener" href="https://www.jeffgeerling.com/blog/2021/htgwa-create-nfs-share-linux-on-raspberry-pi">^10</a> <a target="_blank" rel="noopener" href="https://pimylifeup.com/raspberry-pi-nfs-client/">^11</a> <a target="_blank" rel="noopener" href="https://pimylifeup.com/raspberry-pi-nfs/">^12</a></p>
+
+    </div>
+</article>
+
+  <div>
+    <a
+      target="_blank" rel="noopener" href="https://github.com/anthonyrussano/anthonyrussano.com/new/master/site/source/_posts">
+      New</a> -
+    <a target="_blank" rel="noopener" href='https://github.com/anthonyrussano/anthonyrussano.com/edit/master/site/source/_posts/DevOps/Network and Security/Remote Access/Network File System/create-an-nfs-share.md'>
+      Edit</a> -
+    <a
+      target="_blank" rel="noopener" href='https://github.com/anthonyrussano/anthonyrussano.com/commits/master/site/source/_posts/DevOps/Network and Security/Remote Access/Network File System/create-an-nfs-share.md'>
+      History</a> -
+    <a target="_blank" rel="noopener" href='https://github.com/anthonyrussano/anthonyrussano.com/raw/master/site/source/_posts/DevOps/Network and Security/Remote Access/Network File System/create-an-nfs-share.md'>
+      Source</a>
+  </div>
+  
+
+                      
+                        <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="../index.html">Home</a></li>
+        
+          <li><a href="../archives/">Writing</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="https://talk.anthonyrussano.com">Talk</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Description"><span class="toc-number">1.</span> <span class="toc-text">Description</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Requirements"><span class="toc-number">2.</span> <span class="toc-text">Requirements</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Server-Setup"><span class="toc-number">3.</span> <span class="toc-text">Server Setup</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Install-required-packages"><span class="toc-number">3.1.</span> <span class="toc-text">Install required packages</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-the-Directory-that-will-be-Exported"><span class="toc-number">3.2.</span> <span class="toc-text">Create the Directory that will be Exported</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Apply-permissions"><span class="toc-number">3.3.</span> <span class="toc-text">Apply permissions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Edit-the-etc-exports-file"><span class="toc-number">3.4.</span> <span class="toc-text">Edit the &#x2F;etc&#x2F;exports file:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Restart-the-NFS-Service"><span class="toc-number">3.5.</span> <span class="toc-text">Restart the NFS Service</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Client-Setup"><span class="toc-number">4.</span> <span class="toc-text">Client Setup</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Install-the-required-packages"><span class="toc-number">4.1.</span> <span class="toc-text">Install the required packages</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Edit-the-etc-fstab-file"><span class="toc-number">4.2.</span> <span class="toc-text">Edit the &#x2F;etc&#x2F;fstab file</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Auto-Mount"><span class="toc-number">4.2.1.</span> <span class="toc-text">Auto Mount</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Manual-Mount"><span class="toc-number">4.2.2.</span> <span class="toc-text">Manual Mount</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sources"><span class="toc-number">5.</span> <span class="toc-text">Sources</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="mailto:?subject=Create an NFS Share&body=Check out this article: https://www.anthonyrussano.com/create-an-nfs-share/"><i
+        class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+                          
+                            <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2023
+    Anthony Russano
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="../index.html">Home</a></li><!--
+     --><!--
+       --><li><a href="../archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://talk.anthonyrussano.com">Talk</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+            </div>
+            <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+              <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+    
+
+          
+
+                        <!-- clipboard -->
+                        
+                          
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+                              
+                                    <script type="text/javascript">
+                                      $(function () {
+                                        // copy-btn HTML
+                                        var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+                                        btn += '<i class="fa-regular fa-clone"></i>';
+                                        btn += '</span>';
+                                        // mount it!
+                                        $(".highlight table").before(btn);
+                                        var clip = new ClipboardJS('.btn-copy', {
+                                          text: function (trigger) {
+                                            return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str, it) => str + it.innerText + '\n', '')
+                                          }
+                                        });
+                                        clip.on('success', function (e) {
+                                          e.trigger.setAttribute('aria-label', "Copied!");
+                                          e.clearSelection();
+                                        })
+                                      })
+                                    </script>
+                                    
+                                      
+<script src="js/main.js"></script>
+
+                                        <!-- search -->
+                                        
+                                          
+<script src="js/search.js"></script>
+
+                                            <script type="text/javascript">
+                                              $(function () {
+
+                                                var $inputArea = $("input#search-input");
+                                                var $resultArea = document.querySelector("div#search-result");
+
+                                                $inputArea.focus(function () {
+                                                  var search_path = "search.xml";
+                                                  if (search_path.length == 0) {
+                                                    search_path = "search.xml";
+                                                  }
+                                                  var path = "/" + search_path;
+                                                  searchFunc(path, 'search-input', 'search-result');
+                                                });
+
+                                                $inputArea.keydown(function (e) {
+                                                  if (e.which == 13) {
+                                                    e.preventDefault();
+                                                  }
+                                                });
+
+                                                var observer = new MutationObserver(function (mutationsList, observer) {
+                                                  if (mutationsList.length == 1) {
+                                                    if (mutationsList[0].addedNodes.length) {
+                                                      $(".search-no-result").hide();
+                                                    } else if (mutationsList[0].removedNodes.length) {
+                                                      $(".search-no-result").show(200);
+                                                    }
+                                                  }
+                                                });
+
+                                                observer.observe($resultArea, { childList: true });
+
+                                              });
+                                            </script>
+                                            
+                                              <!-- Baidu Analytics -->
+                                              
+                                                  <!-- Cloudflare Analytics -->
+                                                  
+                                                      <!-- Disqus Comments -->
+                                                      
+                                                          <!-- utterances Comments -->
+                                                          
+    </body>
+
+    </html>

@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang=en>
+  <head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="What is a Secret? “secrets” refer to a private piece of information that acts as a key to unlock protected resources or sensitive information in tools, applications, containers, DevOps and cloud-nativ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="What is Secrets Management?">
+<meta property="og:url" content="https://www.anthonyrussano.com/what-is-secrets-management/index.html">
+<meta property="og:site_name" content="anthonyrussano.com">
+<meta property="og:description" content="What is a Secret? “secrets” refer to a private piece of information that acts as a key to unlock protected resources or sensitive information in tools, applications, containers, DevOps and cloud-nativ">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-07-09T07:30:03.863Z">
+<meta property="article:modified_time" content="2023-07-09T07:30:03.863Z">
+<meta property="article:author" content="Anthony Russano">
+<meta property="article:tag" content="Security">
+<meta property="article:tag" content="Network Security">
+<meta property="article:tag" content="DevSecOps">
+<meta property="article:tag" content="Secrets">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="https://res.cloudinary.com/alchemist-cookbook/image/upload/v1674087936/christianity.jpg">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="https://res.cloudinary.com/alchemist-cookbook/image/upload/v1674087936/christianity.jpg" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="https://res.cloudinary.com/alchemist-cookbook/image/upload/v1674087936/christianity.jpg">
+        
+      
+    
+    <!-- title -->
+    <title>What is Secrets Management?</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+    <body class="max-width mx-auto px3 ltr">
+      
+        <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="../index.html">Home</a></li><!--
+     --><!--
+       --><li><a href="../archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://talk.anthonyrussano.com">Talk</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="../extended-detection-and-response/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="../testing-for-vpn-leaks/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="mailto:?subject=What is Secrets Management?&body=Check out this article: https://www.anthonyrussano.com/what-is-secrets-management/"><i
+        class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+</ul>
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-a-Secret"><span class="toc-number">1.</span> <span class="toc-text">What is a Secret?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-Secrets-Management"><span class="toc-number">2.</span> <span class="toc-text">What is Secrets Management?</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#What-are-Common-Secrets-Management-Use-Cases"><span class="toc-number">2.1.</span> <span class="toc-text">What are Common Secrets Management Use Cases?</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Secrets-management-to-secure-CI-CD-pipelines"><span class="toc-number">2.1.1.</span> <span class="toc-text">Secrets management to secure CI&#x2F;CD pipelines.</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Secrets-management-to-secure-containers"><span class="toc-number">2.1.2.</span> <span class="toc-text">Secrets management to secure containers.</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Secrets-management-to-manage-elastic-and-auto-scale-environments"><span class="toc-number">2.1.3.</span> <span class="toc-text">Secrets management to manage elastic and auto-scale environments</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Secrets-management-to-secure-internally-developed-applications-and-COTS-applications"><span class="toc-number">2.1.4.</span> <span class="toc-text">Secrets management to secure internally developed applications and COTS applications.</span></a></li></ol></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+          
+            <div class="content index py4 ">
+              
+                    <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        What is Secrets Management?
+    </h1>
+
+
+
+      <div class="meta">
+        <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <span class="p-name" itemprop="name">
+            Anthony Russano
+                    
+          </span>
+        </span>
+        
+    <div class="postdate">
+      
+        <time datetime="2023-07-09T07:30:03.863Z" class="dt-published" itemprop="datePublished">2023-07-09</time>
+        
+        (Updated: <time datetime="2023-07-09T07:30:03.863Z" class="dt-updated" itemprop="dateModified">2023-07-09</time>)
+        
+      
+    </div>
+
+
+          
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="../categories/DevOps/">DevOps</a> › <a class="category-link" href="../categories/DevOps/Network-and-Security/">Network and Security</a> › <a class="category-link" href="../categories/DevOps/Network-and-Security/Secrets-Management/">Secrets Management</a>
+    </div>
+
+
+            
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="../tags/DevSecOps/" rel="tag">DevSecOps</a>, <a class="p-category" href="../tags/Network-Security/" rel="tag">Network Security</a>, <a class="p-category" href="../tags/Secrets/" rel="tag">Secrets</a>, <a class="p-category" href="../tags/Security/" rel="tag">Security</a>
+    </div>
+
+
+      </div>
+  </header>
+  
+
+    <div class="content e-content" itemprop="articleBody">
+      <h2 id="What-is-a-Secret">What is a Secret?</h2>
+<p>“secrets” refer to a private piece of information that acts as a key to unlock protected resources or sensitive information in tools, applications, containers, DevOps and cloud-native environments.[^1]</p>
+<p>Common types of secrets include:</p>
+<ul>
+<li>Privileged account credentials</li>
+<li>Passwords</li>
+<li>Certificates</li>
+<li>SSH keys</li>
+<li>API keys</li>
+<li>Encryption keys</li>
+<li>Key Challenges in Managing Secrets</li>
+</ul>
+<p>A non-human user with access to a secret automatically gains real-time access and permissions to any resources belonging to the owner of the secret.[^1]</p>
+<p>Secrets are widespread. They include:</p>
+<ul>
+<li>embedded hard-coded credentials in containerized applications (e.g., Red Hat OpenShift, Kubernetes or Pivotal) [^1]</li>
+<li>automation processes (e.g., Ansible Playbooks, Puppet or Chef) [^1]</li>
+<li>business-critical applications, including: [^1]
+<ul>
+<li>both internally developed and commercial off-the-shelf solutions (COTS) [^1]</li>
+<li>security software, such as vulnerability scanners [^1]</li>
+<li>application servers and IT management software [^1]</li>
+<li>Robotic Process Automation (RPA) platforms [^1]</li>
+<li>Continuous Integration/Continuous Deployment (CI/CD) tool chains [^1]</li>
+</ul>
+</li>
+</ul>
+<h2 id="What-is-Secrets-Management">What is Secrets Management?</h2>
+<p>Automated processes use secrets to access protected data and execute business processes instantaneously.[^1]</p>
+<p>Organizations must protect secrets assigned to non-human identities to defend against attacks and mitigate risks.[^1]</p>
+<p>Secrets management allows organizations to consistently enforce security policies for non-human identities.[^1]</p>
+<p>Secrets management provides assurance that resources across tool stacks, platforms and cloud environments can only be accessed by authenticated and authorized entities.[^1]</p>
+<p>The following steps are typically included in a secrets management initiative: [^1]</p>
+<ul>
+<li>Authenticate all access requests that use non-human credentials.</li>
+<li>Enforce the principle of least privilege.</li>
+<li>Enforce role-based access control (RBAC) and regularly rotate secrets and credentials.</li>
+<li>Automate management of secrets and apply consistent access policies.</li>
+<li>Track all access and maintain a comprehensive audit.</li>
+<li>Remove secrets from code, configuration files and other unprotected areas.</li>
+</ul>
+<h3 id="What-are-Common-Secrets-Management-Use-Cases">What are Common Secrets Management Use Cases?</h3>
+<h4 id="Secrets-management-to-secure-CI-CD-pipelines">Secrets management to secure CI/CD pipelines.</h4>
+<p>Popular CI/CD pipeline tools such as Jenkins, Ansible, Puppet and Chef are designed for efficiency and speed, but can present new security challenges.[^1]</p>
+<p>These automated configuration management tools require secrets to access protected resources like databases, SSH servers and HTTPs services.[^1]</p>
+<p>These secrets are often insecurely hard-coded or stored in configuration files or code for these tools (e.g., JenkinsFiles, playbooks, scripts, or source code).[^1]</p>
+<p>Effective secrets management allows organizations to remove these hard-coded secrets from DevOps tools within the CI/CD pipeline while providing full audit trails, policy-based RBAC and secrets rotation.[^1]</p>
+<h4 id="Secrets-management-to-secure-containers">Secrets management to secure containers.</h4>
+<p>DevOps and engineering teams increasingly rely on containers to accelerate development and improve portability and productivity.[^1]</p>
+<p>Containers require secrets to access critical and sensitive information.[^1]</p>
+<p>But, since containers are ephemeral (or short-lived), they can be difficult to track and access to specific resources can be hard to manage and secure.[^1]</p>
+<p>Secrets management security measures enable teams to authenticate container requests for secrets with native container platform attributes and manage secrets with RBAC policy for granular control.[^1]</p>
+<h4 id="Secrets-management-to-manage-elastic-and-auto-scale-environments">Secrets management to manage elastic and auto-scale environments</h4>
+<p>Cloud providers offer auto-scaling capabilities to support elasticity (ephemeral) and pay-as-you-grow economics.</p>
+<p>While this improves efficiency, it also creates new security management challenges—particularly around scalability.</p>
+<p>By implementing secrets management best practices, organizations can eliminate the need to have human operators manually apply policies to each new host by assigning an identity to the host in real time and securely authenticating the calling application based on the predefined security policy.</p>
+<h4 id="Secrets-management-to-secure-internally-developed-applications-and-COTS-applications">Secrets management to secure internally developed applications and COTS applications.</h4>
+<p>Internally developed applications and scripts, along with third-party tools and solutions such as security tools, RPA, automation tools and IT management tools often require high levels of privileged access across the enterprise’s infrastructure to complete their defined tasks. Effective secrets management practices require the removal of hardcoded credentials from internally developed applications and scripts and that all secrets be centrally stored, managed and rotated to minimize risk.[^1]</p>
+<p>[^1]: <strong>Title:</strong> <a target="_blank" rel="noopener" href="https://www.cyberark.com/what-is/secrets-management/">Secrets Management</a><br><br>
+<strong>Publication:</strong> <a target="_blank" rel="noopener" href="https://www.cyberark.com/glossary/">CyberArk Glossary</a><br><br>
+<strong>Archive:</strong> <a target="_blank" rel="noopener" href="https://drive.proton.me/urls/KEVNCXJMGC#vHQrupJKC5bf">archive</a></p>
+<p>[^2]: <strong>Title:</strong> <a href=""></a><br><br>
+<strong>Publication:</strong> <a href=""></a><br><br>
+<strong>Archive:</strong> <a href="">archive</a></p>
+
+    </div>
+</article>
+
+  <div>
+    <a
+      target="_blank" rel="noopener" href="https://github.com/anthonyrussano/anthonyrussano.com/new/master/site/source/_posts">
+      New</a> -
+    <a target="_blank" rel="noopener" href='https://github.com/anthonyrussano/anthonyrussano.com/edit/master/site/source/_posts/DevOps/Network and Security/Secrets Management/what-is-secrets-management.md'>
+      Edit</a> -
+    <a
+      target="_blank" rel="noopener" href='https://github.com/anthonyrussano/anthonyrussano.com/commits/master/site/source/_posts/DevOps/Network and Security/Secrets Management/what-is-secrets-management.md'>
+      History</a> -
+    <a target="_blank" rel="noopener" href='https://github.com/anthonyrussano/anthonyrussano.com/raw/master/site/source/_posts/DevOps/Network and Security/Secrets Management/what-is-secrets-management.md'>
+      Source</a>
+  </div>
+  
+
+                      
+                        <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="../index.html">Home</a></li>
+        
+          <li><a href="../archives/">Writing</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="https://talk.anthonyrussano.com">Talk</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-a-Secret"><span class="toc-number">1.</span> <span class="toc-text">What is a Secret?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#What-is-Secrets-Management"><span class="toc-number">2.</span> <span class="toc-text">What is Secrets Management?</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#What-are-Common-Secrets-Management-Use-Cases"><span class="toc-number">2.1.</span> <span class="toc-text">What are Common Secrets Management Use Cases?</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Secrets-management-to-secure-CI-CD-pipelines"><span class="toc-number">2.1.1.</span> <span class="toc-text">Secrets management to secure CI&#x2F;CD pipelines.</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Secrets-management-to-secure-containers"><span class="toc-number">2.1.2.</span> <span class="toc-text">Secrets management to secure containers.</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Secrets-management-to-manage-elastic-and-auto-scale-environments"><span class="toc-number">2.1.3.</span> <span class="toc-text">Secrets management to manage elastic and auto-scale environments</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Secrets-management-to-secure-internally-developed-applications-and-COTS-applications"><span class="toc-number">2.1.4.</span> <span class="toc-text">Secrets management to secure internally developed applications and COTS applications.</span></a></li></ol></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="mailto:?subject=What is Secrets Management?&body=Check out this article: https://www.anthonyrussano.com/what-is-secrets-management/"><i
+        class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+                          
+                            <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2023
+    Anthony Russano
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="../index.html">Home</a></li><!--
+     --><!--
+       --><li><a href="../archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://talk.anthonyrussano.com">Talk</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+            </div>
+            <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+              <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+    
+
+          
+
+                        <!-- clipboard -->
+                        
+                          
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+                              
+                                    <script type="text/javascript">
+                                      $(function () {
+                                        // copy-btn HTML
+                                        var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+                                        btn += '<i class="fa-regular fa-clone"></i>';
+                                        btn += '</span>';
+                                        // mount it!
+                                        $(".highlight table").before(btn);
+                                        var clip = new ClipboardJS('.btn-copy', {
+                                          text: function (trigger) {
+                                            return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str, it) => str + it.innerText + '\n', '')
+                                          }
+                                        });
+                                        clip.on('success', function (e) {
+                                          e.trigger.setAttribute('aria-label', "Copied!");
+                                          e.clearSelection();
+                                        })
+                                      })
+                                    </script>
+                                    
+                                      
+<script src="js/main.js"></script>
+
+                                        <!-- search -->
+                                        
+                                          
+<script src="js/search.js"></script>
+
+                                            <script type="text/javascript">
+                                              $(function () {
+
+                                                var $inputArea = $("input#search-input");
+                                                var $resultArea = document.querySelector("div#search-result");
+
+                                                $inputArea.focus(function () {
+                                                  var search_path = "search.xml";
+                                                  if (search_path.length == 0) {
+                                                    search_path = "search.xml";
+                                                  }
+                                                  var path = "/" + search_path;
+                                                  searchFunc(path, 'search-input', 'search-result');
+                                                });
+
+                                                $inputArea.keydown(function (e) {
+                                                  if (e.which == 13) {
+                                                    e.preventDefault();
+                                                  }
+                                                });
+
+                                                var observer = new MutationObserver(function (mutationsList, observer) {
+                                                  if (mutationsList.length == 1) {
+                                                    if (mutationsList[0].addedNodes.length) {
+                                                      $(".search-no-result").hide();
+                                                    } else if (mutationsList[0].removedNodes.length) {
+                                                      $(".search-no-result").show(200);
+                                                    }
+                                                  }
+                                                });
+
+                                                observer.observe($resultArea, { childList: true });
+
+                                              });
+                                            </script>
+                                            
+                                              <!-- Baidu Analytics -->
+                                              
+                                                  <!-- Cloudflare Analytics -->
+                                                  
+                                                      <!-- Disqus Comments -->
+                                                      
+                                                          <!-- utterances Comments -->
+                                                          
+    </body>
+
+    </html>

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang=en>
+  <head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Description Helm is a tool that streamlines installing and managing Kubernetes applications. It is a package manager for Kubernetes. How to install Helm^1 ^2 Manual Install   Download your desired ver">
+<meta property="og:type" content="article">
+<meta property="og:title" content="What is Helm?">
+<meta property="og:url" content="https://www.anthonyrussano.com/what-is-helm/index.html">
+<meta property="og:site_name" content="anthonyrussano.com">
+<meta property="og:description" content="Description Helm is a tool that streamlines installing and managing Kubernetes applications. It is a package manager for Kubernetes. How to install Helm^1 ^2 Manual Install   Download your desired ver">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-07-09T07:30:03.859Z">
+<meta property="article:modified_time" content="2023-07-09T07:30:03.859Z">
+<meta property="article:author" content="Anthony Russano">
+<meta property="article:tag" content="Kubernetes">
+<meta property="article:tag" content="Package manager">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="https://res.cloudinary.com/alchemist-cookbook/image/upload/v1674087936/christianity.jpg">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="https://res.cloudinary.com/alchemist-cookbook/image/upload/v1674087936/christianity.jpg" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="https://res.cloudinary.com/alchemist-cookbook/image/upload/v1674087936/christianity.jpg">
+        
+      
+    
+    <!-- title -->
+    <title>What is Helm?</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+    <body class="max-width mx-auto px3 ltr">
+      
+        <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="../index.html">Home</a></li><!--
+     --><!--
+       --><li><a href="../archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://talk.anthonyrussano.com">Talk</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="../what-is-akri/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="../what-is-k3s/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="mailto:?subject=What is Helm?&body=Check out this article: https://www.anthonyrussano.com/what-is-helm/"><i
+        class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+</ul>
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Description"><span class="toc-number">1.</span> <span class="toc-text">Description</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#How-to-install-Helm-1-2"><span class="toc-number">1.1.</span> <span class="toc-text">How to install Helm^1 ^2</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Manual-Install"><span class="toc-number">1.1.1.</span> <span class="toc-text">Manual Install</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Scripted-Install"><span class="toc-number">1.1.2.</span> <span class="toc-text">Scripted Install</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Adding-Repositories"><span class="toc-number">1.2.</span> <span class="toc-text">Adding Repositories</span></a></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+          
+            <div class="content index py4 ">
+              
+                    <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        What is Helm?
+    </h1>
+
+
+
+      <div class="meta">
+        <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <span class="p-name" itemprop="name">
+            Anthony Russano
+                    
+          </span>
+        </span>
+        
+    <div class="postdate">
+      
+        <time datetime="2023-07-09T07:30:03.859Z" class="dt-published" itemprop="datePublished">2023-07-09</time>
+        
+        (Updated: <time datetime="2023-07-09T07:30:03.859Z" class="dt-updated" itemprop="dateModified">2023-07-09</time>)
+        
+      
+    </div>
+
+
+          
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="../categories/DevOps/">DevOps</a> › <a class="category-link" href="../categories/DevOps/Container-Orchestration/">Container Orchestration</a> › <a class="category-link" href="../categories/DevOps/Container-Orchestration/Kubernetes/">Kubernetes</a> › <a class="category-link" href="../categories/DevOps/Container-Orchestration/Kubernetes/Helm/">Helm</a>
+    </div>
+
+
+            
+    <div class="article-tag">
+        <i class="fa-solid fa-tag"></i>
+        <a class="p-category" href="../tags/Kubernetes/" rel="tag">Kubernetes</a>, <a class="p-category" href="../tags/Package-manager/" rel="tag">Package manager</a>
+    </div>
+
+
+      </div>
+  </header>
+  
+
+    <div class="content e-content" itemprop="articleBody">
+      <h2 id="Description">Description</h2>
+<p>Helm is a tool that streamlines installing and managing Kubernetes applications. It is a package manager for Kubernetes.</p>
+<h3 id="How-to-install-Helm-1-2">How to install Helm<a target="_blank" rel="noopener" href="https://github.com/helm/helm/releases">^1</a> <a target="_blank" rel="noopener" href="https://helm.sh/docs/intro/install/">^2</a></h3>
+<h4 id="Manual-Install">Manual Install</h4>
+<ol>
+<li>
+<p>Download your desired version: <a target="_blank" rel="noopener" href="https://github.com/helm/helm/releases">https://github.com/helm/helm/releases</a></p>
+</li>
+<li>
+<p>Unpack it (<code>tar -zxvf helm-v3.0.0-linux-amd64.tar.gz</code>)</p>
+</li>
+<li>
+<p>Find the helm binary in the unpacked directory, and move it to its desired destination (<code>mv linux-amd64/helm /usr/local/bin/helm</code>)</p>
+</li>
+</ol>
+<h4 id="Scripted-Install">Scripted Install</h4>
+<p>Helm now has an installer script that will automatically grab the latest version of Helm and install it locally.<a target="_blank" rel="noopener" href="https://helm.sh/docs/intro/install/">^4</a></p>
+<p>You can fetch that script, and then execute it locally. It’s well documented so that you can read through it and understand what it is doing before you run it.<a target="_blank" rel="noopener" href="https://helm.sh/docs/intro/install/">^4</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3</span><br><span class="line">$ chmod 700 get_helm.sh</span><br><span class="line">$ ./get_helm.sh</span><br></pre></td></tr></table></figure>
+<p>Verify the official installation script here: <a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3">https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3</a></p>
+<h3 id="Adding-Repositories">Adding Repositories</h3>
+<p>Starting with Helm Version 3, there is by default NO default repository installed.<a target="_blank" rel="noopener" href="https://www.udemy.com/course/amazon-eks-starter-kubernetes-on-aws/learn/lecture/17025742">^3</a></p>
+<p>To add a repository:</p>
+<p><code>helm repo add stable https://charts.helm.sh/stable</code></p>
+<p>Verify the repo was added:</p>
+<p><code>helm repo list</code></p>
+<p>Should return:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NAME    URL</span><br><span class="line">stable  https://charts.helm.sh/stable</span><br></pre></td></tr></table></figure>
+<p>Perform local repo update:</p>
+<p><code>helm repo update</code></p>
+<p>Should return:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Hang tight while we grab the latest from your chart repositories...</span><br><span class="line">...Successfully got an update from the &quot;stable&quot; chart repository</span><br><span class="line">Update Complete. ⎈Happy Helming!⎈</span><br></pre></td></tr></table></figure>
+
+    </div>
+</article>
+
+  <div>
+    <a
+      target="_blank" rel="noopener" href="https://github.com/anthonyrussano/anthonyrussano.com/new/master/site/source/_posts">
+      New</a> -
+    <a target="_blank" rel="noopener" href='https://github.com/anthonyrussano/anthonyrussano.com/edit/master/site/source/_posts/DevOps/Container Orchestration/Kubernetes/Helm/what-is-helm.md'>
+      Edit</a> -
+    <a
+      target="_blank" rel="noopener" href='https://github.com/anthonyrussano/anthonyrussano.com/commits/master/site/source/_posts/DevOps/Container Orchestration/Kubernetes/Helm/what-is-helm.md'>
+      History</a> -
+    <a target="_blank" rel="noopener" href='https://github.com/anthonyrussano/anthonyrussano.com/raw/master/site/source/_posts/DevOps/Container Orchestration/Kubernetes/Helm/what-is-helm.md'>
+      Source</a>
+  </div>
+  
+
+                      
+                        <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="../index.html">Home</a></li>
+        
+          <li><a href="../archives/">Writing</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="https://talk.anthonyrussano.com">Talk</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Description"><span class="toc-number">1.</span> <span class="toc-text">Description</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#How-to-install-Helm-1-2"><span class="toc-number">1.1.</span> <span class="toc-text">How to install Helm^1 ^2</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Manual-Install"><span class="toc-number">1.1.1.</span> <span class="toc-text">Manual Install</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Scripted-Install"><span class="toc-number">1.1.2.</span> <span class="toc-text">Scripted Install</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Adding-Repositories"><span class="toc-number">1.2.</span> <span class="toc-text">Adding Repositories</span></a></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="mailto:?subject=What is Helm?&body=Check out this article: https://www.anthonyrussano.com/what-is-helm/"><i
+        class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+                          
+                            <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2023
+    Anthony Russano
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="../index.html">Home</a></li><!--
+     --><!--
+       --><li><a href="../archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://talk.anthonyrussano.com">Talk</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+            </div>
+            <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+              <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+    
+
+          
+
+                        <!-- clipboard -->
+                        
+                          
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+                              
+                                    <script type="text/javascript">
+                                      $(function () {
+                                        // copy-btn HTML
+                                        var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+                                        btn += '<i class="fa-regular fa-clone"></i>';
+                                        btn += '</span>';
+                                        // mount it!
+                                        $(".highlight table").before(btn);
+                                        var clip = new ClipboardJS('.btn-copy', {
+                                          text: function (trigger) {
+                                            return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str, it) => str + it.innerText + '\n', '')
+                                          }
+                                        });
+                                        clip.on('success', function (e) {
+                                          e.trigger.setAttribute('aria-label', "Copied!");
+                                          e.clearSelection();
+                                        })
+                                      })
+                                    </script>
+                                    
+                                      
+<script src="js/main.js"></script>
+
+                                        <!-- search -->
+                                        
+                                          
+<script src="js/search.js"></script>
+
+                                            <script type="text/javascript">
+                                              $(function () {
+
+                                                var $inputArea = $("input#search-input");
+                                                var $resultArea = document.querySelector("div#search-result");
+
+                                                $inputArea.focus(function () {
+                                                  var search_path = "search.xml";
+                                                  if (search_path.length == 0) {
+                                                    search_path = "search.xml";
+                                                  }
+                                                  var path = "/" + search_path;
+                                                  searchFunc(path, 'search-input', 'search-result');
+                                                });
+
+                                                $inputArea.keydown(function (e) {
+                                                  if (e.which == 13) {
+                                                    e.preventDefault();
+                                                  }
+                                                });
+
+                                                var observer = new MutationObserver(function (mutationsList, observer) {
+                                                  if (mutationsList.length == 1) {
+                                                    if (mutationsList[0].addedNodes.length) {
+                                                      $(".search-no-result").hide();
+                                                    } else if (mutationsList[0].removedNodes.length) {
+                                                      $(".search-no-result").show(200);
+                                                    }
+                                                  }
+                                                });
+
+                                                observer.observe($resultArea, { childList: true });
+
+                                              });
+                                            </script>
+                                            
+                                              <!-- Baidu Analytics -->
+                                              
+                                                  <!-- Cloudflare Analytics -->
+                                                  
+                                                      <!-- Disqus Comments -->
+                                                      
+                                                          <!-- utterances Comments -->
+                                                          
+    </body>
+
+    </html>

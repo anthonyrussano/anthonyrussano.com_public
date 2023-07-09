@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang=en>
+  <head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Here is a list of keyboard shortcuts available for the bash shell.  They are organized by category. Starting&#x2F;Stopping Processes Ctrl+C Interrupt (kill) the current foreground process running in in the">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Keyboard Shortcuts For Bash">
+<meta property="og:url" content="https://www.anthonyrussano.com/keyboard-shortcuts-for-bash/index.html">
+<meta property="og:site_name" content="anthonyrussano.com">
+<meta property="og:description" content="Here is a list of keyboard shortcuts available for the bash shell.  They are organized by category. Starting&#x2F;Stopping Processes Ctrl+C Interrupt (kill) the current foreground process running in in the">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-07-09T07:30:03.863Z">
+<meta property="article:modified_time" content="2023-07-09T07:30:03.863Z">
+<meta property="article:author" content="Anthony Russano">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="https://res.cloudinary.com/alchemist-cookbook/image/upload/v1674087936/christianity.jpg">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="https://res.cloudinary.com/alchemist-cookbook/image/upload/v1674087936/christianity.jpg" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="https://res.cloudinary.com/alchemist-cookbook/image/upload/v1674087936/christianity.jpg">
+        
+      
+    
+    <!-- title -->
+    <title>Keyboard Shortcuts For Bash</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+    <body class="max-width mx-auto px3 ltr">
+      
+        <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="../index.html">Home</a></li><!--
+     --><!--
+       --><li><a href="../archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://talk.anthonyrussano.com">Talk</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="../testing-for-vpn-leaks/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="../what-is-css/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="mailto:?subject=Keyboard Shortcuts For Bash&body=Check out this article: https://www.anthonyrussano.com/keyboard-shortcuts-for-bash/"><i
+        class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+</ul>
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Starting-Stopping-Processes"><span class="toc-number">1.</span> <span class="toc-text">Starting&#x2F;Stopping Processes</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Ctrl-C"><span class="toc-number">1.1.</span> <span class="toc-text">Ctrl+C</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ctrl-Z"><span class="toc-number">1.2.</span> <span class="toc-text">Ctrl+Z</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ctrl-D"><span class="toc-number">1.3.</span> <span class="toc-text">Ctrl+D</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Controlling-the-Screen"><span class="toc-number">2.</span> <span class="toc-text">Controlling the Screen</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Ctrl-L"><span class="toc-number">2.1.</span> <span class="toc-text">Ctrl+L</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ctrl-S"><span class="toc-number">2.2.</span> <span class="toc-text">Ctrl+S</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ctrl-Q"><span class="toc-number">2.3.</span> <span class="toc-text">Ctrl+Q</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Moving-the-Cursor"><span class="toc-number">3.</span> <span class="toc-text">Moving the Cursor</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Ctrl-A"><span class="toc-number">3.1.</span> <span class="toc-text">Ctrl+A</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ctrl-E"><span class="toc-number">3.2.</span> <span class="toc-text">Ctrl+E</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Alt-B"><span class="toc-number">3.3.</span> <span class="toc-text">Alt+B</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ctrl-B"><span class="toc-number">3.4.</span> <span class="toc-text">Ctrl+B</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Alt-F"><span class="toc-number">3.5.</span> <span class="toc-text">Alt+F</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ctrl-F"><span class="toc-number">3.6.</span> <span class="toc-text">Ctrl+F</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ctrl-XX"><span class="toc-number">3.7.</span> <span class="toc-text">Ctrl+XX</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Deleting-Text"><span class="toc-number">4.</span> <span class="toc-text">Deleting Text</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Ctrl-D-2"><span class="toc-number">4.1.</span> <span class="toc-text">Ctrl+D</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Alt-D"><span class="toc-number">4.2.</span> <span class="toc-text">Alt+D</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ctrl-H"><span class="toc-number">4.3.</span> <span class="toc-text">Ctrl+H</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Fix-Typos"><span class="toc-number">5.</span> <span class="toc-text">Fix Typos</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Alt-T"><span class="toc-number">5.1.</span> <span class="toc-text">Alt+T</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ctrl-T"><span class="toc-number">5.2.</span> <span class="toc-text">Ctrl+T</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ctrl"><span class="toc-number">5.3.</span> <span class="toc-text">Ctrl+_</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cutting-Pasting"><span class="toc-number">6.</span> <span class="toc-text">Cutting &amp; Pasting</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Ctrl-W"><span class="toc-number">6.1.</span> <span class="toc-text">Ctrl+W</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ctrl-K"><span class="toc-number">6.2.</span> <span class="toc-text">Ctrl+K</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ctrl-U"><span class="toc-number">6.3.</span> <span class="toc-text">Ctrl+U</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ctrl-Y"><span class="toc-number">6.4.</span> <span class="toc-text">Ctrl+Y</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Capitalizing-Characters"><span class="toc-number">7.</span> <span class="toc-text">Capitalizing Characters</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Alt-U"><span class="toc-number">7.1.</span> <span class="toc-text">Alt+U</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Alt-L"><span class="toc-number">7.2.</span> <span class="toc-text">Alt+L</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Alt-C"><span class="toc-number">7.3.</span> <span class="toc-text">Alt+C</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Command-History"><span class="toc-number">8.</span> <span class="toc-text">Command History</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Ctrl-R"><span class="toc-number">8.1.</span> <span class="toc-text">Ctrl+R</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ctrl-O"><span class="toc-number">8.2.</span> <span class="toc-text">Ctrl+O</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ctrl-G"><span class="toc-number">8.3.</span> <span class="toc-text">Ctrl+G</span></a></li></ol></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+          
+            <div class="content index py4 ">
+              
+                    <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Keyboard Shortcuts For Bash
+    </h1>
+
+
+
+      <div class="meta">
+        <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <span class="p-name" itemprop="name">
+            Anthony Russano
+                    
+          </span>
+        </span>
+        
+    <div class="postdate">
+      
+        <time datetime="2023-07-09T07:30:03.863Z" class="dt-published" itemprop="datePublished">2023-07-09</time>
+        
+        (Updated: <time datetime="2023-07-09T07:30:03.863Z" class="dt-updated" itemprop="dateModified">2023-07-09</time>)
+        
+      
+    </div>
+
+
+          
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="../categories/DevOps/">DevOps</a> › <a class="category-link" href="../categories/DevOps/Programming-Languages/">Programming Languages</a> › <a class="category-link" href="../categories/DevOps/Programming-Languages/Bash/">Bash</a>
+    </div>
+
+
+            
+
+      </div>
+  </header>
+  
+
+    <div class="content e-content" itemprop="articleBody">
+      <p>Here is a list of keyboard shortcuts available for the bash shell.  They are organized by category.</p>
+<h2 id="Starting-Stopping-Processes">Starting/Stopping Processes</h2>
+<h3 id="Ctrl-C">Ctrl+C</h3>
+<p>Interrupt (kill) the current foreground process running in in the terminal. This sends the SIGINT signal to the process, which is technically just a request—most processes will honor it, but some may ignore it.<a target="_blank" rel="noopener" href="https://www.howtogeek.com/howto/ubuntu/keyboard-shortcuts-for-bash-command-shell-for-ubuntu-debian-suse-redhat-linux-etc/">^1</a></p>
+<h3 id="Ctrl-Z">Ctrl+Z</h3>
+<p>Suspend the current foreground process running in bash. This sends the SIGTSTP signal to the process. To return the process to the foreground later, use the fg process_name command.<a target="_blank" rel="noopener" href="https://www.howtogeek.com/howto/ubuntu/keyboard-shortcuts-for-bash-command-shell-for-ubuntu-debian-suse-redhat-linux-etc/">^1</a></p>
+<h3 id="Ctrl-D">Ctrl+D</h3>
+<p>Close the bash shell. This sends an EOF (End-of-file) marker to bash, and bash exits when it receives this marker. This is similar to running the exit command.<a target="_blank" rel="noopener" href="https://www.howtogeek.com/howto/ubuntu/keyboard-shortcuts-for-bash-command-shell-for-ubuntu-debian-suse-redhat-linux-etc/">^1</a></p>
+<h2 id="Controlling-the-Screen">Controlling the Screen</h2>
+<h3 id="Ctrl-L">Ctrl+L</h3>
+<p>Clear the screen. This is similar to running the “clear” command.</p>
+<h3 id="Ctrl-S">Ctrl+S</h3>
+<p>Stop all output to the screen. This is particularly useful when running commands with a lot of long, verbose output, but you don’t want to stop the command itself with Ctrl+C.</p>
+<h3 id="Ctrl-Q">Ctrl+Q</h3>
+<p>Resume output to the screen after stopping it with Ctrl+S.</p>
+<h2 id="Moving-the-Cursor">Moving the Cursor</h2>
+<h3 id="Ctrl-A">Ctrl+A</h3>
+<p>Go to the beginning of the line.</p>
+<h3 id="Ctrl-E">Ctrl+E</h3>
+<p>Go to the end of the line.</p>
+<h3 id="Alt-B">Alt+B</h3>
+<p>Go left (back) one word.</p>
+<h3 id="Ctrl-B">Ctrl+B</h3>
+<p>Go left (back) one character.</p>
+<h3 id="Alt-F">Alt+F</h3>
+<p>Go right (forward) one word.</p>
+<h3 id="Ctrl-F">Ctrl+F</h3>
+<p>Go right (forward) one character.</p>
+<h3 id="Ctrl-XX">Ctrl+XX</h3>
+<p>Move between the beginning of the line and the current position of the cursor. This allows you to press Ctrl+XX to return to the start of the line, change something, and then press Ctrl+XX to go back to your original cursor position. To use this shortcut, hold the Ctrl key and tap the X key twice.</p>
+<h2 id="Deleting-Text">Deleting Text</h2>
+<h3 id="Ctrl-D-2">Ctrl+D</h3>
+<p>Delete the character under the cursor.</p>
+<h3 id="Alt-D">Alt+D</h3>
+<p>Delete all characters after the cursor on the current line.</p>
+<h3 id="Ctrl-H">Ctrl+H</h3>
+<p>Delete the character before the cursor.</p>
+<h2 id="Fix-Typos">Fix Typos</h2>
+<h3 id="Alt-T">Alt+T</h3>
+<p>Swap the current word with the previous word.</p>
+<h3 id="Ctrl-T">Ctrl+T</h3>
+<p>Swap the last two characters before the cursor with each other. You can use this to quickly fix typos when you type two characters in the wrong order.</p>
+<h3 id="Ctrl">Ctrl+_</h3>
+<p>Undo your last key press. You can repeat this to undo multiple times.</p>
+<h2 id="Cutting-Pasting">Cutting &amp; Pasting</h2>
+<h3 id="Ctrl-W">Ctrl+W</h3>
+<p>Cut the word before the cursor, adding it to the clipboard.</p>
+<h3 id="Ctrl-K">Ctrl+K</h3>
+<p>Cut the part of the line after the cursor, adding it to the clipboard.</p>
+<h3 id="Ctrl-U">Ctrl+U</h3>
+<p>Cut the part of the line before the cursor, adding it to the clipboard.</p>
+<h3 id="Ctrl-Y">Ctrl+Y</h3>
+<p>Paste the last thing you cut from the clipboard. The y here stands for “yank”.</p>
+<h2 id="Capitalizing-Characters">Capitalizing Characters</h2>
+<h3 id="Alt-U">Alt+U</h3>
+<p>Capitalize every character from the cursor to the end of the current word, converting the characters to upper case.</p>
+<h3 id="Alt-L">Alt+L</h3>
+<p>Uncapitalize every character from the cursor to the end of the current word, converting the characters to lower case.</p>
+<h3 id="Alt-C">Alt+C</h3>
+<p>Capitalize the character under the cursor. Your cursor will move to the end of the current word.</p>
+<h2 id="Command-History">Command History</h2>
+<h3 id="Ctrl-R">Ctrl+R</h3>
+<p>Recall the last command matching the characters you provide. Press this shortcut and start typing to search your bash history for a command.</p>
+<h3 id="Ctrl-O">Ctrl+O</h3>
+<p>Run a command you found with Ctrl+R.</p>
+<h3 id="Ctrl-G">Ctrl+G</h3>
+<p>Leave history searching mode without running a command.</p>
+
+    </div>
+</article>
+
+  <div>
+    <a
+      target="_blank" rel="noopener" href="https://github.com/anthonyrussano/anthonyrussano.com/new/master/site/source/_posts">
+      New</a> -
+    <a target="_blank" rel="noopener" href='https://github.com/anthonyrussano/anthonyrussano.com/edit/master/site/source/_posts/DevOps/Programming Languages/Bash/keyboard-shortcuts-for-bash.md'>
+      Edit</a> -
+    <a
+      target="_blank" rel="noopener" href='https://github.com/anthonyrussano/anthonyrussano.com/commits/master/site/source/_posts/DevOps/Programming Languages/Bash/keyboard-shortcuts-for-bash.md'>
+      History</a> -
+    <a target="_blank" rel="noopener" href='https://github.com/anthonyrussano/anthonyrussano.com/raw/master/site/source/_posts/DevOps/Programming Languages/Bash/keyboard-shortcuts-for-bash.md'>
+      Source</a>
+  </div>
+  
+
+                      
+                        <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="../index.html">Home</a></li>
+        
+          <li><a href="../archives/">Writing</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="https://talk.anthonyrussano.com">Talk</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Starting-Stopping-Processes"><span class="toc-number">1.</span> <span class="toc-text">Starting&#x2F;Stopping Processes</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Ctrl-C"><span class="toc-number">1.1.</span> <span class="toc-text">Ctrl+C</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ctrl-Z"><span class="toc-number">1.2.</span> <span class="toc-text">Ctrl+Z</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ctrl-D"><span class="toc-number">1.3.</span> <span class="toc-text">Ctrl+D</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Controlling-the-Screen"><span class="toc-number">2.</span> <span class="toc-text">Controlling the Screen</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Ctrl-L"><span class="toc-number">2.1.</span> <span class="toc-text">Ctrl+L</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ctrl-S"><span class="toc-number">2.2.</span> <span class="toc-text">Ctrl+S</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ctrl-Q"><span class="toc-number">2.3.</span> <span class="toc-text">Ctrl+Q</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Moving-the-Cursor"><span class="toc-number">3.</span> <span class="toc-text">Moving the Cursor</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Ctrl-A"><span class="toc-number">3.1.</span> <span class="toc-text">Ctrl+A</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ctrl-E"><span class="toc-number">3.2.</span> <span class="toc-text">Ctrl+E</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Alt-B"><span class="toc-number">3.3.</span> <span class="toc-text">Alt+B</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ctrl-B"><span class="toc-number">3.4.</span> <span class="toc-text">Ctrl+B</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Alt-F"><span class="toc-number">3.5.</span> <span class="toc-text">Alt+F</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ctrl-F"><span class="toc-number">3.6.</span> <span class="toc-text">Ctrl+F</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ctrl-XX"><span class="toc-number">3.7.</span> <span class="toc-text">Ctrl+XX</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Deleting-Text"><span class="toc-number">4.</span> <span class="toc-text">Deleting Text</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Ctrl-D-2"><span class="toc-number">4.1.</span> <span class="toc-text">Ctrl+D</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Alt-D"><span class="toc-number">4.2.</span> <span class="toc-text">Alt+D</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ctrl-H"><span class="toc-number">4.3.</span> <span class="toc-text">Ctrl+H</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Fix-Typos"><span class="toc-number">5.</span> <span class="toc-text">Fix Typos</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Alt-T"><span class="toc-number">5.1.</span> <span class="toc-text">Alt+T</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ctrl-T"><span class="toc-number">5.2.</span> <span class="toc-text">Ctrl+T</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ctrl"><span class="toc-number">5.3.</span> <span class="toc-text">Ctrl+_</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cutting-Pasting"><span class="toc-number">6.</span> <span class="toc-text">Cutting &amp; Pasting</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Ctrl-W"><span class="toc-number">6.1.</span> <span class="toc-text">Ctrl+W</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ctrl-K"><span class="toc-number">6.2.</span> <span class="toc-text">Ctrl+K</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ctrl-U"><span class="toc-number">6.3.</span> <span class="toc-text">Ctrl+U</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ctrl-Y"><span class="toc-number">6.4.</span> <span class="toc-text">Ctrl+Y</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Capitalizing-Characters"><span class="toc-number">7.</span> <span class="toc-text">Capitalizing Characters</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Alt-U"><span class="toc-number">7.1.</span> <span class="toc-text">Alt+U</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Alt-L"><span class="toc-number">7.2.</span> <span class="toc-text">Alt+L</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Alt-C"><span class="toc-number">7.3.</span> <span class="toc-text">Alt+C</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Command-History"><span class="toc-number">8.</span> <span class="toc-text">Command History</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Ctrl-R"><span class="toc-number">8.1.</span> <span class="toc-text">Ctrl+R</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ctrl-O"><span class="toc-number">8.2.</span> <span class="toc-text">Ctrl+O</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ctrl-G"><span class="toc-number">8.3.</span> <span class="toc-text">Ctrl+G</span></a></li></ol></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="mailto:?subject=Keyboard Shortcuts For Bash&body=Check out this article: https://www.anthonyrussano.com/keyboard-shortcuts-for-bash/"><i
+        class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+                          
+                            <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2023
+    Anthony Russano
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="../index.html">Home</a></li><!--
+     --><!--
+       --><li><a href="../archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://talk.anthonyrussano.com">Talk</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+            </div>
+            <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+              <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+    
+
+          
+
+                        <!-- clipboard -->
+                        
+                          
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+                              
+                                    <script type="text/javascript">
+                                      $(function () {
+                                        // copy-btn HTML
+                                        var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+                                        btn += '<i class="fa-regular fa-clone"></i>';
+                                        btn += '</span>';
+                                        // mount it!
+                                        $(".highlight table").before(btn);
+                                        var clip = new ClipboardJS('.btn-copy', {
+                                          text: function (trigger) {
+                                            return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str, it) => str + it.innerText + '\n', '')
+                                          }
+                                        });
+                                        clip.on('success', function (e) {
+                                          e.trigger.setAttribute('aria-label', "Copied!");
+                                          e.clearSelection();
+                                        })
+                                      })
+                                    </script>
+                                    
+                                      
+<script src="js/main.js"></script>
+
+                                        <!-- search -->
+                                        
+                                          
+<script src="js/search.js"></script>
+
+                                            <script type="text/javascript">
+                                              $(function () {
+
+                                                var $inputArea = $("input#search-input");
+                                                var $resultArea = document.querySelector("div#search-result");
+
+                                                $inputArea.focus(function () {
+                                                  var search_path = "search.xml";
+                                                  if (search_path.length == 0) {
+                                                    search_path = "search.xml";
+                                                  }
+                                                  var path = "/" + search_path;
+                                                  searchFunc(path, 'search-input', 'search-result');
+                                                });
+
+                                                $inputArea.keydown(function (e) {
+                                                  if (e.which == 13) {
+                                                    e.preventDefault();
+                                                  }
+                                                });
+
+                                                var observer = new MutationObserver(function (mutationsList, observer) {
+                                                  if (mutationsList.length == 1) {
+                                                    if (mutationsList[0].addedNodes.length) {
+                                                      $(".search-no-result").hide();
+                                                    } else if (mutationsList[0].removedNodes.length) {
+                                                      $(".search-no-result").show(200);
+                                                    }
+                                                  }
+                                                });
+
+                                                observer.observe($resultArea, { childList: true });
+
+                                              });
+                                            </script>
+                                            
+                                              <!-- Baidu Analytics -->
+                                              
+                                                  <!-- Cloudflare Analytics -->
+                                                  
+                                                      <!-- Disqus Comments -->
+                                                      
+                                                          <!-- utterances Comments -->
+                                                          
+    </body>
+
+    </html>

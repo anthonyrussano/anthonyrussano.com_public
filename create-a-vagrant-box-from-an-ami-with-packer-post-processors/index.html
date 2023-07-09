@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang=en>
+  <head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Post-processors run only AFTER packer saves the instance as an image.  Post-processors are varied in their function; they can comrpess the artifact(s), upload the artifact(s) into the cloud, or create">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Create a Vagrant Box from an AMI with Packer Post-Processors">
+<meta property="og:url" content="https://www.anthonyrussano.com/create-a-vagrant-box-from-an-ami-with-packer-post-processors/index.html">
+<meta property="og:site_name" content="anthonyrussano.com">
+<meta property="og:description" content="Post-processors run only AFTER packer saves the instance as an image.  Post-processors are varied in their function; they can comrpess the artifact(s), upload the artifact(s) into the cloud, or create">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-07-09T07:30:03.855Z">
+<meta property="article:modified_time" content="2023-07-09T07:30:03.855Z">
+<meta property="article:author" content="Anthony Russano">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="https://res.cloudinary.com/alchemist-cookbook/image/upload/v1674087936/christianity.jpg">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="https://res.cloudinary.com/alchemist-cookbook/image/upload/v1674087936/christianity.jpg" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="https://res.cloudinary.com/alchemist-cookbook/image/upload/v1674087936/christianity.jpg">
+        
+      
+    
+    <!-- title -->
+    <title>Create a Vagrant Box from an AMI with Packer Post-Processors</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+    <body class="max-width mx-auto px3 ltr">
+      
+        <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="../index.html">Home</a></li><!--
+     --><!--
+       --><li><a href="../archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://talk.anthonyrussano.com">Talk</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="../using-packer-to-provision-an-ubuntu-ami-with-redis-installed/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="../how-to-build-a-basic-docker-ubuntu-image-with-packer/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="mailto:?subject=Create a Vagrant Box from an AMI with Packer Post-Processors&body=Check out this article: https://www.anthonyrussano.com/create-a-vagrant-box-from-an-ami-with-packer-post-processors/"><i
+        class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+</ul>
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Build"><span class="toc-number">1.</span> <span class="toc-text">Build</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Verify"><span class="toc-number">1.1.</span> <span class="toc-text">Verify</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cleanup"><span class="toc-number">2.</span> <span class="toc-text">Cleanup</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+          
+            <div class="content index py4 ">
+              
+                    <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Create a Vagrant Box from an AMI with Packer Post-Processors
+    </h1>
+
+
+
+      <div class="meta">
+        <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <span class="p-name" itemprop="name">
+            Anthony Russano
+                    
+          </span>
+        </span>
+        
+    <div class="postdate">
+      
+        <time datetime="2023-07-09T07:30:03.855Z" class="dt-published" itemprop="datePublished">2023-07-09</time>
+        
+        (Updated: <time datetime="2023-07-09T07:30:03.855Z" class="dt-updated" itemprop="dateModified">2023-07-09</time>)
+        
+      
+    </div>
+
+
+          
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="../categories/DevOps/">DevOps</a> › <a class="category-link" href="../categories/DevOps/CICD/">CICD</a> › <a class="category-link" href="../categories/DevOps/CICD/Packer/">Packer</a> › <a class="category-link" href="../categories/DevOps/CICD/Packer/Tutorials/">Tutorials</a> › <a class="category-link" href="../categories/DevOps/CICD/Packer/Tutorials/AWS/">AWS</a>
+    </div>
+
+
+            
+
+      </div>
+  </header>
+  
+
+    <div class="content e-content" itemprop="articleBody">
+      <p>Post-processors run only AFTER packer saves the instance as an image.  Post-processors are varied in their function; they can comrpess the artifact(s), upload the artifact(s) into the cloud, or create a file that describes the artifact and build.</p>
+<p>In this tutorial, you will add the vagrant post-processor to create a Vagrant box from your AMI.<a target="_blank" rel="noopener" href="https://learn.hashicorp.com/tutorials/packer/aws-get-started-provision?in=packer/aws-get-started">^1</a></p>
+<p>The following section contains a complete Packer template that can be used to build an AWS Ubuntu AMI in the us-west-2 region.</p>
+<p>Create a file named <code>aws-ubuntu.pkr.hcl</code> and add the following code:<a target="_blank" rel="noopener" href="https://learn.hashicorp.com/tutorials/packer/aws-get-started-provision?in=packer/aws-get-started">^1</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line">packer &#123;</span><br><span class="line">  required_plugins &#123;</span><br><span class="line">    amazon = &#123;</span><br><span class="line">      version = &quot;&gt;= 0.0.1&quot;</span><br><span class="line">      source  = &quot;github.com/hashicorp/amazon&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">variable &quot;ami_prefix&quot; &#123;</span><br><span class="line">  type    = string</span><br><span class="line">  default = &quot;learn-packer-linux-aws-redis&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">locals &#123;</span><br><span class="line">  timestamp = regex_replace(timestamp(), &quot;[- TZ:]&quot;, &quot;&quot;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">source &quot;amazon-ebs&quot; &quot;ubuntu&quot; &#123;</span><br><span class="line">  ami_name      = &quot;$&#123;var.ami_prefix&#125;-$&#123;local.timestamp&#125;&quot;</span><br><span class="line">  instance_type = &quot;t2.micro&quot;</span><br><span class="line">  region        = &quot;us-west-2&quot;</span><br><span class="line">  source_ami_filter &#123;</span><br><span class="line">    filters = &#123;</span><br><span class="line">      name                = &quot;ubuntu/images/*ubuntu-xenial-16.04-amd64-server-*&quot;</span><br><span class="line">      root-device-type    = &quot;ebs&quot;</span><br><span class="line">      virtualization-type = &quot;hvm&quot;</span><br><span class="line">    &#125;</span><br><span class="line">    most_recent = true</span><br><span class="line">    owners      = [&quot;099720109477&quot;]</span><br><span class="line">  &#125;</span><br><span class="line">  ssh_username = &quot;ubuntu&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">source &quot;amazon-ebs&quot; &quot;ubuntu-focal&quot; &#123;</span><br><span class="line">  ami_name      = &quot;$&#123;var.ami_prefix&#125;-focal-$&#123;local.timestamp&#125;&quot;</span><br><span class="line">  instance_type = &quot;t2.micro&quot;</span><br><span class="line">  region        = &quot;us-west-2&quot;</span><br><span class="line">  source_ami_filter &#123;</span><br><span class="line">    filters = &#123;</span><br><span class="line">      name                = &quot;ubuntu/images/*ubuntu-focal-20.04-amd64-server-*&quot;</span><br><span class="line">      root-device-type    = &quot;ebs&quot;</span><br><span class="line">      virtualization-type = &quot;hvm&quot;</span><br><span class="line">    &#125;</span><br><span class="line">    most_recent = true</span><br><span class="line">    owners      = [&quot;099720109477&quot;]</span><br><span class="line">  &#125;</span><br><span class="line">  ssh_username = &quot;ubuntu&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">build &#123;</span><br><span class="line">  name    = &quot;learn-packer&quot;</span><br><span class="line">  sources = [</span><br><span class="line">    &quot;source.amazon-ebs.ubuntu&quot;,</span><br><span class="line">    &quot;source.amazon-ebs.ubuntu-focal&quot;,</span><br><span class="line">  ]</span><br><span class="line"></span><br><span class="line">  provisioner &quot;shell&quot; &#123;</span><br><span class="line">    environment_vars = [</span><br><span class="line">      &quot;FOO=hello world&quot;,</span><br><span class="line">    ]</span><br><span class="line">    inline = [</span><br><span class="line">      &quot;echo Installing Redis&quot;,</span><br><span class="line">      &quot;sleep 30&quot;,</span><br><span class="line">      &quot;sudo apt-get update&quot;,</span><br><span class="line">      &quot;sudo apt-get install -y redis-server&quot;,</span><br><span class="line">      &quot;echo \&quot;FOO is $FOO\&quot; &gt; example.txt&quot;,</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  provisioner &quot;shell&quot; &#123;</span><br><span class="line">    inline = [&quot;echo This provisioner runs last&quot;]</span><br><span class="line">  &#125;</span><br><span class="line">post-processor &quot;vagrant&quot; &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Build">Build</h3>
+<p>Run through the following Pack commands to build the image(s):</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Initialize your Packer configuration.</span><br><span class="line"></span><br><span class="line">$ packer init .</span><br><span class="line"></span><br><span class="line">Format your template.</span><br><span class="line"></span><br><span class="line">$ packer fmt .</span><br><span class="line"></span><br><span class="line">Validate your template.</span><br><span class="line"></span><br><span class="line">$ packer validate .</span><br><span class="line"></span><br><span class="line">Build the image.</span><br><span class="line"></span><br><span class="line">$ packer .</span><br></pre></td></tr></table></figure>
+<h4 id="Verify">Verify</h4>
+<p>Use Vagrant to launch the image:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vagrant box add my-box name-of-the-box.box</span><br><span class="line">vagrant init my-box</span><br><span class="line">vagrant up</span><br></pre></td></tr></table></figure>
+<p>To check status:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vagrant status</span><br></pre></td></tr></table></figure>
+<h3 id="Cleanup">Cleanup</h3>
+<p>To remove any AMIs created during this exercise:</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://us-west-2.console.aws.amazon.com/ec2/v2/home?region=us-west-2#Images:visibility=owned-by-me;sort=tag:Name">AWS AMI management page</a> &gt; Actions Menu &gt; Select ‘Deregister AMI’</li>
+<li><a target="_blank" rel="noopener" href="https://us-west-2.console.aws.amazon.com/ec2/v2/home?region=us-west-2#Snapshots:visibility=owned-by-me;sort=tag:Name">AWS Snapshot management page</a> &gt; Actions menu &gt; Select ‘Delete snapshot’</li>
+</ol>
+
+    </div>
+</article>
+
+  <div>
+    <a
+      target="_blank" rel="noopener" href="https://github.com/anthonyrussano/anthonyrussano.com/new/master/site/source/_posts">
+      New</a> -
+    <a target="_blank" rel="noopener" href='https://github.com/anthonyrussano/anthonyrussano.com/edit/master/site/source/_posts/DevOps/CICD/Packer/Tutorials/AWS/vagrant-aws-ec2-image.md'>
+      Edit</a> -
+    <a
+      target="_blank" rel="noopener" href='https://github.com/anthonyrussano/anthonyrussano.com/commits/master/site/source/_posts/DevOps/CICD/Packer/Tutorials/AWS/vagrant-aws-ec2-image.md'>
+      History</a> -
+    <a target="_blank" rel="noopener" href='https://github.com/anthonyrussano/anthonyrussano.com/raw/master/site/source/_posts/DevOps/CICD/Packer/Tutorials/AWS/vagrant-aws-ec2-image.md'>
+      Source</a>
+  </div>
+  
+
+                      
+                        <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="../index.html">Home</a></li>
+        
+          <li><a href="../archives/">Writing</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="https://talk.anthonyrussano.com">Talk</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Build"><span class="toc-number">1.</span> <span class="toc-text">Build</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Verify"><span class="toc-number">1.1.</span> <span class="toc-text">Verify</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cleanup"><span class="toc-number">2.</span> <span class="toc-text">Cleanup</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="mailto:?subject=Create a Vagrant Box from an AMI with Packer Post-Processors&body=Check out this article: https://www.anthonyrussano.com/create-a-vagrant-box-from-an-ami-with-packer-post-processors/"><i
+        class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+                          
+                            <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2023
+    Anthony Russano
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="../index.html">Home</a></li><!--
+     --><!--
+       --><li><a href="../archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://talk.anthonyrussano.com">Talk</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+            </div>
+            <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+              <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+    
+
+          
+
+                        <!-- clipboard -->
+                        
+                          
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+                              
+                                    <script type="text/javascript">
+                                      $(function () {
+                                        // copy-btn HTML
+                                        var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+                                        btn += '<i class="fa-regular fa-clone"></i>';
+                                        btn += '</span>';
+                                        // mount it!
+                                        $(".highlight table").before(btn);
+                                        var clip = new ClipboardJS('.btn-copy', {
+                                          text: function (trigger) {
+                                            return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str, it) => str + it.innerText + '\n', '')
+                                          }
+                                        });
+                                        clip.on('success', function (e) {
+                                          e.trigger.setAttribute('aria-label', "Copied!");
+                                          e.clearSelection();
+                                        })
+                                      })
+                                    </script>
+                                    
+                                      
+<script src="js/main.js"></script>
+
+                                        <!-- search -->
+                                        
+                                          
+<script src="js/search.js"></script>
+
+                                            <script type="text/javascript">
+                                              $(function () {
+
+                                                var $inputArea = $("input#search-input");
+                                                var $resultArea = document.querySelector("div#search-result");
+
+                                                $inputArea.focus(function () {
+                                                  var search_path = "search.xml";
+                                                  if (search_path.length == 0) {
+                                                    search_path = "search.xml";
+                                                  }
+                                                  var path = "/" + search_path;
+                                                  searchFunc(path, 'search-input', 'search-result');
+                                                });
+
+                                                $inputArea.keydown(function (e) {
+                                                  if (e.which == 13) {
+                                                    e.preventDefault();
+                                                  }
+                                                });
+
+                                                var observer = new MutationObserver(function (mutationsList, observer) {
+                                                  if (mutationsList.length == 1) {
+                                                    if (mutationsList[0].addedNodes.length) {
+                                                      $(".search-no-result").hide();
+                                                    } else if (mutationsList[0].removedNodes.length) {
+                                                      $(".search-no-result").show(200);
+                                                    }
+                                                  }
+                                                });
+
+                                                observer.observe($resultArea, { childList: true });
+
+                                              });
+                                            </script>
+                                            
+                                              <!-- Baidu Analytics -->
+                                              
+                                                  <!-- Cloudflare Analytics -->
+                                                  
+                                                      <!-- Disqus Comments -->
+                                                      
+                                                          <!-- utterances Comments -->
+                                                          
+    </body>
+
+    </html>

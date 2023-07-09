@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang=en>
+  <head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Description A function is a mechanism for encapsulating a block of code. You can repeat the behavior of this block in multiple spots without having to duplicate the code. Your code will be better orga">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python Functions">
+<meta property="og:url" content="https://www.anthonyrussano.com/python-functions/index.html">
+<meta property="og:site_name" content="anthonyrussano.com">
+<meta property="og:description" content="Description A function is a mechanism for encapsulating a block of code. You can repeat the behavior of this block in multiple spots without having to duplicate the code. Your code will be better orga">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-07-09T07:30:03.863Z">
+<meta property="article:modified_time" content="2023-07-09T07:30:03.863Z">
+<meta property="article:author" content="Anthony Russano">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="https://res.cloudinary.com/alchemist-cookbook/image/upload/v1674087936/christianity.jpg">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="https://res.cloudinary.com/alchemist-cookbook/image/upload/v1674087936/christianity.jpg" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="https://res.cloudinary.com/alchemist-cookbook/image/upload/v1674087936/christianity.jpg">
+        
+      
+    
+    <!-- title -->
+    <title>Python Functions</title>
+    <!-- async scripts -->
+    <!-- Google Analytics -->
+
+
+    <!-- Umami Analytics -->
+
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+    <body class="max-width mx-auto px3 ltr">
+      
+        <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        <!--
+       --><li><a href="../index.html">Home</a></li><!--
+     --><!--
+       --><li><a href="../archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://talk.anthonyrussano.com">Talk</a></li><!--
+     -->
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="../python-nested-function-execution/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="../python-modules/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="mailto:?subject=Python Functions&body=Check out this article: https://www.anthonyrussano.com/python-functions/"><i
+        class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
+</ul>
+    </div>
+    
+    
+      <div id="toc">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Description"><span class="toc-number">1.</span> <span class="toc-text">Description</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Anatomy-of-a-Function"><span class="toc-number">1.1.</span> <span class="toc-text">Anatomy of a Function</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Defining-a-Function"><span class="toc-number">1.1.1.</span> <span class="toc-text">Defining a Function</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Call-Execute-Your-Function"><span class="toc-number">1.2.</span> <span class="toc-text">Call &#x2F; Execute Your Function</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Add-Parameters-to-your-function"><span class="toc-number">1.3.</span> <span class="toc-text">Add Parameters to your function</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Passing-Multiple-Parameters-to-a-Function"><span class="toc-number">1.4.</span> <span class="toc-text">Passing Multiple Parameters to a Function</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Adding-Comments-to-your-functions"><span class="toc-number">1.5.</span> <span class="toc-text">Adding Comments to your functions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Functions-as-Objects"><span class="toc-number">1.6.</span> <span class="toc-text">Functions as Objects</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Nested-Function-Execution"><span class="toc-number">1.7.</span> <span class="toc-text">Nested Function Execution</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sources"><span class="toc-number">2.</span> <span class="toc-text">Sources</span></a></li></ol>
+      </div>
+    
+  </span>
+</div>
+
+          
+            <div class="content index py4 ">
+              
+                    <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Python Functions
+    </h1>
+
+
+
+      <div class="meta">
+        <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <span class="p-name" itemprop="name">
+            Anthony Russano
+                    
+          </span>
+        </span>
+        
+    <div class="postdate">
+      
+        <time datetime="2023-07-09T07:30:03.863Z" class="dt-published" itemprop="datePublished">2023-07-09</time>
+        
+        (Updated: <time datetime="2023-07-09T07:30:03.863Z" class="dt-updated" itemprop="dateModified">2023-07-09</time>)
+        
+      
+    </div>
+
+
+          
+    <div class="article-category">
+        <i class="fa-solid fa-archive"></i>
+        <a class="category-link" href="../categories/DevOps/">DevOps</a> › <a class="category-link" href="../categories/DevOps/Programming-Languages/">Programming Languages</a> › <a class="category-link" href="../categories/DevOps/Programming-Languages/Python/">Python</a>
+    </div>
+
+
+            
+
+      </div>
+  </header>
+  
+
+    <div class="content e-content" itemprop="articleBody">
+      <h2 id="Description">Description</h2>
+<p>A function is a mechanism for encapsulating a block of code. You can repeat the behavior of this block in multiple spots without having to duplicate the code. Your code will be better organized, more testable, maintainable, and easier to understand.</p>
+<h3 id="Anatomy-of-a-Function">Anatomy of a Function</h3>
+<h4 id="Defining-a-Function">Defining a Function</h4>
+<p>The first line of a function definition starts with the keyword def, followed by the function name, function parameters enclosed in parentheses, and then :. The rest of the function is a code block and is indented:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">def &lt;FUNCTION NAME&gt;(&lt;PARAMETERS&gt;):</span><br><span class="line">    &lt;CODE BLOCK&gt;</span><br></pre></td></tr></table></figure>
+<p>If a string using multiline syntax is provided first in the indented block, it acts as documentation. Use these to describe what your function does, how parameters work, and what it can be expected to return. You will find these docstrings are invaluable for communicating with future users of your code. Various programs and services also use them to create documentation. Providing docstrings is considered a best practice and is highly recommended:</p>
+<p>Function arguments occur in the parentheses following the function name. They can be either positional or keyword. Positional arguments use the order of the arguments to assign value:</p>
+<p>With keyword arguments, assign each argument a default value:</p>
+<p>The default values are used when no values are passed during function invocation. The keyword parameters can be called by name during function invocation, in which case the order will not matter.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># This is a sample Python script with two variables and one function</span><br><span class="line"></span><br><span class="line">calculation_to_units = 24</span><br><span class="line">name_of_unit = &quot;hours&quot;</span><br><span class="line"></span><br><span class="line">def days_to_units():</span><br><span class="line">    print(f&quot;20 days are &#123;20 * calculation_to_units&#125; &#123;name_of_unit&#125;&quot;)</span><br><span class="line">    print(&quot;All Good!&quot;)</span><br></pre></td></tr></table></figure>
+<h3 id="Call-Execute-Your-Function">Call / Execute Your Function</h3>
+<p>A function is a Block of code that only runs when it is called.</p>
+<p>Calling a function = executing the function.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">def days_to_units():</span><br><span class="line">    print(f&quot;20 days are &#123;20 * calculation_to_units&#125; &#123;name_of_unit&#125;&quot;)</span><br><span class="line">    print(&quot;All Good!&quot;)</span><br><span class="line"></span><br><span class="line">days_to_units()</span><br><span class="line"></span><br><span class="line">Output:</span><br><span class="line"></span><br><span class="line">20 days are 480 hours</span><br></pre></td></tr></table></figure>
+<h3 id="Add-Parameters-to-your-function">Add Parameters to your function</h3>
+<p>Information can bee passed into functions as parameters.</p>
+<p>Parameters are also called arguments.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># This is a sample Python script</span><br><span class="line"></span><br><span class="line">calculation_to_units = 24</span><br><span class="line">name_of_unit = &quot;hours&quot;</span><br><span class="line"></span><br><span class="line">def days_to_units(num_of_days):</span><br><span class="line">    print(f&quot;&#123;num_of_days&#125; days are &#123;num_of_days * calculation_to_units&#125; &#123;name_of_unit&#125;&quot;)</span><br><span class="line"></span><br><span class="line">days_to_units(20)</span><br><span class="line"></span><br><span class="line">Output:</span><br><span class="line"></span><br><span class="line">20 days are 480 hours</span><br></pre></td></tr></table></figure>
+<h3 id="Passing-Multiple-Parameters-to-a-Function">Passing Multiple Parameters to a Function</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"># This is a sample Python script</span><br><span class="line"></span><br><span class="line">calculation_to_units = 24</span><br><span class="line">name_of_unit = &quot;hours&quot;</span><br><span class="line"></span><br><span class="line">def days_to_units(num_of_days, custom_message):</span><br><span class="line">    print(f&quot;&#123;num_of_days&#125; days are &#123;num_of_days * calculation_to_units&#125; &#123;name_of_unit&#125;&quot;)</span><br><span class="line">    print(custom_message)</span><br><span class="line"></span><br><span class="line">days_to_units(20, &quot;Awesome!&quot;)</span><br><span class="line">days_to_units(35, &quot;Looks Good!&quot;)</span><br><span class="line">days_to_units(40, &quot;Wonderful!&quot;)</span><br><span class="line">days_to_units(50, &quot;Perfect&quot;)</span><br><span class="line">days_to_units(110, &quot;&quot;)</span><br><span class="line"></span><br><span class="line">Output:</span><br><span class="line"></span><br><span class="line">20 days are 480 hours</span><br><span class="line">Awesome!</span><br><span class="line">35 days are 840 hours</span><br><span class="line">Looks Good!</span><br><span class="line">40 days are 960 hours</span><br><span class="line">Wonderful!</span><br><span class="line">50 days are 1200 hours</span><br><span class="line">Perfect</span><br><span class="line">110 days are 2640 hours</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="Adding-Comments-to-your-functions">Adding Comments to your functions</h3>
+<p>Comments should have a maximum length of 72 characters. They should describe what the function does, what parameters work, and what the function returns.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># This is a sample Python script</span><br><span class="line"></span><br><span class="line">calculation_to_units = 24</span><br><span class="line">name_of_unit = &quot;hours&quot;</span><br><span class="line"></span><br><span class="line">def days_to_units(num_of_days, custom_message):</span><br><span class="line">    # This is a sample function</span><br><span class="line">    # This Function requires two input parameters or arguments</span><br><span class="line">    # number of days to be calculated for and a text string.</span><br><span class="line">    print(f&quot;&#123;num_of_days&#125; days are &#123;num_of_days * calculation_to_units&#125; &#123;name_of_unit&#125;&quot;)</span><br><span class="line">    print(custom_message)</span><br><span class="line"></span><br><span class="line">days_to_units(20, &quot;Awesome!&quot;)</span><br></pre></td></tr></table></figure>
+<h3 id="Functions-as-Objects">Functions as Objects</h3>
+<p>Functions are objects. They can be passed around, or stored in data structures. You can define two functions, put them in a list, and then iterate through the list to invoke them.</p>
+<h3 id="Nested-Function-Execution">Nested Function Execution</h3>
+<h2 id="Sources">Sources</h2>
+<p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=t8pPdKYpowI">^1</a> <a target="_blank" rel="noopener" href="https://www.oreilly.com/library/view/python-for-devops/9781492057680/">^2</a> <a target="_blank" rel="noopener" href="https://docs.python.org/3/tutorial/interpreter.html">^3</a></p>
+
+    </div>
+</article>
+
+  <div>
+    <a
+      target="_blank" rel="noopener" href="https://github.com/anthonyrussano/anthonyrussano.com/new/master/site/source/_posts">
+      New</a> -
+    <a target="_blank" rel="noopener" href='https://github.com/anthonyrussano/anthonyrussano.com/edit/master/site/source/_posts/DevOps/Programming Languages/Python/python-functions.md'>
+      Edit</a> -
+    <a
+      target="_blank" rel="noopener" href='https://github.com/anthonyrussano/anthonyrussano.com/commits/master/site/source/_posts/DevOps/Programming Languages/Python/python-functions.md'>
+      History</a> -
+    <a target="_blank" rel="noopener" href='https://github.com/anthonyrussano/anthonyrussano.com/raw/master/site/source/_posts/DevOps/Programming Languages/Python/python-functions.md'>
+      Source</a>
+  </div>
+  
+
+                      
+                        <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+        
+          <li><a href="../index.html">Home</a></li>
+        
+          <li><a href="../archives/">Writing</a></li>
+        
+          <li><a target="_blank" rel="noopener" href="https://talk.anthonyrussano.com">Talk</a></li>
+        
+      </ul>
+    </div>
+
+    
+    
+      <div id="toc-footer" style="display: none">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Description"><span class="toc-number">1.</span> <span class="toc-text">Description</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Anatomy-of-a-Function"><span class="toc-number">1.1.</span> <span class="toc-text">Anatomy of a Function</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Defining-a-Function"><span class="toc-number">1.1.1.</span> <span class="toc-text">Defining a Function</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Call-Execute-Your-Function"><span class="toc-number">1.2.</span> <span class="toc-text">Call &#x2F; Execute Your Function</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Add-Parameters-to-your-function"><span class="toc-number">1.3.</span> <span class="toc-text">Add Parameters to your function</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Passing-Multiple-Parameters-to-a-Function"><span class="toc-number">1.4.</span> <span class="toc-text">Passing Multiple Parameters to a Function</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Adding-Comments-to-your-functions"><span class="toc-number">1.5.</span> <span class="toc-text">Adding Comments to your functions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Functions-as-Objects"><span class="toc-number">1.6.</span> <span class="toc-text">Functions as Objects</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Nested-Function-Execution"><span class="toc-number">1.7.</span> <span class="toc-text">Nested Function Execution</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sources"><span class="toc-number">2.</span> <span class="toc-text">Sources</span></a></li></ol>
+      </div>
+    
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="mailto:?subject=Python Functions&body=Check out this article: https://www.anthonyrussano.com/python-functions/"><i
+        class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        
+          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+                          
+                            <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2023
+    Anthony Russano
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <!--
+       --><li><a href="../index.html">Home</a></li><!--
+     --><!--
+       --><li><a href="../archives/">Writing</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://talk.anthonyrussano.com">Talk</a></li><!--
+     -->
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+            </div>
+            <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+              <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+    
+
+          
+
+                        <!-- clipboard -->
+                        
+                          
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+                              
+                                    <script type="text/javascript">
+                                      $(function () {
+                                        // copy-btn HTML
+                                        var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+                                        btn += '<i class="fa-regular fa-clone"></i>';
+                                        btn += '</span>';
+                                        // mount it!
+                                        $(".highlight table").before(btn);
+                                        var clip = new ClipboardJS('.btn-copy', {
+                                          text: function (trigger) {
+                                            return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str, it) => str + it.innerText + '\n', '')
+                                          }
+                                        });
+                                        clip.on('success', function (e) {
+                                          e.trigger.setAttribute('aria-label', "Copied!");
+                                          e.clearSelection();
+                                        })
+                                      })
+                                    </script>
+                                    
+                                      
+<script src="js/main.js"></script>
+
+                                        <!-- search -->
+                                        
+                                          
+<script src="js/search.js"></script>
+
+                                            <script type="text/javascript">
+                                              $(function () {
+
+                                                var $inputArea = $("input#search-input");
+                                                var $resultArea = document.querySelector("div#search-result");
+
+                                                $inputArea.focus(function () {
+                                                  var search_path = "search.xml";
+                                                  if (search_path.length == 0) {
+                                                    search_path = "search.xml";
+                                                  }
+                                                  var path = "/" + search_path;
+                                                  searchFunc(path, 'search-input', 'search-result');
+                                                });
+
+                                                $inputArea.keydown(function (e) {
+                                                  if (e.which == 13) {
+                                                    e.preventDefault();
+                                                  }
+                                                });
+
+                                                var observer = new MutationObserver(function (mutationsList, observer) {
+                                                  if (mutationsList.length == 1) {
+                                                    if (mutationsList[0].addedNodes.length) {
+                                                      $(".search-no-result").hide();
+                                                    } else if (mutationsList[0].removedNodes.length) {
+                                                      $(".search-no-result").show(200);
+                                                    }
+                                                  }
+                                                });
+
+                                                observer.observe($resultArea, { childList: true });
+
+                                              });
+                                            </script>
+                                            
+                                              <!-- Baidu Analytics -->
+                                              
+                                                  <!-- Cloudflare Analytics -->
+                                                  
+                                                      <!-- Disqus Comments -->
+                                                      
+                                                          <!-- utterances Comments -->
+                                                          
+    </body>
+
+    </html>
