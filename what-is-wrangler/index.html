@@ -13,8 +13,8 @@
 <meta property="og:site_name" content="wikip.co">
 <meta property="og:description" content="Description Wrangler is a command-line tool for building Cloudflare Workers.[1] Installing Wrangler, the Workers CLI, allows you to init, dev, and publish your Workers projects. There are many options">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-07-09T15:16:11.449Z">
-<meta property="article:modified_time" content="2023-07-09T15:16:11.449Z">
+<meta property="article:published_time" content="2023-07-09T16:40:13.785Z">
+<meta property="article:modified_time" content="2023-07-09T16:40:13.785Z">
 <meta property="article:author" content="Anthony Russano">
 <meta property="article:tag" content="cli-tools">
 <meta property="article:tag" content="Cloudflare">
@@ -68,52 +68,82 @@
         <div id="header-post">
   <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
   <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top"
+    onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i
+      class="fa-solid fa-chevron-up fa-lg"></i></a>
   <span id="menu">
     <span id="nav">
       <ul>
         <!--
-       --><li><a href="/">Home</a></li><!--
-     --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
-     --><!--
-       --><li><a target="_blank" rel="noopener" href="https://talk.anthonyrussano.com">Talk</a></li><!--
+       -->
+          <li><a href="/">
+              Home
+            </a></li><!--
      -->
+          <!--
+       -->
+          <li><a target="_blank" rel="noopener" href="https://talk.anthonyrussano.com">
+              Talk
+            </a></li><!--
+     -->
+          
       </ul>
     </span>
-    <br/>
+    <br />
     <span id="actions">
       <ul>
         
-        <li><a class="icon" aria-label="Previous post" href="/what-is-cloudflare/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
-        
-        
-        <li><a class="icon" aria-label="Next post" href="/what-is-secrets-management/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
-        
-        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
-        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+          <li><a class="icon" aria-label="Previous post" href="/what-is-cloudflare/"><i
+                class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();"
+                onmouseout="$('#i-prev').toggle();"></i></a></li>
+          
+            
+              <li><a class="icon" aria-label="Next post" href="/what-is-akri/"><i
+                    class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();"
+                    onmouseout="$('#i-next').toggle();"></i></a></li>
+              
+                <li><a class="icon" aria-label="Home" href="/"
+                    onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up"
+                      aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a>
+                </li>
+                <li><a class="icon" aria-label="Share post" href="#"><i
+                      class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();"
+                      onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
       </ul>
-      <span id="i-prev" class="info" style="display:none;">Previous post</span>
-      <span id="i-next" class="info" style="display:none;">Next post</span>
-      <span id="i-top" class="info" style="display:none;">Back to top</span>
-      <span id="i-share" class="info" style="display:none;">Share post</span>
+      <span id="i-prev" class="info" style="display:none;">
+        Previous post
+      </span>
+      <span id="i-next" class="info" style="display:none;">
+        Next post
+      </span>
+      <span id="i-top" class="info" style="display:none;">
+        Home
+      </span>
+      <span id="i-share" class="info" style="display:none;">
+      </span>
     </span>
-    <br/>
-    <div id="share" style="display: none">
-      <ul>
-  <li><a class="icon" href="mailto:?subject=What is Wrangler?&body=Check out this article: https://wikip.co/what-is-wrangler/"><i
-        class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
-</ul>
+    <br />
+    <div id="share" style>
+      
+  <div class="article-gallery">
+    <a class="gallery-item"
+      target="_blank" href="https://res.cloudinary.com/alchemist-cookbook/image/upload/w_200,f_auto/wrangler-cli"
+      rel="gallery_cljvnuy5103t6nynh233m5aeg noopener">
+      <img src="https://res.cloudinary.com/alchemist-cookbook/image/upload/w_200,f_auto/wrangler-cli"
+        itemprop="image" />
+    </a>
+  </div>
+  
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/cloudflare/" rel="tag">Cloudflare</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/serverless/" rel="tag">Serverless</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/serverless-functions/" rel="tag">Serverless Functions</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/workers/" rel="tag">Workers</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cli-tools/" rel="tag">cli-tools</a></li></ul>
     </div>
     
-    
-      <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Description"><span class="toc-number">1.</span> <span class="toc-text">Description</span></a></li></ol>
-      </div>
-    
+      
+        <div id="toc">
+          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Description"><span class="toc-number">1.</span> <span class="toc-text">Description</span></a></li></ol>
+        </div>
+        
   </span>
 </div>
-
           
             <div class="content index py4 ">
               
@@ -134,36 +164,16 @@
           </span>
         </span>
         
-    <div class="postdate">
-      
-        <time datetime="2023-07-09T15:16:11.449Z" class="dt-published" itemprop="datePublished">July 9th 2023, 3:16 pm</time>
-        
-        (Updated: <time datetime="2023-07-09T15:16:11.449Z" class="dt-updated" itemprop="dateModified">July 9th 2023, 3:16 pm</time>)
-        
-      
-    </div>
-
-
-          
     <div class="article-category">
         <i class="fa-solid fa-archive"></i>
         <a class="category-link" href="/categories/devops/">DevOps</a> › <a class="category-link" href="/categories/devops/network-and-security/">Network and Security</a> › <a class="category-link" href="/categories/devops/network-and-security/cloudflare/">Cloudflare</a>
     </div>
 
 
-            
-    <div class="article-tag">
-        <i class="fa-solid fa-tag"></i>
-        <a class="p-category" href="/tags/cloudflare/" rel="tag">Cloudflare</a>, <a class="p-category" href="/tags/serverless/" rel="tag">Serverless</a>, <a class="p-category" href="/tags/serverless-functions/" rel="tag">Serverless Functions</a>, <a class="p-category" href="/tags/workers/" rel="tag">Workers</a>, <a class="p-category" href="/tags/cli-tools/" rel="tag">cli-tools</a>
-    </div>
-
-
       </div>
   </header>
-  
-
-    <div class="content e-content" itemprop="articleBody">
-      <h2 id="Description">Description</h2>
+  <div class="content e-content" itemprop="articleBody">
+    <h2 id="Description">Description</h2>
 <p>Wrangler is a command-line tool for building Cloudflare Workers.<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup></p>
 <p>Installing Wrangler, the Workers CLI, allows you to init, dev, and publish your Workers projects.</p>
 <p>There are many options to install wrangler. I have included a link to their official GitHub repo at the bottom of the page.<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></p>
@@ -177,23 +187,25 @@
 </ol>
 </section>
 
-    </div>
+  </div>
 </article>
 
-  <div>
-    <a
-      target="_blank" rel="noopener" href="https://github.com/anthonyrussano/anthonyrussano.com/new/master/site/source/_posts">
-      New</a> -
-    <a target="_blank" rel="noopener" href='https://github.com/anthonyrussano/anthonyrussano.com/edit/master/site/source/_posts/DevOps/Network and Security/Cloudflare/what-is-wrangler.md'>
-      Edit</a> -
-    <a
-      target="_blank" rel="noopener" href='https://github.com/anthonyrussano/anthonyrussano.com/commits/master/site/source/_posts/DevOps/Network and Security/Cloudflare/what-is-wrangler.md'>
-      History</a> -
-    <a target="_blank" rel="noopener" href='https://github.com/anthonyrussano/anthonyrussano.com/raw/master/site/source/_posts/DevOps/Network and Security/Cloudflare/what-is-wrangler.md'>
-      Source</a>
-  </div>
-  
 
+
+    <div>
+        <a
+            target="_blank" rel="noopener" href="https://github.com/anthonyrussano/anthonyrussano.com/new/master/site/source/_posts">
+            New</a> -
+        <a
+            target="_blank" rel="noopener" href='https://github.com/anthonyrussano/anthonyrussano.com/edit/master/site/source/_posts/DevOps/Network and Security/Cloudflare/what-is-wrangler.md'>
+            Edit</a> -
+        <a
+            target="_blank" rel="noopener" href='https://github.com/anthonyrussano/anthonyrussano.com/commits/master/site/source/_posts/DevOps/Network and Security/Cloudflare/what-is-wrangler.md'>
+            History</a> -
+        <a
+            target="_blank" rel="noopener" href='https://github.com/anthonyrussano/anthonyrussano.com/raw/master/site/source/_posts/DevOps/Network and Security/Cloudflare/what-is-wrangler.md'>
+            Source</a>
+    </div>
                       
                         <div id="footer-post-container">
   <div id="footer-post">
@@ -201,41 +213,62 @@
     <div id="nav-footer" style="display: none">
       <ul>
         
-          <li><a href="/">Home</a></li>
-        
-          <li><a href="/archives/">Writing</a></li>
-        
-          <li><a target="_blank" rel="noopener" href="https://talk.anthonyrussano.com">Talk</a></li>
-        
+          <li><a href="/">
+              Home
+            </a></li>
+          
+          <li><a target="_blank" rel="noopener" href="https://talk.anthonyrussano.com">
+              Talk
+            </a></li>
+          
       </ul>
     </div>
 
     
-    
-      <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Description"><span class="toc-number">1.</span> <span class="toc-text">Description</span></a></li></ol>
-      </div>
-    
-
-    <div id="share-footer" style="display: none">
-      <ul>
-  <li><a class="icon" href="mailto:?subject=What is Wrangler?&body=Check out this article: https://wikip.co/what-is-wrangler/"><i
-        class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-</ul>
-    </div>
-
-    <div id="actions-footer">
-        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fa-solid fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+      
+        <div id="toc-footer" style="display: none">
+          <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Description"><span class="toc-number">1.</span> <span class="toc-text">Description</span></a></li></ol>
+        </div>
         
-          <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fa-solid fa-list fa-lg" aria-hidden="true"></i> TOC</a>
-        
-        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
-        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
-    </div>
+
+          <div id="share-footer" style="display: none">
+            
+  <div class="article-gallery">
+    <a class="gallery-item"
+      target="_blank" href="https://res.cloudinary.com/alchemist-cookbook/image/upload/w_200,f_auto/wrangler-cli"
+      rel="gallery_cljvnuy5103t6nynh233m5aeg noopener">
+      <img src="https://res.cloudinary.com/alchemist-cookbook/image/upload/w_200,f_auto/wrangler-cli"
+        itemprop="image" />
+    </a>
+  </div>
+  
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/cloudflare/" rel="tag">Cloudflare</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/serverless/" rel="tag">Serverless</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/serverless-functions/" rel="tag">Serverless Functions</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/workers/" rel="tag">Workers</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cli-tools/" rel="tag">cli-tools</a></li></ul>
+          </div>
+
+          <div id="actions-footer">
+            <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i
+                class="fa-solid fa-bars fa-lg" aria-hidden="true"></i>
+              Menu
+            </a>
+            
+              <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i
+                  class="fa-solid fa-list fa-lg" aria-hidden="true"></i>
+                TOC
+              </a>
+              
+                <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i
+                    class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i>
+                  Share
+                </a>
+                <a id="top" style="display:none" class="icon" href="#"
+                  onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg"
+                    aria-hidden="true"></i>
+                  Top
+                </a>
+          </div>
 
   </div>
 </div>
-
                           
                             <footer id="footer">
   <div class="footer-left">
@@ -250,8 +283,6 @@
       <ul>
         <!--
        --><li><a href="/">Home</a></li><!--
-     --><!--
-       --><li><a href="/archives/">Writing</a></li><!--
      --><!--
        --><li><a target="_blank" rel="noopener" href="https://talk.anthonyrussano.com">Talk</a></li><!--
      -->
