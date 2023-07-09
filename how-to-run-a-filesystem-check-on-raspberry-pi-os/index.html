@@ -9,12 +9,12 @@
     <meta name="description" content="Description How to initiate a filesystem check at boot on the Raspberry Pi OS. It’s not possible to run fsck (or e2fsck) on a mounted partiton.  Therefore a filesystem check can be initiated at boot t">
 <meta property="og:type" content="article">
 <meta property="og:title" content="How to Run a Filesystem Check on Raspberry Pi OS">
-<meta property="og:url" content="https://www.anthonyrussano.com/how-to-run-a-filesystem-check-on-raspberry-pi-os/index.html">
-<meta property="og:site_name" content="anthonyrussano.com">
+<meta property="og:url" content="https://wikip.co/how-to-run-a-filesystem-check-on-raspberry-pi-os/index.html">
+<meta property="og:site_name" content="wikip.co">
 <meta property="og:description" content="Description How to initiate a filesystem check at boot on the Raspberry Pi OS. It’s not possible to run fsck (or e2fsck) on a mounted partiton.  Therefore a filesystem check can be initiated at boot t">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-07-09T07:30:03.867Z">
-<meta property="article:modified_time" content="2023-07-09T07:30:03.867Z">
+<meta property="article:published_time" content="2023-07-09T14:56:14.655Z">
+<meta property="article:modified_time" content="2023-07-09T14:56:14.655Z">
 <meta property="article:author" content="Anthony Russano">
 <meta property="article:tag" content="Raspberry Pi">
 <meta property="article:tag" content="fsck">
@@ -49,7 +49,7 @@
 
     <!-- styles -->
     
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="/css/style.css">
 
     <!-- persian styles -->
     
@@ -58,7 +58,7 @@
     
 	<!-- mathjax -->
 	
-<meta name="generator" content="Hexo 6.3.0"></head>
+</head>
 
 
     <body class="max-width mx-auto px3 ltr">
@@ -71,9 +71,9 @@
     <span id="nav">
       <ul>
         <!--
-       --><li><a href="../index.html">Home</a></li><!--
+       --><li><a href="/">Home</a></li><!--
      --><!--
-       --><li><a href="../archives/">Writing</a></li><!--
+       --><li><a href="/archives/">Writing</a></li><!--
      --><!--
        --><li><a target="_blank" rel="noopener" href="https://talk.anthonyrussano.com">Talk</a></li><!--
      -->
@@ -83,10 +83,10 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" aria-label="Previous post" href="../what-is-pivpn/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Previous post" href="/what-is-pivpn/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
-        <li><a class="icon" aria-label="Next post" href="../dpkg/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Next post" href="/remove-the-default-pi-user/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
@@ -99,14 +99,14 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" href="mailto:?subject=How to Run a Filesystem Check on Raspberry Pi OS&body=Check out this article: https://www.anthonyrussano.com/how-to-run-a-filesystem-check-on-raspberry-pi-os/"><i
+  <li><a class="icon" href="mailto:?subject=How to Run a Filesystem Check on Raspberry Pi OS&body=Check out this article: https://wikip.co/how-to-run-a-filesystem-check-on-raspberry-pi-os/"><i
         class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
 </ul>
     </div>
     
     
       <div id="toc">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Description"><span class="toc-number">1.</span> <span class="toc-text">Description</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Steps"><span class="toc-number">2.</span> <span class="toc-text">Steps</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Open-cmdline-txt-for-editing"><span class="toc-number">2.1.</span> <span class="toc-text">Open cmdline.txt for editing</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Add-fsck-mode-force-to-the-existing-line-of-text-as-shown-below-1"><span class="toc-number">2.2.</span> <span class="toc-text">Add fsck.mode&#x3D;force to the existing line of text as shown below ^1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Reboot-the-system"><span class="toc-number">2.3.</span> <span class="toc-text">Reboot the system</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Check-log-files"><span class="toc-number">3.</span> <span class="toc-text">Check log files</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Example-1"><span class="toc-number">3.1.</span> <span class="toc-text">Example ^1</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#journalctl-u-systemd-fsck"><span class="toc-number">3.1.1.</span> <span class="toc-text">$ journalctl -u systemd-fsck*</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#journalctl-xb"><span class="toc-number">3.1.2.</span> <span class="toc-text">$ journalctl -xb</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Description"><span class="toc-number">1.</span> <span class="toc-text">Description</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Steps"><span class="toc-number">2.</span> <span class="toc-text">Steps</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Open-cmdline-txt-for-editing"><span class="toc-number">2.1.</span> <span class="toc-text">Open cmdline.txt for editing</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Add-fsck-mode-force-to-the-existing-line-of-text-as-shown-below"><span class="toc-number">2.2.</span> <span class="toc-text">Add fsck.mode&#x3D;force to the existing line of text as shown below [1]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Reboot-the-system"><span class="toc-number">2.3.</span> <span class="toc-text">Reboot the system</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Check-log-files"><span class="toc-number">3.</span> <span class="toc-text">Check log files</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Example"><span class="toc-number">3.1.</span> <span class="toc-text">Example [1:1]</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#journalctl-u-systemd-fsck"><span class="toc-number">3.1.1.</span> <span class="toc-text">$ journalctl -u systemd-fsck*</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#journalctl-xb"><span class="toc-number">3.1.2.</span> <span class="toc-text">$ journalctl -xb</span></a></li></ol></li></ol></li></ol>
       </div>
     
   </span>
@@ -134,9 +134,9 @@
         
     <div class="postdate">
       
-        <time datetime="2023-07-09T07:30:03.867Z" class="dt-published" itemprop="datePublished">2023-07-09</time>
+        <time datetime="2023-07-09T14:56:14.655Z" class="dt-published" itemprop="datePublished">July 9th 2023, 2:56 pm</time>
         
-        (Updated: <time datetime="2023-07-09T07:30:03.867Z" class="dt-updated" itemprop="dateModified">2023-07-09</time>)
+        (Updated: <time datetime="2023-07-09T14:56:14.655Z" class="dt-updated" itemprop="dateModified">July 9th 2023, 2:56 pm</time>)
         
       
     </div>
@@ -145,14 +145,14 @@
           
     <div class="article-category">
         <i class="fa-solid fa-archive"></i>
-        <a class="category-link" href="../categories/DevOps/">DevOps</a> › <a class="category-link" href="../categories/DevOps/Server-Administration/">Server Administration</a> › <a class="category-link" href="../categories/DevOps/Server-Administration/Linux/">Linux</a> › <a class="category-link" href="../categories/DevOps/Server-Administration/Linux/Distributions/">Distributions</a> › <a class="category-link" href="../categories/DevOps/Server-Administration/Linux/Distributions/Raspberry-Pi-OS/">Raspberry Pi OS</a> › <a class="category-link" href="../categories/DevOps/Server-Administration/Linux/Distributions/Raspberry-Pi-OS/Troubleshooting/">Troubleshooting</a>
+        <a class="category-link" href="/categories/devops/">DevOps</a> › <a class="category-link" href="/categories/devops/server-administration/">Server Administration</a> › <a class="category-link" href="/categories/devops/server-administration/linux/">Linux</a> › <a class="category-link" href="/categories/devops/server-administration/linux/distributions/">Distributions</a> › <a class="category-link" href="/categories/devops/server-administration/linux/distributions/raspberry-pi-os/">Raspberry Pi OS</a> › <a class="category-link" href="/categories/devops/server-administration/linux/distributions/raspberry-pi-os/troubleshooting/">Troubleshooting</a>
     </div>
 
 
             
     <div class="article-tag">
         <i class="fa-solid fa-tag"></i>
-        <a class="p-category" href="../tags/Raspberry-Pi/" rel="tag">Raspberry Pi</a>, <a class="p-category" href="../tags/e2fsck/" rel="tag">e2fsck</a>, <a class="p-category" href="../tags/fsck/" rel="tag">fsck</a>
+        <a class="p-category" href="/tags/raspberry-pi/" rel="tag">Raspberry Pi</a>, <a class="p-category" href="/tags/e2fsck/" rel="tag">e2fsck</a>, <a class="p-category" href="/tags/fsck/" rel="tag">fsck</a>
     </div>
 
 
@@ -167,7 +167,7 @@
 <h2 id="Steps">Steps</h2>
 <h3 id="Open-cmdline-txt-for-editing">Open <code>cmdline.txt</code> for editing</h3>
 <p><code>sudo edit /boot/cmdline.txt</code></p>
-<h3 id="Add-fsck-mode-force-to-the-existing-line-of-text-as-shown-below-1">Add <code>fsck.mode=force</code> to the existing line of text as shown below <a target="_blank" rel="noopener" href="https://raspberrypi.stackexchange.com/questions/111541/output-fsck-on-boot-to-a-log-file">^1</a></h3>
+<h3 id="Add-fsck-mode-force-to-the-existing-line-of-text-as-shown-below">Add <code>fsck.mode=force</code> to the existing line of text as shown below <sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup></h3>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console=serial0,115200 console=tty1 root=PARTUUID=6c586e13-02 rootfstype=ext4 elevator=deadline fsck.mode=force fsck.repair=yes rootwait</span><br></pre></td></tr></table></figure>
 <h3 id="Reboot-the-system">Reboot the system</h3>
 <p>The filesystem check should be kicked-off as part of the boot process.</p>
@@ -175,11 +175,18 @@
 <p>At this point you can review the log files.</p>
 <h2 id="Check-log-files">Check log files</h2>
 <p>If you want to see the log entries generated, you can use the <code>journalctl</code> tool.</p>
-<h3 id="Example-1">Example <a target="_blank" rel="noopener" href="https://raspberrypi.stackexchange.com/questions/111541/output-fsck-on-boot-to-a-log-file">^1</a></h3>
+<h3 id="Example">Example <sup class="footnote-ref"><a href="#fn1" id="fnref1:1">[1:1]</a></sup></h3>
 <h4 id="journalctl-u-systemd-fsck"><code>$ journalctl -u systemd-fsck*</code></h4>
 <p>This shows logs from the specified unit (<code>-u</code>), <code>systemd-fsck*</code></p>
 <h4 id="journalctl-xb"><code>$ journalctl -xb</code></h4>
 <p>This display items related to the current boot (<code>-b</code>) with message explainations where available (<code>-x</code>).</p>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p><a target="_blank" rel="noopener" href="https://raspberrypi.stackexchange.com/questions/111541/output-fsck-on-boot-to-a-log-file">https://raspberrypi.stackexchange.com/questions/111541/output-fsck-on-boot-to-a-log-file</a> <a href="#fnref1" class="footnote-backref">↩︎</a> <a href="#fnref1:1" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
 
     </div>
 </article>
@@ -205,9 +212,9 @@
     <div id="nav-footer" style="display: none">
       <ul>
         
-          <li><a href="../index.html">Home</a></li>
+          <li><a href="/">Home</a></li>
         
-          <li><a href="../archives/">Writing</a></li>
+          <li><a href="/archives/">Writing</a></li>
         
           <li><a target="_blank" rel="noopener" href="https://talk.anthonyrussano.com">Talk</a></li>
         
@@ -217,13 +224,13 @@
     
     
       <div id="toc-footer" style="display: none">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Description"><span class="toc-number">1.</span> <span class="toc-text">Description</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Steps"><span class="toc-number">2.</span> <span class="toc-text">Steps</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Open-cmdline-txt-for-editing"><span class="toc-number">2.1.</span> <span class="toc-text">Open cmdline.txt for editing</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Add-fsck-mode-force-to-the-existing-line-of-text-as-shown-below-1"><span class="toc-number">2.2.</span> <span class="toc-text">Add fsck.mode&#x3D;force to the existing line of text as shown below ^1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Reboot-the-system"><span class="toc-number">2.3.</span> <span class="toc-text">Reboot the system</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Check-log-files"><span class="toc-number">3.</span> <span class="toc-text">Check log files</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Example-1"><span class="toc-number">3.1.</span> <span class="toc-text">Example ^1</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#journalctl-u-systemd-fsck"><span class="toc-number">3.1.1.</span> <span class="toc-text">$ journalctl -u systemd-fsck*</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#journalctl-xb"><span class="toc-number">3.1.2.</span> <span class="toc-text">$ journalctl -xb</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Description"><span class="toc-number">1.</span> <span class="toc-text">Description</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Steps"><span class="toc-number">2.</span> <span class="toc-text">Steps</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Open-cmdline-txt-for-editing"><span class="toc-number">2.1.</span> <span class="toc-text">Open cmdline.txt for editing</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Add-fsck-mode-force-to-the-existing-line-of-text-as-shown-below"><span class="toc-number">2.2.</span> <span class="toc-text">Add fsck.mode&#x3D;force to the existing line of text as shown below [1]</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Reboot-the-system"><span class="toc-number">2.3.</span> <span class="toc-text">Reboot the system</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Check-log-files"><span class="toc-number">3.</span> <span class="toc-text">Check log files</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Example"><span class="toc-number">3.1.</span> <span class="toc-text">Example [1:1]</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#journalctl-u-systemd-fsck"><span class="toc-number">3.1.1.</span> <span class="toc-text">$ journalctl -u systemd-fsck*</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#journalctl-xb"><span class="toc-number">3.1.2.</span> <span class="toc-text">$ journalctl -xb</span></a></li></ol></li></ol></li></ol>
       </div>
     
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" href="mailto:?subject=How to Run a Filesystem Check on Raspberry Pi OS&body=Check out this article: https://www.anthonyrussano.com/how-to-run-a-filesystem-check-on-raspberry-pi-os/"><i
+  <li><a class="icon" href="mailto:?subject=How to Run a Filesystem Check on Raspberry Pi OS&body=Check out this article: https://wikip.co/how-to-run-a-filesystem-check-on-raspberry-pi-os/"><i
         class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
 </ul>
     </div>
@@ -253,9 +260,9 @@
     <nav>
       <ul>
         <!--
-       --><li><a href="../index.html">Home</a></li><!--
+       --><li><a href="/">Home</a></li><!--
      --><!--
-       --><li><a href="../archives/">Writing</a></li><!--
+       --><li><a href="/archives/">Writing</a></li><!--
      --><!--
        --><li><a target="_blank" rel="noopener" href="https://talk.anthonyrussano.com">Talk</a></li><!--
      -->
@@ -305,12 +312,12 @@
                                     </script>
                                     
                                       
-<script src="js/main.js"></script>
+<script src="/js/main.js"></script>
 
                                         <!-- search -->
                                         
                                           
-<script src="js/search.js"></script>
+<script src="/js/search.js"></script>
 
                                             <script type="text/javascript">
                                               $(function () {

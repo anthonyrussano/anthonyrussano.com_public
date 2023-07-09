@@ -9,12 +9,12 @@
     <meta name="description" content="Description The SSH config file allows each user to define specific SSH options for connecting to multiple different remote hosts. Instructions Files ~&#x2F;.ssh&#x2F;config This is the per-user configuration f">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SSH Config File Settings">
-<meta property="og:url" content="https://www.anthonyrussano.com/ssh-config-file-settings/index.html">
-<meta property="og:site_name" content="anthonyrussano.com">
+<meta property="og:url" content="https://wikip.co/ssh-config-file-settings/index.html">
+<meta property="og:site_name" content="wikip.co">
 <meta property="og:description" content="Description The SSH config file allows each user to define specific SSH options for connecting to multiple different remote hosts. Instructions Files ~&#x2F;.ssh&#x2F;config This is the per-user configuration f">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-07-09T07:30:03.859Z">
-<meta property="article:modified_time" content="2023-07-09T07:30:03.859Z">
+<meta property="article:published_time" content="2023-07-09T14:56:14.651Z">
+<meta property="article:modified_time" content="2023-07-09T14:56:14.651Z">
 <meta property="article:author" content="Anthony Russano">
 <meta name="twitter:card" content="summary">
     
@@ -46,7 +46,7 @@
 
     <!-- styles -->
     
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="/css/style.css">
 
     <!-- persian styles -->
     
@@ -55,7 +55,7 @@
     
 	<!-- mathjax -->
 	
-<meta name="generator" content="Hexo 6.3.0"></head>
+</head>
 
 
     <body class="max-width mx-auto px3 ltr">
@@ -68,9 +68,9 @@
     <span id="nav">
       <ul>
         <!--
-       --><li><a href="../index.html">Home</a></li><!--
+       --><li><a href="/">Home</a></li><!--
      --><!--
-       --><li><a href="../archives/">Writing</a></li><!--
+       --><li><a href="/archives/">Writing</a></li><!--
      --><!--
        --><li><a target="_blank" rel="noopener" href="https://talk.anthonyrussano.com">Talk</a></li><!--
      -->
@@ -80,10 +80,10 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" aria-label="Previous post" href="../securely-setup-ssh-keys-on-ubuntu/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Previous post" href="/securely-setup-ssh-keys-on-ubuntu/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
-        <li><a class="icon" aria-label="Next post" href="../what-is-ssh/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Next post" href="/what-is-ssh/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
@@ -96,7 +96,7 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" href="mailto:?subject=SSH Config File Settings&body=Check out this article: https://www.anthonyrussano.com/ssh-config-file-settings/"><i
+  <li><a class="icon" href="mailto:?subject=SSH Config File Settings&body=Check out this article: https://wikip.co/ssh-config-file-settings/"><i
         class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
 </ul>
     </div>
@@ -131,9 +131,9 @@
         
     <div class="postdate">
       
-        <time datetime="2023-07-09T07:30:03.859Z" class="dt-published" itemprop="datePublished">2023-07-09</time>
+        <time datetime="2023-07-09T14:56:14.651Z" class="dt-published" itemprop="datePublished">July 9th 2023, 2:56 pm</time>
         
-        (Updated: <time datetime="2023-07-09T07:30:03.859Z" class="dt-updated" itemprop="dateModified">2023-07-09</time>)
+        (Updated: <time datetime="2023-07-09T14:56:14.651Z" class="dt-updated" itemprop="dateModified">July 9th 2023, 2:56 pm</time>)
         
       
     </div>
@@ -142,7 +142,7 @@
           
     <div class="article-category">
         <i class="fa-solid fa-archive"></i>
-        <a class="category-link" href="../categories/DevOps/">DevOps</a> › <a class="category-link" href="../categories/DevOps/Network-and-Security/">Network and Security</a> › <a class="category-link" href="../categories/DevOps/Network-and-Security/Remote-Access/">Remote Access</a> › <a class="category-link" href="../categories/DevOps/Network-and-Security/Remote-Access/SSH/">SSH</a>
+        <a class="category-link" href="/categories/devops/">DevOps</a> › <a class="category-link" href="/categories/devops/network-and-security/">Network and Security</a> › <a class="category-link" href="/categories/devops/network-and-security/remote-access/">Remote Access</a> › <a class="category-link" href="/categories/devops/network-and-security/remote-access/ssh/">SSH</a>
     </div>
 
 
@@ -184,7 +184,36 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git clone git@&#123;HOST&#125;:&#123;ORG_NAME&#125;/&#123;REPO_NAME&#125;.git</span><br></pre></td></tr></table></figure>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git@podcast:username/podcast.git</span><br><span class="line">git@example.com:username/example.com.git</span><br><span class="line">git@radio:username/radio.git</span><br></pre></td></tr></table></figure>
 <h2 id="Sources">Sources</h2>
-<p><a target="_blank" rel="noopener" href="https://dev.to/arnellebalane/setting-up-multiple-github-accounts-the-nicer-way-1m5m#:~:text=GitHub%20does%20not%20allow%20us,~%2F.">^1</a> <a target="_blank" rel="noopener" href="https://futurestud.io/tutorials/simplify-your-ssh-connections-with-ssh-config-file">^2</a> <a target="_blank" rel="noopener" href="https://www.cloudsavvyit.com/4274/how-to-manage-an-ssh-config-file-in-windows-linux/">^3</a> <a target="_blank" rel="noopener" href="https://linuxize.com/post/using-the-ssh-config-file/">^4</a> <a target="_blank" rel="noopener" href="https://linuxhint.com/ssh-config-file/">^5</a> <a target="_blank" rel="noopener" href="https://man.openbsd.org/ssh_config">^6</a> <a target="_blank" rel="noopener" href="https://superuser.com/questions/772660/howto-force-ssh-to-use-a-specific-private-key">^7</a> <a target="_blank" rel="noopener" href="https://superuser.com/questions/268776/how-do-i-configure-ssh-so-it-doesnt-try-all-the-identity-files-automatically">^8</a> <a target="_blank" rel="noopener" href="https://www.ssh.com/academy/ssh/sshd_config">^9</a> <a target="_blank" rel="noopener" href="https://www.cyberciti.biz/faq/create-ssh-config-file-on-linux-unix/">^10</a> <a target="_blank" rel="noopener" href="https://unix.stackexchange.com/questions/606832/ssh-config-global-settings-vs-host">^11</a> <a target="_blank" rel="noopener" href="https://superuser.com/questions/232373/how-to-tell-git-which-private-key-to-use">^12</a></p>
+<p><sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> <sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup> <sup class="footnote-ref"><a href="#fn3" id="fnref3">[3]</a></sup> <sup class="footnote-ref"><a href="#fn4" id="fnref4">[4]</a></sup> <sup class="footnote-ref"><a href="#fn5" id="fnref5">[5]</a></sup> <sup class="footnote-ref"><a href="#fn6" id="fnref6">[6]</a></sup> <sup class="footnote-ref"><a href="#fn7" id="fnref7">[7]</a></sup> <sup class="footnote-ref"><a href="#fn8" id="fnref8">[8]</a></sup> <sup class="footnote-ref"><a href="#fn9" id="fnref9">[9]</a></sup> <sup class="footnote-ref"><a href="#fn10" id="fnref10">[10]</a></sup> <sup class="footnote-ref"><a href="#fn11" id="fnref11">[11]</a></sup> <sup class="footnote-ref"><a href="#fn12" id="fnref12">[12]</a></sup></p>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p><a target="_blank" rel="noopener" href="https://dev.to/arnellebalane/setting-up-multiple-github-accounts-the-nicer-way-1m5m#:~:text=GitHub%20does%20not%20allow%20us,~%2F">https://dev.to/arnellebalane/setting-up-multiple-github-accounts-the-nicer-way-1m5m#:~:text=GitHub does not allow us,~%2F</a>. <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn2" class="footnote-item"><p><a target="_blank" rel="noopener" href="https://futurestud.io/tutorials/simplify-your-ssh-connections-with-ssh-config-file">https://futurestud.io/tutorials/simplify-your-ssh-connections-with-ssh-config-file</a> <a href="#fnref2" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn3" class="footnote-item"><p><a target="_blank" rel="noopener" href="https://www.cloudsavvyit.com/4274/how-to-manage-an-ssh-config-file-in-windows-linux/">https://www.cloudsavvyit.com/4274/how-to-manage-an-ssh-config-file-in-windows-linux/</a> <a href="#fnref3" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn4" class="footnote-item"><p><a target="_blank" rel="noopener" href="https://linuxize.com/post/using-the-ssh-config-file/">https://linuxize.com/post/using-the-ssh-config-file/</a> <a href="#fnref4" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn5" class="footnote-item"><p><a target="_blank" rel="noopener" href="https://linuxhint.com/ssh-config-file/">https://linuxhint.com/ssh-config-file/</a> <a href="#fnref5" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn6" class="footnote-item"><p><a target="_blank" rel="noopener" href="https://man.openbsd.org/ssh_config">https://man.openbsd.org/ssh_config</a> <a href="#fnref6" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn7" class="footnote-item"><p><a target="_blank" rel="noopener" href="https://superuser.com/questions/772660/howto-force-ssh-to-use-a-specific-private-key">https://superuser.com/questions/772660/howto-force-ssh-to-use-a-specific-private-key</a> <a href="#fnref7" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn8" class="footnote-item"><p><a target="_blank" rel="noopener" href="https://superuser.com/questions/268776/how-do-i-configure-ssh-so-it-doesnt-try-all-the-identity-files-automatically">https://superuser.com/questions/268776/how-do-i-configure-ssh-so-it-doesnt-try-all-the-identity-files-automatically</a> <a href="#fnref8" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn9" class="footnote-item"><p><a target="_blank" rel="noopener" href="https://www.ssh.com/academy/ssh/sshd_config">https://www.ssh.com/academy/ssh/sshd_config</a> <a href="#fnref9" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn10" class="footnote-item"><p><a target="_blank" rel="noopener" href="https://www.cyberciti.biz/faq/create-ssh-config-file-on-linux-unix/">https://www.cyberciti.biz/faq/create-ssh-config-file-on-linux-unix/</a> <a href="#fnref10" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn11" class="footnote-item"><p><a target="_blank" rel="noopener" href="https://unix.stackexchange.com/questions/606832/ssh-config-global-settings-vs-host">https://unix.stackexchange.com/questions/606832/ssh-config-global-settings-vs-host</a> <a href="#fnref11" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn12" class="footnote-item"><p><a target="_blank" rel="noopener" href="https://superuser.com/questions/232373/how-to-tell-git-which-private-key-to-use">https://superuser.com/questions/232373/how-to-tell-git-which-private-key-to-use</a> <a href="#fnref12" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
 
     </div>
 </article>
@@ -210,9 +239,9 @@
     <div id="nav-footer" style="display: none">
       <ul>
         
-          <li><a href="../index.html">Home</a></li>
+          <li><a href="/">Home</a></li>
         
-          <li><a href="../archives/">Writing</a></li>
+          <li><a href="/archives/">Writing</a></li>
         
           <li><a target="_blank" rel="noopener" href="https://talk.anthonyrussano.com">Talk</a></li>
         
@@ -228,7 +257,7 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" href="mailto:?subject=SSH Config File Settings&body=Check out this article: https://www.anthonyrussano.com/ssh-config-file-settings/"><i
+  <li><a class="icon" href="mailto:?subject=SSH Config File Settings&body=Check out this article: https://wikip.co/ssh-config-file-settings/"><i
         class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
 </ul>
     </div>
@@ -258,9 +287,9 @@
     <nav>
       <ul>
         <!--
-       --><li><a href="../index.html">Home</a></li><!--
+       --><li><a href="/">Home</a></li><!--
      --><!--
-       --><li><a href="../archives/">Writing</a></li><!--
+       --><li><a href="/archives/">Writing</a></li><!--
      --><!--
        --><li><a target="_blank" rel="noopener" href="https://talk.anthonyrussano.com">Talk</a></li><!--
      -->
@@ -310,12 +339,12 @@
                                     </script>
                                     
                                       
-<script src="js/main.js"></script>
+<script src="/js/main.js"></script>
 
                                         <!-- search -->
                                         
                                           
-<script src="js/search.js"></script>
+<script src="/js/search.js"></script>
 
                                             <script type="text/javascript">
                                               $(function () {

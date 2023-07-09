@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="Description This article documents how to mount an NFS volume to a docker container using docker compose or docker stack with a docker-compose.yml file.^1 You may see issues where the volumes are not">
+    <meta name="description" content="Description This article documents how to mount an NFS volume to a docker container using docker compose or docker stack with a docker-compose.yml file.[1] You may see issues where the volumes are not">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mounting NFS Volumes with Docker">
-<meta property="og:url" content="https://www.anthonyrussano.com/mounting-nfs-volumes-with-docker/index.html">
-<meta property="og:site_name" content="anthonyrussano.com">
-<meta property="og:description" content="Description This article documents how to mount an NFS volume to a docker container using docker compose or docker stack with a docker-compose.yml file.^1 You may see issues where the volumes are not">
+<meta property="og:url" content="https://wikip.co/mounting-nfs-volumes-with-docker/index.html">
+<meta property="og:site_name" content="wikip.co">
+<meta property="og:description" content="Description This article documents how to mount an NFS volume to a docker container using docker compose or docker stack with a docker-compose.yml file.[1] You may see issues where the volumes are not">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-07-09T07:30:03.859Z">
-<meta property="article:modified_time" content="2023-07-09T07:30:03.859Z">
+<meta property="article:published_time" content="2023-07-09T14:56:14.647Z">
+<meta property="article:modified_time" content="2023-07-09T14:56:14.647Z">
 <meta property="article:author" content="Anthony Russano">
 <meta property="article:tag" content="Docker">
 <meta property="article:tag" content="Docker Compose">
@@ -53,7 +53,7 @@
 
     <!-- styles -->
     
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="/css/style.css">
 
     <!-- persian styles -->
     
@@ -62,7 +62,7 @@
     
 	<!-- mathjax -->
 	
-<meta name="generator" content="Hexo 6.3.0"></head>
+</head>
 
 
     <body class="max-width mx-auto px3 ltr">
@@ -75,9 +75,9 @@
     <span id="nav">
       <ul>
         <!--
-       --><li><a href="../index.html">Home</a></li><!--
+       --><li><a href="/">Home</a></li><!--
      --><!--
-       --><li><a href="../archives/">Writing</a></li><!--
+       --><li><a href="/archives/">Writing</a></li><!--
      --><!--
        --><li><a target="_blank" rel="noopener" href="https://talk.anthonyrussano.com">Talk</a></li><!--
      -->
@@ -87,10 +87,10 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" aria-label="Previous post" href="../docker-networking/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Previous post" href="/docker-networking/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
-        <li><a class="icon" aria-label="Next post" href="../docker-volumes/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Next post" href="/docker-volumes/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
@@ -103,7 +103,7 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" href="mailto:?subject=Mounting NFS Volumes with Docker&body=Check out this article: https://www.anthonyrussano.com/mounting-nfs-volumes-with-docker/"><i
+  <li><a class="icon" href="mailto:?subject=Mounting NFS Volumes with Docker&body=Check out this article: https://wikip.co/mounting-nfs-volumes-with-docker/"><i
         class="fa-solid fa-envelope " aria-hidden="true"></i></a></li>
 </ul>
     </div>
@@ -138,9 +138,9 @@
         
     <div class="postdate">
       
-        <time datetime="2023-07-09T07:30:03.859Z" class="dt-published" itemprop="datePublished">2023-07-09</time>
+        <time datetime="2023-07-09T14:56:14.647Z" class="dt-published" itemprop="datePublished">July 9th 2023, 2:56 pm</time>
         
-        (Updated: <time datetime="2023-07-09T07:30:03.859Z" class="dt-updated" itemprop="dateModified">2023-07-09</time>)
+        (Updated: <time datetime="2023-07-09T14:56:14.647Z" class="dt-updated" itemprop="dateModified">July 9th 2023, 2:56 pm</time>)
         
       
     </div>
@@ -149,14 +149,14 @@
           
     <div class="article-category">
         <i class="fa-solid fa-archive"></i>
-        <a class="category-link" href="../categories/DevOps/">DevOps</a> › <a class="category-link" href="../categories/DevOps/Container-Orchestration/">Container Orchestration</a> › <a class="category-link" href="../categories/DevOps/Container-Orchestration/Docker/">Docker</a>
+        <a class="category-link" href="/categories/devops/">DevOps</a> › <a class="category-link" href="/categories/devops/container-orchestration/">Container Orchestration</a> › <a class="category-link" href="/categories/devops/container-orchestration/docker/">Docker</a>
     </div>
 
 
             
     <div class="article-tag">
         <i class="fa-solid fa-tag"></i>
-        <a class="p-category" href="../tags/Docker/" rel="tag">Docker</a>, <a class="p-category" href="../tags/Docker-Compose/" rel="tag">Docker Compose</a>, <a class="p-category" href="../tags/Docker-Swarm/" rel="tag">Docker Swarm</a>, <a class="p-category" href="../tags/NFS/" rel="tag">NFS</a>, <a class="p-category" href="../tags/NFS-Share/" rel="tag">NFS Share</a>, <a class="p-category" href="../tags/Network-File-System/" rel="tag">Network File System</a>, <a class="p-category" href="../tags/Shared-Volumes/" rel="tag">Shared Volumes</a>
+        <a class="p-category" href="/tags/docker/" rel="tag">Docker</a>, <a class="p-category" href="/tags/docker-compose/" rel="tag">Docker Compose</a>, <a class="p-category" href="/tags/docker-swarm/" rel="tag">Docker Swarm</a>, <a class="p-category" href="/tags/nfs/" rel="tag">NFS</a>, <a class="p-category" href="/tags/nfs-share/" rel="tag">NFS Share</a>, <a class="p-category" href="/tags/network-file-system/" rel="tag">Network File System</a>, <a class="p-category" href="/tags/shared-volumes/" rel="tag">Shared Volumes</a>
     </div>
 
 
@@ -166,15 +166,22 @@
 
     <div class="content e-content" itemprop="articleBody">
       <h2 id="Description">Description</h2>
-<p>This article documents how to mount an NFS volume to a docker container using <code>docker compose</code> or <code>docker stack</code> with a <code>docker-compose.yml</code> file.<a target="_blank" rel="noopener" href="https://stackoverflow.com/a/46481637">^1</a></p>
-<p>You may see issues where the volumes are not automatically updated in the container when the data changes on the host.<a target="_blank" rel="noopener" href="https://stackoverflow.com/a/46481637">^1</a></p>
+<p>This article documents how to mount an NFS volume to a docker container using <code>docker compose</code> or <code>docker stack</code> with a <code>docker-compose.yml</code> file.<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup></p>
+<p>You may see issues where the volumes are not automatically updated in the container when the data changes on the host.<sup class="footnote-ref"><a href="#fn1" id="fnref1:1">[1:1]</a></sup></p>
 <p>Make sure the NFS share/folder exists on the server before attempting to mount it.</p>
-<p>Don’t remove ‘soft’ and ‘nolock’ unless you’re sure you know what you’re doing - this stops docker from freezing if your NFS server goes away.<a target="_blank" rel="noopener" href="https://stackoverflow.com/a/46481637">^1</a></p>
+<p>Don’t remove ‘soft’ and ‘nolock’ unless you’re sure you know what you’re doing - this stops docker from freezing if your NFS server goes away.<sup class="footnote-ref"><a href="#fn1" id="fnref1:2">[1:2]</a></sup></p>
 <h3 id="Examples">Examples</h3>
-<p>Example <code>docker-compose.yml</code><a target="_blank" rel="noopener" href="https://stackoverflow.com/a/46481637">^1</a></p>
+<p>Example <code>docker-compose.yml</code><sup class="footnote-ref"><a href="#fn1" id="fnref1:3">[1:3]</a></sup></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">version: &quot;3.2&quot;</span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line">  rsyslog:</span><br><span class="line">    image: jumanjiman/rsyslog</span><br><span class="line">    ports:</span><br><span class="line">      - &quot;514:514&quot;</span><br><span class="line">      - &quot;514:514/udp&quot;</span><br><span class="line">    volumes:</span><br><span class="line">      - type: volume</span><br><span class="line">        source: example</span><br><span class="line">        target: /nfs</span><br><span class="line">        volume:</span><br><span class="line">          nocopy: true</span><br><span class="line">volumes:</span><br><span class="line">  example:</span><br><span class="line">    driver_opts:</span><br><span class="line">      type: &quot;nfs&quot;</span><br><span class="line">      o: &quot;addr=10.40.0.199,nolock,soft,rw&quot;</span><br><span class="line">      device: &quot;:/docker/example&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>Example <code>docker-compose.yml</code></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">version: &quot;3.5&quot;</span><br><span class="line">services: # $ docker stack deploy -c docker-compose.yml calibre</span><br><span class="line">  calibre:</span><br><span class="line">    image: lscr.io/linuxserver/calibre:arch-version-1b31d319</span><br><span class="line">    ports:</span><br><span class="line">      - 8091:8080</span><br><span class="line">      - 8092:8081</span><br><span class="line">    environment:</span><br><span class="line">      - PUID=1000</span><br><span class="line">      - PGID=1000</span><br><span class="line">      - TZ=America/Los_Angeles</span><br><span class="line">      - PASSWORD= #optional</span><br><span class="line">      - CLI_ARGS= #optional</span><br><span class="line">    volumes:</span><br><span class="line">      - type: volume</span><br><span class="line">        source: library</span><br><span class="line">        target: /config</span><br><span class="line">        volume:</span><br><span class="line">          nocopy: true</span><br><span class="line">volumes:</span><br><span class="line">  library:</span><br><span class="line">    driver_opts:</span><br><span class="line">      type: &quot;nfs&quot;</span><br><span class="line">      o: &quot;addr=10.32.25.64,nolock,soft,rw&quot;</span><br><span class="line">      device: &quot;:/media/anthony/data-share/nfs/calibre&quot;</span><br></pre></td></tr></table></figure>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p><a target="_blank" rel="noopener" href="https://stackoverflow.com/a/46481637">https://stackoverflow.com/a/46481637</a> <a href="#fnref1" class="footnote-backref">↩︎</a> <a href="#fnref1:1" class="footnote-backref">↩︎</a> <a href="#fnref1:2" class="footnote-backref">↩︎</a> <a href="#fnref1:3" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
 
     </div>
 </article>
@@ -200,9 +207,9 @@
     <div id="nav-footer" style="display: none">
       <ul>
         
-          <li><a href="../index.html">Home</a></li>
+          <li><a href="/">Home</a></li>
         
-          <li><a href="../archives/">Writing</a></li>
+          <li><a href="/archives/">Writing</a></li>
         
           <li><a target="_blank" rel="noopener" href="https://talk.anthonyrussano.com">Talk</a></li>
         
@@ -218,7 +225,7 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" href="mailto:?subject=Mounting NFS Volumes with Docker&body=Check out this article: https://www.anthonyrussano.com/mounting-nfs-volumes-with-docker/"><i
+  <li><a class="icon" href="mailto:?subject=Mounting NFS Volumes with Docker&body=Check out this article: https://wikip.co/mounting-nfs-volumes-with-docker/"><i
         class="fa-solid fa-envelope fa-lg" aria-hidden="true"></i></a></li>
 </ul>
     </div>
@@ -248,9 +255,9 @@
     <nav>
       <ul>
         <!--
-       --><li><a href="../index.html">Home</a></li><!--
+       --><li><a href="/">Home</a></li><!--
      --><!--
-       --><li><a href="../archives/">Writing</a></li><!--
+       --><li><a href="/archives/">Writing</a></li><!--
      --><!--
        --><li><a target="_blank" rel="noopener" href="https://talk.anthonyrussano.com">Talk</a></li><!--
      -->
@@ -300,12 +307,12 @@
                                     </script>
                                     
                                       
-<script src="js/main.js"></script>
+<script src="/js/main.js"></script>
 
                                         <!-- search -->
                                         
                                           
-<script src="js/search.js"></script>
+<script src="/js/search.js"></script>
 
                                             <script type="text/javascript">
                                               $(function () {
