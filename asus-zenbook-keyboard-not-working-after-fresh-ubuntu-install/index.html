@@ -9,12 +9,12 @@
     <meta name="description" content="Description I recently installed a fresh copy of Ubuntu 21.10 on an Asus Zenbook 14 and I noticed the keyboard was not working.  I was able to reproduce this behavior with all flavors of Ubuntu (Mate,">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Asus ZenBook Keyboard Not Working After Fresh Ubuntu Install">
-<meta property="og:url" content="https://wikip.co/asus-zenbook-keyboard-not-working-after-fresh-ubuntu-install/index.html">
-<meta property="og:site_name" content="wikip.co">
+<meta property="og:url" content="https://www.anthonyrussano.com/asus-zenbook-keyboard-not-working-after-fresh-ubuntu-install/index.html">
+<meta property="og:site_name" content="anthonyrussano.com">
 <meta property="og:description" content="Description I recently installed a fresh copy of Ubuntu 21.10 on an Asus Zenbook 14 and I noticed the keyboard was not working.  I was able to reproduce this behavior with all flavors of Ubuntu (Mate,">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-07-09T16:40:13.793Z">
-<meta property="article:modified_time" content="2023-07-09T16:40:13.793Z">
+<meta property="article:published_time" content="2023-07-10T05:58:52.493Z">
+<meta property="article:modified_time" content="2023-07-10T05:58:52.493Z">
 <meta property="article:author" content="Anthony Russano">
 <meta property="article:tag" content="Ubuntu">
 <meta property="article:tag" content="Asus">
@@ -74,12 +74,6 @@
       <ul>
         <!--
        -->
-          <li><a href="/">
-              Home
-            </a></li><!--
-     -->
-          <!--
-       -->
           <li><a target="_blank" rel="noopener" href="https://talk.anthonyrussano.com">
               Talk
             </a></li><!--
@@ -96,7 +90,7 @@
                 onmouseout="$('#i-prev').toggle();"></i></a></li>
           
             
-              <li><a class="icon" aria-label="Next post" href="/"><i
+              <li><a class="icon" aria-label="Next post" href="/what-is-grafana/"><i
                     class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();"
                     onmouseout="$('#i-next').toggle();"></i></a></li>
               
@@ -104,9 +98,6 @@
                     onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up"
                       aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a>
                 </li>
-                <li><a class="icon" aria-label="Share post" href="#"><i
-                      class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();"
-                      onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
       </ul>
       <span id="i-prev" class="info" style="display:none;">
         Previous post
@@ -117,26 +108,20 @@
       <span id="i-top" class="info" style="display:none;">
         Home
       </span>
-      <span id="i-share" class="info" style="display:none;">
-      </span>
     </span>
-    <br />
-    <div id="share" style>
-      
-  <div class="article-gallery">
-    <a class="gallery-item"
-      target="_blank" href="https://res.cloudinary.com/alchemist-cookbook/image/upload/w_200,f_auto/ubuntu"
-      rel="gallery_cljvnuz1o04otnynh9t4we6x3 noopener">
-      <img src="https://res.cloudinary.com/alchemist-cookbook/image/upload/w_200,f_auto/ubuntu"
-        itemprop="image" />
-    </a>
-  </div>
-  
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/asus/" rel="tag">Asus</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/desktop/" rel="tag">Desktop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/" rel="tag">Ubuntu</a></li></ul>
-    </div>
     
       
         <div id="toc">
+          
+            <div class="article-gallery">
+              <a class="gallery-item"
+                target="_blank" href="https://res.cloudinary.com/alchemist-cookbook/image/upload/w_200,f_auto/ubuntu"
+                rel="gallery_cljwgdyaa04qzljox0iv76v12 noopener">
+                <img src="https://res.cloudinary.com/alchemist-cookbook/image/upload/w_200,f_auto/ubuntu"
+                  itemprop="image" />
+              </a>
+            </div>
+            
           <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Description"><span class="toc-number">1.</span> <span class="toc-text">Description</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solution"><span class="toc-number">2.</span> <span class="toc-text">Solution</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Edit-grub-file"><span class="toc-number">2.1.</span> <span class="toc-text">Edit grub file</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Update-bootloader"><span class="toc-number">2.2.</span> <span class="toc-text">Update bootloader</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Verification"><span class="toc-number">3.</span> <span class="toc-text">Verification</span></a></li></ol>
         </div>
         
@@ -157,15 +142,10 @@
       <div class="meta">
         <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <span class="p-name" itemprop="name">
-            Anthony Russano
-                    
           </span>
         </span>
         
-    <div class="article-category">
-        <i class="fa-solid fa-archive"></i>
-        <a class="category-link" href="/categories/devops/">DevOps</a> › <a class="category-link" href="/categories/devops/server-administration/">Server Administration</a> › <a class="category-link" href="/categories/devops/server-administration/linux/">Linux</a> › <a class="category-link" href="/categories/devops/server-administration/linux/hardware/">Hardware</a> › <a class="category-link" href="/categories/devops/server-administration/linux/hardware/asus-zenbook/">ASUS Zenbook</a> › <a class="category-link" href="/categories/devops/server-administration/linux/hardware/asus-zenbook/troubleshooting/">Troubleshooting</a>
-    </div>
+    <a class="category-link" href="/categories/devops/">DevOps</a> › <a class="category-link" href="/categories/devops/server-administration/">Server Administration</a> › <a class="category-link" href="/categories/devops/server-administration/linux/">Linux</a> › <a class="category-link" href="/categories/devops/server-administration/linux/hardware/">Hardware</a> › <a class="category-link" href="/categories/devops/server-administration/linux/hardware/asus-zenbook/">ASUS Zenbook</a> › <a class="category-link" href="/categories/devops/server-administration/linux/hardware/asus-zenbook/troubleshooting/">Troubleshooting</a>
 
 
       </div>
@@ -197,11 +177,10 @@
 </ol>
 </section>
 
-  </div>
-</article>
-
-
-
+    Keywords:<br>
+    <a class="tag-link" href="/tags/asus/" rel="tag">Asus</a><a class="tag-link" href="/tags/desktop/" rel="tag">Desktop</a><a class="tag-link" href="/tags/ubuntu/" rel="tag">Ubuntu</a>
+    <br><br>
+    
     <div>
         <a
             target="_blank" rel="noopener" href="https://github.com/anthonyrussano/anthonyrussano.com/new/master/site/source/_posts">
@@ -216,6 +195,8 @@
             target="_blank" rel="noopener" href='https://github.com/anthonyrussano/anthonyrussano.com/raw/master/site/source/_posts/DevOps/Server Administration/Linux/Hardware/ASUS Zenbook/Troubleshooting/keyboard-input-not-working.md'>
             Source</a>
     </div>
+  </div>
+</article>
                       
                         <div id="footer-post-container">
   <div id="footer-post">
@@ -223,10 +204,6 @@
     <div id="nav-footer" style="display: none">
       <ul>
         
-          <li><a href="/">
-              Home
-            </a></li>
-          
           <li><a target="_blank" rel="noopener" href="https://talk.anthonyrussano.com">
               Talk
             </a></li>
@@ -241,20 +218,6 @@
         </div>
         
 
-          <div id="share-footer" style="display: none">
-            
-  <div class="article-gallery">
-    <a class="gallery-item"
-      target="_blank" href="https://res.cloudinary.com/alchemist-cookbook/image/upload/w_200,f_auto/ubuntu"
-      rel="gallery_cljvnuz1o04otnynh9t4we6x3 noopener">
-      <img src="https://res.cloudinary.com/alchemist-cookbook/image/upload/w_200,f_auto/ubuntu"
-        itemprop="image" />
-    </a>
-  </div>
-  
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/asus/" rel="tag">Asus</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/desktop/" rel="tag">Desktop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/" rel="tag">Ubuntu</a></li></ul>
-          </div>
-
           <div id="actions-footer">
             <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i
                 class="fa-solid fa-bars fa-lg" aria-hidden="true"></i>
@@ -266,10 +229,6 @@
                 TOC
               </a>
               
-                <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i
-                    class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i>
-                  Share
-                </a>
                 <a id="top" style="display:none" class="icon" href="#"
                   onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg"
                     aria-hidden="true"></i>
@@ -292,8 +251,6 @@
     <nav>
       <ul>
         <!--
-       --><li><a href="/">Home</a></li><!--
-     --><!--
        --><li><a target="_blank" rel="noopener" href="https://talk.anthonyrussano.com">Talk</a></li><!--
      -->
       </ul>

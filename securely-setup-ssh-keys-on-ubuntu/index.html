@@ -9,12 +9,12 @@
     <meta name="description" content="Description This article explains how to setup SSH for public-key based authentication. Authentication using a public key is based on the use of digital signatures, and it is more secure than password">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Securely Setup SSH Keys on Ubuntu">
-<meta property="og:url" content="https://wikip.co/securely-setup-ssh-keys-on-ubuntu/index.html">
-<meta property="og:site_name" content="wikip.co">
+<meta property="og:url" content="https://www.anthonyrussano.com/securely-setup-ssh-keys-on-ubuntu/index.html">
+<meta property="og:site_name" content="anthonyrussano.com">
 <meta property="og:description" content="Description This article explains how to setup SSH for public-key based authentication. Authentication using a public key is based on the use of digital signatures, and it is more secure than password">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-07-09T16:40:13.789Z">
-<meta property="article:modified_time" content="2023-07-09T16:40:13.789Z">
+<meta property="article:published_time" content="2023-07-10T05:58:52.489Z">
+<meta property="article:modified_time" content="2023-07-10T05:58:52.489Z">
 <meta property="article:author" content="Anthony Russano">
 <meta name="twitter:card" content="summary">
     
@@ -71,12 +71,6 @@
       <ul>
         <!--
        -->
-          <li><a href="/">
-              Home
-            </a></li><!--
-     -->
-          <!--
-       -->
           <li><a target="_blank" rel="noopener" href="https://talk.anthonyrussano.com">
               Talk
             </a></li><!--
@@ -101,9 +95,6 @@
                     onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up"
                       aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a>
                 </li>
-                <li><a class="icon" aria-label="Share post" href="#"><i
-                      class="fa-solid fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();"
-                      onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
       </ul>
       <span id="i-prev" class="info" style="display:none;">
         Previous post
@@ -114,26 +105,20 @@
       <span id="i-top" class="info" style="display:none;">
         Home
       </span>
-      <span id="i-share" class="info" style="display:none;">
-      </span>
     </span>
-    <br />
-    <div id="share" style>
-      
-  <div class="article-gallery">
-    <a class="gallery-item"
-      target="_blank" href="https://res.cloudinary.com/alchemist-cookbook/image/upload/w_200,f_auto/ssh"
-      rel="gallery_cljvnuynf04d5nynh1ddb2uvj noopener">
-      <img src="https://res.cloudinary.com/alchemist-cookbook/image/upload/w_200,f_auto/ssh"
-        itemprop="image" />
-    </a>
-  </div>
-  
-      
-    </div>
     
       
         <div id="toc">
+          
+            <div class="article-gallery">
+              <a class="gallery-item"
+                target="_blank" href="https://res.cloudinary.com/alchemist-cookbook/image/upload/w_200,f_auto/ssh"
+                rel="gallery_cljwgdxz604czljoxbrx5h75y noopener">
+                <img src="https://res.cloudinary.com/alchemist-cookbook/image/upload/w_200,f_auto/ssh"
+                  itemprop="image" />
+              </a>
+            </div>
+            
           <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Description"><span class="toc-number">1.</span> <span class="toc-text">Description</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Steps"><span class="toc-number">2.</span> <span class="toc-text">Steps</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-SSH-keys"><span class="toc-number">2.1.</span> <span class="toc-text">Create SSH keys</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Copy-the-Public-Key-to-the-Remote-Server"><span class="toc-number">2.2.</span> <span class="toc-text">Copy the Public Key to the Remote Server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Login-to-your-server-using-SSH-keys"><span class="toc-number">2.3.</span> <span class="toc-text">Login to your server using SSH keys</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Disabling-SSH-Password-Authentication"><span class="toc-number">2.4.</span> <span class="toc-text">Disabling SSH Password Authentication</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Additional-Security"><span class="toc-number">2.5.</span> <span class="toc-text">Additional Security</span></a></li></ol></li></ol>
         </div>
         
@@ -154,15 +139,10 @@
       <div class="meta">
         <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <span class="p-name" itemprop="name">
-            Anthony Russano
-                    
           </span>
         </span>
         
-    <div class="article-category">
-        <i class="fa-solid fa-archive"></i>
-        <a class="category-link" href="/categories/devops/">DevOps</a> › <a class="category-link" href="/categories/devops/network-and-security/">Network and Security</a> › <a class="category-link" href="/categories/devops/network-and-security/remote-access/">Remote Access</a> › <a class="category-link" href="/categories/devops/network-and-security/remote-access/ssh/">SSH</a>
-    </div>
+    <a class="category-link" href="/categories/devops/">DevOps</a> › <a class="category-link" href="/categories/devops/network-and-security/">Network and Security</a> › <a class="category-link" href="/categories/devops/network-and-security/remote-access/">Remote Access</a> › <a class="category-link" href="/categories/devops/network-and-security/remote-access/ssh/">SSH</a>
 
 
       </div>
@@ -231,11 +211,10 @@
 </ol>
 </section>
 
-  </div>
-</article>
-
-
-
+    Keywords:<br>
+    
+    <br><br>
+    
     <div>
         <a
             target="_blank" rel="noopener" href="https://github.com/anthonyrussano/anthonyrussano.com/new/master/site/source/_posts">
@@ -250,6 +229,8 @@
             target="_blank" rel="noopener" href='https://github.com/anthonyrussano/anthonyrussano.com/raw/master/site/source/_posts/DevOps/Network and Security/Remote Access/SSH/securely-setup-ssh-keys-on-ubuntu.md'>
             Source</a>
     </div>
+  </div>
+</article>
                       
                         <div id="footer-post-container">
   <div id="footer-post">
@@ -257,10 +238,6 @@
     <div id="nav-footer" style="display: none">
       <ul>
         
-          <li><a href="/">
-              Home
-            </a></li>
-          
           <li><a target="_blank" rel="noopener" href="https://talk.anthonyrussano.com">
               Talk
             </a></li>
@@ -275,20 +252,6 @@
         </div>
         
 
-          <div id="share-footer" style="display: none">
-            
-  <div class="article-gallery">
-    <a class="gallery-item"
-      target="_blank" href="https://res.cloudinary.com/alchemist-cookbook/image/upload/w_200,f_auto/ssh"
-      rel="gallery_cljvnuynf04d5nynh1ddb2uvj noopener">
-      <img src="https://res.cloudinary.com/alchemist-cookbook/image/upload/w_200,f_auto/ssh"
-        itemprop="image" />
-    </a>
-  </div>
-  
-      
-          </div>
-
           <div id="actions-footer">
             <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i
                 class="fa-solid fa-bars fa-lg" aria-hidden="true"></i>
@@ -300,10 +263,6 @@
                 TOC
               </a>
               
-                <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i
-                    class="fa-solid fa-share-alt fa-lg" aria-hidden="true"></i>
-                  Share
-                </a>
                 <a id="top" style="display:none" class="icon" href="#"
                   onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg"
                     aria-hidden="true"></i>
@@ -326,8 +285,6 @@
     <nav>
       <ul>
         <!--
-       --><li><a href="/">Home</a></li><!--
-     --><!--
        --><li><a target="_blank" rel="noopener" href="https://talk.anthonyrussano.com">Talk</a></li><!--
      -->
       </ul>
