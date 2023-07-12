@@ -13,8 +13,8 @@
 <meta property="og:site_name" content="anthonyrussano.com">
 <meta property="og:description" content="1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253packer &amp;#123;  required_plugins &amp;#123;    docker &#x3D; &amp;#123;      version &#x3D; &quot;&gt;&#x3D; 0.0.7&quot;      s">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-07-12T04:54:48.461Z">
-<meta property="article:modified_time" content="2023-07-12T04:54:48.461Z">
+<meta property="article:published_time" content="2023-07-12T06:55:45.447Z">
+<meta property="article:modified_time" content="2023-07-12T06:55:45.447Z">
 <meta property="article:author" content="Anthony Russano">
 <meta name="twitter:card" content="summary">
     
@@ -38,18 +38,12 @@
     <!-- title -->
     <title>Packer Post Processors</title>
     <!-- async scripts -->
-    <!-- Google Analytics -->
-
-
-    <!-- Umami Analytics -->
-
 
     <!-- styles -->
     
 <link rel="stylesheet" href="/css/style.css">
 
     <!-- persian styles -->
-    
     <!-- rss -->
     
     
@@ -63,65 +57,50 @@
         <div id="header-post">
   <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
   <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" aria-label="Top"
-    onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i
-      class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
   <span id="menu">
     <span id="nav">
       <ul>
         <!--
-       -->
-          <li><a target="_blank" rel="noopener" href="https://talk.anthonyrussano.com">
-              Talk
-            </a></li><!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
+       --><li><a target="_blank" rel="noopener" href="https://talk.anthonyrussano.com">Talk</a></li><!--
      -->
-          
       </ul>
     </span>
-    <br />
+    <br/>
     <span id="actions">
       <ul>
         
-          <li><a class="icon" aria-label="Previous post" href="/how-to-build-multiple-images-in-parallel-with-packer/"><i
-                class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();"
-                onmouseout="$('#i-prev').toggle();"></i></a></li>
-          
-            
-              <li><a class="icon" aria-label="Next post" href="/how-to-provision-a-docker-image-with-packer/"><i
-                    class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();"
-                    onmouseout="$('#i-next').toggle();"></i></a></li>
-              
-                <li><a class="icon" aria-label="Home" href="/"
-                    onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up"
-                      aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a>
-                </li>
-      </ul>
-      <span id="i-prev" class="info" style="display:none;">
-        Previous post
-      </span>
-      <span id="i-next" class="info" style="display:none;">
-        Next post
-      </span>
-      <span id="i-top" class="info" style="display:none;">
-        Home
-      </span>
-    </span>
-    
-      
-        <div id="toc">
-          
-              <div class="article-gallery">
-                <a class="gallery-item"
-                  target="_blank" href="https://res.cloudinary.com/alchemist-cookbook/image/upload/w_200,f_auto/Packer Post Processors"
-                  rel="gallery_cljz8ziep04n2ojp100np23fg noopener">
-                  <img src="https://res.cloudinary.com/alchemist-cookbook/image/upload/w_200,f_auto/Packer Post Processors"
-                    itemprop="image" />
-                </a>
-              </div>
-              
-          <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Build"><span class="toc-number">1.</span> <span class="toc-text">Build</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Verify"><span class="toc-number">1.1.</span> <span class="toc-text">Verify</span></a></li></ol></li></ol>
-        </div>
+        <li><a class="icon" aria-label="Previous post" href="/how-to-build-multiple-images-in-parallel-with-packer/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
+        
+        <li><a class="icon" aria-label="Next post" href="/how-to-provision-a-docker-image-with-packer/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-file fa-lg" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Image</span>
+    </span>
+    <br/>
+    <div class="icon" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;" id="share" style>
+      
+    <div style="display: flex; justify-content: center;">
+      <img src="https://res.cloudinary.com/alchemist-cookbook/image/upload/w_200,f_auto/Packer Post Processors" alt="Centered Image" style="border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);">
+    </div>
+  
+  
+    </div>
+    
+    
+      <div id="toc">
+        
+        
+      </div>
+    
   </span>
 </div>
           
@@ -156,24 +135,6 @@
 <p>List all the Docker images to confirm that Packer successfully built your Docker image.</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ docker images</span><br></pre></td></tr></table></figure>
 
-    Keywords:<br>
-    
-    <br><br>
-    
-    <div>
-        <a
-            target="_blank" rel="noopener" href="https://github.com/anthonyrussano/anthonyrussano.com/new/master/site/source/_posts">
-            New</a> -
-        <a
-            target="_blank" rel="noopener" href='https://github.com/anthonyrussano/anthonyrussano.com/edit/master/site/source/_posts/DevOps/CICD/Packer/Tutorials/Docker/post-processors-docker-ubuntu.md'>
-            Edit</a> -
-        <a
-            target="_blank" rel="noopener" href='https://github.com/anthonyrussano/anthonyrussano.com/commits/master/site/source/_posts/DevOps/CICD/Packer/Tutorials/Docker/post-processors-docker-ubuntu.md'>
-            History</a> -
-        <a
-            target="_blank" rel="noopener" href='https://github.com/anthonyrussano/anthonyrussano.com/raw/master/site/source/_posts/DevOps/CICD/Packer/Tutorials/Docker/post-processors-docker-ubuntu.md'>
-            Source</a>
-    </div>
   </div>
 </article>
                       
@@ -183,6 +144,10 @@
     <div id="nav-footer" style="display: none">
       <ul>
         
+          <li><a href="/">
+              Home
+            </a></li>
+          
           <li><a target="_blank" rel="noopener" href="https://talk.anthonyrussano.com">
               Talk
             </a></li>
@@ -193,9 +158,20 @@
     
       
         <div id="toc-footer" style="display: none">
-          <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Build"><span class="toc-number">1.</span> <span class="toc-text">Build</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Verify"><span class="toc-number">1.1.</span> <span class="toc-text">Verify</span></a></li></ol></li></ol>
+          <!-- <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Build"><span class="toc-number">1.</span> <span class="toc-text">Build</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Verify"><span class="toc-number">1.1.</span> <span class="toc-text">Verify</span></a></li></ol></li></ol> -->
+          
+          
         </div>
         
+
+        <div id="image-footer" style="display: none">
+          
+    <div style="display: flex; justify-content: center;">
+      <img src="https://res.cloudinary.com/alchemist-cookbook/image/upload/w_200,f_auto/Packer Post Processors" alt="Centered Image" style="border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);">
+    </div>
+  
+  
+        </div>
 
           <div id="actions-footer">
             <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i
@@ -205,7 +181,7 @@
             
               <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i
                   class="fa-solid fa-list fa-lg" aria-hidden="true"></i>
-                TOC
+                Keywords
               </a>
               
                 <a id="top" style="display:none" class="icon" href="#"
@@ -213,6 +189,10 @@
                     aria-hidden="true"></i>
                   Top
                 </a>
+                <a id="toc" class="icon" href="#" onclick="$('#image-footer').toggle();return false;"><i
+                  class="fa-solid fa-file fa-lg" aria-hidden="true"></i>
+                Image
+              </a>
           </div>
 
   </div>
@@ -229,7 +209,24 @@
   <div class="footer-right">
     <nav>
       <ul>
+        
+    <div>
+        <a
+            target="_blank" rel="noopener" href="https://github.com/anthonyrussano/anthonyrussano.com/new/master/site/source/_posts">
+            New</a> -
+        <a
+            target="_blank" rel="noopener" href='https://github.com/anthonyrussano/anthonyrussano.com/edit/master/site/source/_posts/DevOps/CICD/Packer/Tutorials/Docker/post-processors-docker-ubuntu.md'>
+            Edit</a> -
+        <a
+            target="_blank" rel="noopener" href='https://github.com/anthonyrussano/anthonyrussano.com/commits/master/site/source/_posts/DevOps/CICD/Packer/Tutorials/Docker/post-processors-docker-ubuntu.md'>
+            History</a> -
+        <a
+            target="_blank" rel="noopener" href='https://github.com/anthonyrussano/anthonyrussano.com/raw/master/site/source/_posts/DevOps/CICD/Packer/Tutorials/Docker/post-processors-docker-ubuntu.md'>
+            Source</a>
+    </div>
         <!--
+       --><li><a href="/">Home</a></li><!--
+     --><!--
        --><li><a target="_blank" rel="noopener" href="https://talk.anthonyrussano.com">Talk</a></li><!--
      -->
       </ul>
