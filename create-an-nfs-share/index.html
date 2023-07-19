@@ -13,8 +13,8 @@
 <meta property="og:site_name" content="anthonyrussano.com">
 <meta property="og:description" content="Description This article demonstrates how to configure and connect to an NFS Share. Requirements Server Setup Install required packages $ sudo apt install nfs-kernel-server Create the Directory that w">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-07-18T06:16:40.242Z">
-<meta property="article:modified_time" content="2023-07-18T06:16:40.242Z">
+<meta property="article:published_time" content="2023-07-19T06:01:40.231Z">
+<meta property="article:modified_time" content="2023-07-19T06:01:40.231Z">
 <meta property="article:author" content="Anthony Russano">
 <meta property="article:tag" content="Networking">
 <meta property="article:tag" content="Internet Protocols">
@@ -63,15 +63,12 @@
     <body class="max-width mx-auto px3 ltr">
       
         <div id="header-post">
-  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
   <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
   <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
   <span id="menu">
     <span id="nav">
       <ul>
-        <!--
-       --><li><a href="/">Home</a></li><!--
-     -->
+        
       </ul>
     </span>
     <br/>
@@ -85,11 +82,13 @@
         
         <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-image fa-lg" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+        <li><a class="icon" aria-label="Home" href="/"><i class="fa-solid fa-home fa-lg" aria-hidden="true" onmouseover="$('#i-home').toggle();" onmouseout="$('#i-home').toggle();" onclick="$('#').toggle();return false;"></i></a></li>
       </ul>
       <span id="i-prev" class="info" style="display:none;">Previous post</span>
       <span id="i-next" class="info" style="display:none;">Next post</span>
       <span id="i-top" class="info" style="display:none;">Back to top</span>
       <span id="i-share" class="info" style="display:none;">Image</span>
+      <span id="i-home" class="info" style="display:none;">Home</span>
     </span>
     <br/>
     <div class="icon" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;" id="share" style>
@@ -126,7 +125,7 @@
           <span class="p-name" itemprop="name">
           </span>
         </span>
-        <a class="category-link" href="/categories/devops/">DevOps</a> › <a class="category-link" href="/categories/devops/network-and-security/">Network and Security</a> › <a class="category-link" href="/categories/devops/network-and-security/remote-access/">Remote Access</a> › <a class="category-link" href="/categories/devops/network-and-security/remote-access/network-file-system/">Network File System</a>
+        <a href="/">Home</a> › <a class="category-link" href="/categories/devops/">DevOps</a> › <a class="category-link" href="/categories/devops/network-and-security/">Network and Security</a> › <a class="category-link" href="/categories/devops/network-and-security/remote-access/">Remote Access</a> › <a class="category-link" href="/categories/devops/network-and-security/remote-access/network-file-system/">Network File System</a>
 
       </div>
   </header>
@@ -213,52 +212,38 @@
     <div id="nav-footer" style="display: none">
       <ul>
         
-          <li><a href="/">
-              Home
-            </a></li>
-          
       </ul>
     </div>
-
-    
+    <div id="toc-footer" style="display: none">
+      <a class="tag-link-link" href="/tags/application-layer-protocols/" rel="tag">Application Layer Protocols</a>, <a class="tag-link-link" href="/tags/distributed-file-systems/" rel="tag">Distributed File Systems</a>, <a class="tag-link-link" href="/tags/file-sharing/" rel="tag">File Sharing</a>, <a class="tag-link-link" href="/tags/internet-protocol-based-network-software/" rel="tag">Internet Protocol Based Network Software</a>, <a class="tag-link-link" href="/tags/internet-protocols/" rel="tag">Internet Protocols</a>, <a class="tag-link-link" href="/tags/network-file-systems/" rel="tag">Network File Systems</a>, <a class="tag-link-link" href="/tags/network-file-transfer-protocols/" rel="tag">Network File Transfer Protocols</a>, <a class="tag-link-link" href="/tags/networking/" rel="tag">Networking</a>
+    </div>
+    <div id="image-footer" style="display: none">
       
-        <div id="toc-footer" style="display: none">
-          <!-- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Description"><span class="toc-number">1.</span> <span class="toc-text">Description</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Requirements"><span class="toc-number">2.</span> <span class="toc-text">Requirements</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Server-Setup"><span class="toc-number">3.</span> <span class="toc-text">Server Setup</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Install-required-packages"><span class="toc-number">3.1.</span> <span class="toc-text">Install required packages</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-the-Directory-that-will-be-Exported"><span class="toc-number">3.2.</span> <span class="toc-text">Create the Directory that will be Exported</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Apply-permissions"><span class="toc-number">3.3.</span> <span class="toc-text">Apply permissions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Edit-the-etc-exports-file"><span class="toc-number">3.4.</span> <span class="toc-text">Edit the &#x2F;etc&#x2F;exports file:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Restart-the-NFS-Service"><span class="toc-number">3.5.</span> <span class="toc-text">Restart the NFS Service</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Client-Setup"><span class="toc-number">4.</span> <span class="toc-text">Client Setup</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Install-the-required-packages"><span class="toc-number">4.1.</span> <span class="toc-text">Install the required packages</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Edit-the-etc-fstab-file"><span class="toc-number">4.2.</span> <span class="toc-text">Edit the &#x2F;etc&#x2F;fstab file</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Auto-Mount"><span class="toc-number">4.2.1.</span> <span class="toc-text">Auto Mount</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Manual-Mount"><span class="toc-number">4.2.2.</span> <span class="toc-text">Manual Mount</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sources"><span class="toc-number">5.</span> <span class="toc-text">Sources</span></a></li></ol> -->
-          <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/application-layer-protocols/" rel="tag">APPLICATION LAYER PROTOCOLS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/distributed-file-systems/" rel="tag">DISTRIBUTED FILE SYSTEMS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/file-sharing/" rel="tag">FILE SHARING</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/internet-protocol-based-network-software/" rel="tag">INTERNET PROTOCOL BASED NETWORK SOFTWARE</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/internet-protocols/" rel="tag">INTERNET PROTOCOLS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/network-file-systems/" rel="tag">NETWORK FILE SYSTEMS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/network-file-transfer-protocols/" rel="tag">NETWORK FILE TRANSFER PROTOCOLS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/networking/" rel="tag">NETWORKING</a></li></ul>
-          
-        </div>
-        
-
-        <div id="image-footer" style="display: none">
-          
     <div style="display: flex; justify-content: center;">
       <img src="https://res.cloudinary.com/alchemist-cookbook/image/upload/w_200,f_auto/nfs" alt="Centered Image" style="border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);">
     </div>
   
   
-        </div>
-
-          <div id="actions-footer">
-            <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i
-                class="fa-solid fa-bars fa-lg" aria-hidden="true"></i>
-              Menu
-            </a>
-            
-              <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i
-                  class="fa-solid fa-list fa-lg" aria-hidden="true"></i>
-                Keywords
-              </a>
-              
-                <a id="top" style="display:none" class="icon" href="#"
-                  onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg"
-                    aria-hidden="true"></i>
-                  Top
-                </a>
-                <a id="toc" class="icon" href="#" onclick="$('#image-footer').toggle();return false;"><i
-                  class="fa-solid fa-file fa-lg" aria-hidden="true"></i>
-                Image
-              </a>
-          </div>
+    </div>
+    <div id="actions-footer">
+      <a id="menu" class="icon" href="/"><i
+        class="fa-solid fa-home fa-lg" aria-hidden="true"></i>
+        Home
+      </a>
+      <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i
+        class="fa-solid fa-list fa-lg" aria-hidden="true"></i>
+        Keywords
+      </a>
+      <a id="top" style="display:none" class="icon" href="#"
+      onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg"
+      aria-hidden="true"></i>
+      Top
+      </a>
+      <a id="toc" class="icon" href="#" onclick="$('#image-footer').toggle();return false;"><i
+      class="fa-solid fa-file fa-lg" aria-hidden="true"></i>
+      Image
+      </a>
+    </div>
 
   </div>
 </div>
@@ -386,15 +371,6 @@
                                                       
                                                           <!-- utterances Comments -->
                                                           
-              <!-- Start of Rocket.Chat Livechat Script -->
-	<script type="text/javascript">
-    (function(w, d, s, u) {
-      w.RocketChat = function(c) { w.RocketChat._.push(c) }; w.RocketChat._ = []; w.RocketChat.url = u;
-      var h = d.getElementsByTagName(s)[0], j = d.createElement(s);
-      j.async = true; j.src = 'https://talk.anthonyrussano.com/livechat/rocketchat-livechat.min.js?_=201903270000';
-      h.parentNode.insertBefore(j, h);
-    })(window, document, 'script', 'https://talk.anthonyrussano.com/livechat');
-    </script>
     </body>
 
     </html>

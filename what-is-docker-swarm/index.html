@@ -14,11 +14,11 @@
 <meta property="og:description" content="Background Docker Swarm mode is built into the Docker Engine. Do not confuse Docker Swarm mode with Docker Classic Swarm which is no longer actively developed. Docker’s native orchestrator is SwarmKit">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://res.cloudinary.com/alchemist-cookbook/image/upload/docker-stack.jpg">
-<meta property="article:published_time" content="2023-07-18T06:16:40.242Z">
-<meta property="article:modified_time" content="2023-07-18T06:16:40.242Z">
+<meta property="article:published_time" content="2023-07-19T06:01:40.227Z">
+<meta property="article:modified_time" content="2023-07-19T06:01:40.227Z">
 <meta property="article:author" content="Anthony Russano">
-<meta property="article:tag" content="Fundamentals">
 <meta property="article:tag" content="Docker">
+<meta property="article:tag" content="Fundamentals">
 <meta property="article:tag" content="Containers">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://res.cloudinary.com/alchemist-cookbook/image/upload/docker-stack.jpg">
@@ -60,15 +60,12 @@
     <body class="max-width mx-auto px3 ltr">
       
         <div id="header-post">
-  <a id="menu-icon" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
   <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
   <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
   <span id="menu">
     <span id="nav">
       <ul>
-        <!--
-       --><li><a href="/">Home</a></li><!--
-     -->
+        
       </ul>
     </span>
     <br/>
@@ -82,11 +79,13 @@
         
         <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-image fa-lg" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+        <li><a class="icon" aria-label="Home" href="/"><i class="fa-solid fa-home fa-lg" aria-hidden="true" onmouseover="$('#i-home').toggle();" onmouseout="$('#i-home').toggle();" onclick="$('#').toggle();return false;"></i></a></li>
       </ul>
       <span id="i-prev" class="info" style="display:none;">Previous post</span>
       <span id="i-next" class="info" style="display:none;">Next post</span>
       <span id="i-top" class="info" style="display:none;">Back to top</span>
       <span id="i-share" class="info" style="display:none;">Image</span>
+      <span id="i-home" class="info" style="display:none;">Home</span>
     </span>
     <br/>
     <div class="icon" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;" id="share" style>
@@ -123,7 +122,7 @@
           <span class="p-name" itemprop="name">
           </span>
         </span>
-        <a class="category-link" href="/categories/devops/">DevOps</a> › <a class="category-link" href="/categories/devops/container-orchestration/">Container Orchestration</a> › <a class="category-link" href="/categories/devops/container-orchestration/docker/">Docker</a> › <a class="category-link" href="/categories/devops/container-orchestration/docker/docker-swarm/">Docker Swarm</a>
+        <a href="/">Home</a> › <a class="category-link" href="/categories/devops/">DevOps</a> › <a class="category-link" href="/categories/devops/container-orchestration/">Container Orchestration</a> › <a class="category-link" href="/categories/devops/container-orchestration/docker/">Docker</a> › <a class="category-link" href="/categories/devops/container-orchestration/docker/docker-swarm/">Docker Swarm</a>
 
       </div>
   </header>
@@ -237,52 +236,38 @@
     <div id="nav-footer" style="display: none">
       <ul>
         
-          <li><a href="/">
-              Home
-            </a></li>
-          
       </ul>
     </div>
-
-    
+    <div id="toc-footer" style="display: none">
+      <a class="tag-link-link" href="/tags/containers/" rel="tag">Containers</a>, <a class="tag-link-link" href="/tags/docker/" rel="tag">Docker</a>, <a class="tag-link-link" href="/tags/fundamentals/" rel="tag">Fundamentals</a>
+    </div>
+    <div id="image-footer" style="display: none">
       
-        <div id="toc-footer" style="display: none">
-          <!-- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Background"><span class="toc-number">1.</span> <span class="toc-text">Background</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Architecture"><span class="toc-number">2.</span> <span class="toc-text">Architecture</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Swarm-nodes"><span class="toc-number">2.1.</span> <span class="toc-text">Swarm nodes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Swarm-Managers"><span class="toc-number">2.2.</span> <span class="toc-text">Swarm Managers</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Swarm-Workers"><span class="toc-number">2.3.</span> <span class="toc-text">Swarm Workers</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Stacks-services-and-tasks"><span class="toc-number">2.4.</span> <span class="toc-text">Stacks, services, and tasks</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Services"><span class="toc-number">2.4.1.</span> <span class="toc-text">Services</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Tasks"><span class="toc-number">2.4.2.</span> <span class="toc-text">Tasks</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Stacks"><span class="toc-number">2.4.3.</span> <span class="toc-text">Stacks</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Multi-host-networking"><span class="toc-number">2.5.</span> <span class="toc-text">Multi-host networking</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Creating-a-Docker-Swarm"><span class="toc-number">3.</span> <span class="toc-text">Creating a Docker Swarm</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Deploying-a-first-application"><span class="toc-number">4.</span> <span class="toc-text">Deploying a first application</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The-swarm-routing-mesh"><span class="toc-number">5.</span> <span class="toc-text">The swarm routing mesh</span></a></li></ol> -->
-          <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/containers/" rel="tag">CONTAINERS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">DOCKER</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fundamentals/" rel="tag">FUNDAMENTALS</a></li></ul>
-          
-        </div>
-        
-
-        <div id="image-footer" style="display: none">
-          
     <div style="display: flex; justify-content: center;">
       <img src="https://res.cloudinary.com/alchemist-cookbook/image/upload/w_200,f_auto/swarm" alt="Centered Image" style="border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);">
     </div>
   
   
-        </div>
-
-          <div id="actions-footer">
-            <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i
-                class="fa-solid fa-bars fa-lg" aria-hidden="true"></i>
-              Menu
-            </a>
-            
-              <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i
-                  class="fa-solid fa-list fa-lg" aria-hidden="true"></i>
-                Keywords
-              </a>
-              
-                <a id="top" style="display:none" class="icon" href="#"
-                  onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg"
-                    aria-hidden="true"></i>
-                  Top
-                </a>
-                <a id="toc" class="icon" href="#" onclick="$('#image-footer').toggle();return false;"><i
-                  class="fa-solid fa-file fa-lg" aria-hidden="true"></i>
-                Image
-              </a>
-          </div>
+    </div>
+    <div id="actions-footer">
+      <a id="menu" class="icon" href="/"><i
+        class="fa-solid fa-home fa-lg" aria-hidden="true"></i>
+        Home
+      </a>
+      <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i
+        class="fa-solid fa-list fa-lg" aria-hidden="true"></i>
+        Keywords
+      </a>
+      <a id="top" style="display:none" class="icon" href="#"
+      onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up fa-lg"
+      aria-hidden="true"></i>
+      Top
+      </a>
+      <a id="toc" class="icon" href="#" onclick="$('#image-footer').toggle();return false;"><i
+      class="fa-solid fa-file fa-lg" aria-hidden="true"></i>
+      Image
+      </a>
+    </div>
 
   </div>
 </div>
@@ -410,15 +395,6 @@
                                                       
                                                           <!-- utterances Comments -->
                                                           
-              <!-- Start of Rocket.Chat Livechat Script -->
-	<script type="text/javascript">
-    (function(w, d, s, u) {
-      w.RocketChat = function(c) { w.RocketChat._.push(c) }; w.RocketChat._ = []; w.RocketChat.url = u;
-      var h = d.getElementsByTagName(s)[0], j = d.createElement(s);
-      j.async = true; j.src = 'https://talk.anthonyrussano.com/livechat/rocketchat-livechat.min.js?_=201903270000';
-      h.parentNode.insertBefore(j, h);
-    })(window, document, 'script', 'https://talk.anthonyrussano.com/livechat');
-    </script>
     </body>
 
     </html>
