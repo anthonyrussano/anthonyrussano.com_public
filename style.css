@@ -78,6 +78,22 @@ header h1 {
     line-height: 1.1; /* Adjust line height for large text */
 }
 
+.headshot {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: var(--space-md) 0;
+    border: 3px solid var(--accent-blue);
+    box-shadow: 0 0 20px rgba(79, 142, 255, 0.2);
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+}
+
+.headshot:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(79, 142, 255, 0.3);
+}
+
 header .subtitle {
     color: var(--accent-blue);
     font-size: 1em;
