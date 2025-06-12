@@ -1,0 +1,358 @@
+/* Base styles with optimized rendering */
+html {
+    box-sizing: border-box;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+    /* Use will-change sparingly only where necessary */
+}
+
+:root {
+    /* Modern dark theme palette */
+    --bg-primary: #121212;
+    --text-primary: #e1e1e1;
+    --text-secondary: #a0a0a0;
+    --accent-blue: #4f8eff;
+    --accent-dark: #333333;
+    --surface: #1e1e1e;
+    
+    /* Consistent spacing */
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-md: 16px;
+    --space-lg: 24px;
+    --space-xl: 32px;
+}
+
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: 'SF Mono', 'Consolas', 'Menlo', monospace;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: var(--space-md);
+    font-size: 14px;
+    line-height: 1.6;
+    /* Reduce paint operations by using transforms for animations */
+    transform-style: preserve-3d;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+    width: 100%;
+    max-width: 450px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+    /* Use transform for hardware acceleration */
+    transform: translateZ(0);
+}
+
+/* Header Section */
+header {
+    /* Add some padding to the header for better spacing */
+    padding-bottom: var(--space-sm);
+}
+
+header .intro-text {
+    margin: 0 0 var(--space-xs) 0;
+    font-size: 0.9em;
+    color: var(--text-secondary);
+    opacity: 0.8;
+    /* Make it slightly less prominent */
+    font-weight: 300; 
+}
+
+header h1 {
+    font-size: 3.2em; /* Slightly larger for more impact */
+    color: var(--text-primary);
+    margin: 0 0 var(--space-sm) 0;
+    font-weight: 600;
+    transform: translateZ(0);
+    text-shadow: 0px 2px 12px rgba(79, 142, 255, 0.15); /* Enhanced shadow */
+    line-height: 1.1; /* Adjust line height for large text */
+}
+
+.headshot {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: var(--space-md) 0;
+    border: 3px solid var(--accent-blue);
+    box-shadow: 0 0 20px rgba(79, 142, 255, 0.2);
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+}
+
+.headshot:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(79, 142, 255, 0.3);
+}
+
+header .subtitle {
+    color: var(--accent-blue);
+    font-size: 1em;
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs); /* Add a small gap */
+}
+
+header .subtitle .prompt-char {
+    display: inline-block;
+    /* Removed margin-right, using gap on parent instead */
+    text-shadow: 0 0 6px var(--accent-blue), 0 0 12px var(--accent-blue); /* Slightly more pronounced shadow */
+    /* Ensure the pulsing animation is smooth */
+    animation: pulsePrompt 1.5s infinite alternate ease-in-out;
+}
+
+/* Keyframes for prompt pulsing if not handled by anime.js directly for this element */
+@keyframes pulsePrompt {
+  0% { opacity: 0.5; transform: scale(0.95); }
+  100% { opacity: 1; transform: scale(1.05); }
+}
+
+/* Links Section */
+.links .previously {
+    font-size: 0.8em;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-sm);
+}
+
+.links .link-item {
+    margin-bottom: var(--space-sm);
+    font-size: 0.9em;
+    display: inline-block;
+    padding: var(--space-xs) 0;
+    position: relative;
+}
+
+.links .link-item::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--accent-blue);
+    transition: width 0.3s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.links .link-item:hover::after {
+    width: 100%;
+}
+
+/* Resources Section */
+.resources .resources-title {
+    font-size: 0.8em;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-xs);
+    letter-spacing: 0.5px;
+}
+
+.resources h2 {
+    font-size: 1.1em;
+    color: var(--text-primary);
+    margin: 0 0 var(--space-xs) 0;
+    font-weight: 500;
+}
+
+.resources .resources-subtitle {
+    font-size: 0.9em;
+    margin-bottom: var(--space-md);
+}
+
+.resources ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.resources ul li {
+    margin-bottom: var(--space-sm);
+    position: relative;
+}
+
+.resources ul li a {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-size: 0.9em;
+    transition: color 0.2s ease-out, transform 0.2s ease-out;
+    display: inline-flex;
+    align-items: center;
+    padding: var(--space-xs) 0;
+}
+
+.resources ul li a::before {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    background-color: var(--accent-blue);
+    border-radius: 50%;
+    margin-right: var(--space-sm);
+    opacity: 0;
+    transform: scale(0);
+    transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+}
+
+.resources ul li a:hover {
+    color: var(--accent-blue);
+    transform: translateX(var(--space-xs));
+}
+
+.resources ul li a:hover::before {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Footer Section */
+footer {
+    margin-top: var(--space-xl);
+    font-size: 0.85em;
+    color: var(--text-secondary);
+    text-align: right;
+    letter-spacing: 0.5px;
+    padding-bottom: var(--space-md);
+    /* Add a subtle top border for separation */
+    border-top: 1px solid var(--accent-dark);
+    padding-top: var(--space-md);
+}
+
+footer p {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: var(--space-md); /* Consistent gap */
+}
+
+footer .location {
+    display: flex;
+    align-items: center;
+    gap: 6px; /* Slightly increased gap for icon */
+    color: var(--text-primary);
+    font-weight: 400;
+    transition: transform 0.2s cubic-bezier(0.65, 0, 0.35, 1), color 0.2s ease-out;
+}
+
+footer .location:hover {
+    color: var(--accent-blue);
+    transform: translateY(-2px);
+}
+footer .location .icon { /* Target icon within location specifically */
+    color: var(--accent-blue); /* Ensure icon is blue */
+    font-size: 1.1em; /* Make icon slightly more prominent */
+    line-height: 1;
+}
+
+footer .separator {
+    width: 1px;
+    height: 18px; /* Slightly taller */
+    background-color: var(--accent-dark);
+    opacity: 0.6; /* Slightly more subtle */
+    display: inline-block;
+}
+
+footer .copyright-link {
+    text-decoration: none;
+    color: inherit;
+    display: inline-block;
+    transition: transform 0.2s cubic-bezier(0.65, 0, 0.35, 1);
+    padding: var(--space-xs) 0; /* Add some padding for easier hover */
+    position: relative; /* For potential pseudo-elements if needed */
+}
+footer .copyright-link:hover {
+    transform: translateY(-2px);
+}
+/* Optional: Add an underline effect on hover for the copyright link */
+footer .copyright-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: 0; /* Adjust if padding is used */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--accent-blue);
+    transition: width 0.3s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+footer .copyright-link:hover::after {
+    width: 100%;
+}
+
+footer .copyright {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    color: var(--text-secondary);
+}
+
+footer .year {
+    color: var(--text-secondary);
+    font-weight: 300;
+}
+
+footer .name {
+    color: var(--accent-blue);
+    font-weight: 500;
+    transition: color 0.2s ease-out;
+}
+
+footer .copyright-link:hover .name {
+    color: var(--text-primary);
+}
+
+/* General link styling */
+a {
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: color 0.2s ease-out, transform 0.2s ease-out;
+    /* Use transform for performant animations */
+    transform: translateZ(0);
+}
+
+a:hover {
+    color: var(--accent-blue);
+}
+
+/* Focus styles for accessibility */
+a:focus, button:focus {
+    outline: 2px solid var(--accent-blue);
+    outline-offset: 2px;
+}
+
+/* Add transitions to hardware-accelerated properties only */
+.animate-transform {
+    transition: transform 0.3s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.animate-opacity {
+    transition: opacity 0.3s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* Add support for reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition-duration: 0.001ms !important;
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+    }
+}
+
+/* Add accessibility utility class that was referenced in HTML */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+} 
