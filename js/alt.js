@@ -1,12 +1,14 @@
 // 3D Spherical Rotating Starfield Background Animation
 // Creates stars distributed in a 3D sphere that rotate horizontally with mouse interaction
 
+// Global cache for search.xml data to avoid duplicate fetches
+window.searchDataCache = window.searchDataCache || null;
+
 class StarField3D {
     constructor() {
         this.canvas = null;
         this.ctx = null;
         this.stars = [];
-        this.numStars = 400;
         this.sphereRadius = 400;
         this.rotationY = 0; // Horizontal rotation
         this.rotationX = 0; // Vertical tilt from mouse
@@ -34,10 +36,101 @@ class StarField3D {
             isPinned: false
         };
         
-        this.init();
+        // Performance optimizations
+        this.isLowEndDevice = this.detectLowEndDevice();
+        this.maxStars = this.isLowEndDevice ? 100 : 500; // Further reduced limits for better performance
+        this.animationId = null;
+        this.lastFrameTime = 0;
+        this.targetFPS = this.isLowEndDevice ? 30 : 60;
+        this.frameInterval = 1000 / this.targetFPS;
+        this.isInitialized = false;
+        this.isVisible = true; // Track if canvas is visible
+        this.isLoading = true; // Track loading state
+        
+        // Lazy initialization after a short delay
+        this.lazyInit();
     }
     
-    init() {
+    detectLowEndDevice() {
+        // Check various indicators for low-end devices
+        const canvas = document.createElement('canvas');
+        const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+        
+        // Memory check
+        const memory = navigator.deviceMemory;
+        if (memory && memory < 4) return true;
+        
+        // Hardware concurrency check
+        const cores = navigator.hardwareConcurrency;
+        if (cores && cores < 4) return true;
+        
+        // WebGL capability check
+        if (!gl) return true;
+        
+        // Check for mobile user agent
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        
+        // Performance timing check (rough estimate)
+        const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+        if (connection && (connection.effectiveType === 'slow-2g' || connection.effectiveType === '2g')) {
+            return true;
+        }
+        
+        console.log('StarField3D: Device capability detection:', {
+            memory: memory || 'unknown',
+            cores: cores || 'unknown',
+            webGL: !!gl,
+            mobile: isMobile,
+            connection: connection?.effectiveType || 'unknown',
+            lowEnd: false
+        });
+        
+        return isMobile; // Default to treating mobile as potentially low-end
+    }
+    
+    lazyInit() {
+        // Start immediately but with minimal delay to not block other scripts
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => {
+                setTimeout(() => this.init(), 10); // Reduced delay
+            });
+        } else {
+            setTimeout(() => this.init(), 10); // Reduced delay
+        }
+    }
+    
+    setupVisibilityObserver() {
+        // Use Intersection Observer to pause animation when not visible
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    this.isVisible = entry.isIntersecting;
+                    if (!this.isVisible) {
+                        console.log('StarField3D: Animation paused (not visible)');
+                    } else {
+                        console.log('StarField3D: Animation resumed (visible)');
+                    }
+                });
+            }, {
+                threshold: 0.1 // Trigger when 10% of canvas is visible
+            });
+            
+            observer.observe(this.canvas);
+        }
+        
+        // Also pause on page visibility change
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                this.isVisible = false;
+                console.log('StarField3D: Animation paused (page hidden)');
+            } else {
+                this.isVisible = true;
+                console.log('StarField3D: Animation resumed (page visible)');
+            }
+        });
+    }
+    
+    async init() {
         // Create canvas element
         this.canvas = document.createElement('canvas');
         this.canvas.style.position = 'fixed';
@@ -82,14 +175,16 @@ class StarField3D {
             pointerEvents: this.canvas.style.pointerEvents
         });
         
-        // Load posts data
-        this.loadPosts();
+        // Set up intersection observer to pause animation when not visible
+        this.setupVisibilityObserver();
         
         // Initial setup
         this.resize();
-        this.loadPosts();
-        this.createStars();
-        this.animate();
+        
+        // Load posts data and create stars progressively
+        await this.loadPosts();
+        this.startAnimation(); // Start animation immediately with empty stars
+        this.createStarsProgressively(); // Create stars in batches
     }
     
     resize() {
@@ -98,14 +193,20 @@ class StarField3D {
         this.centerX = this.canvas.width / 2;
         this.centerY = this.canvas.height / 2;
         
-        // Adjust sphere radius based on screen size
-        this.sphereRadius = Math.min(this.canvas.width, this.canvas.height) * 0.4;
+        // Keep sphere radius fixed regardless of screen size
+        // this.sphereRadius remains at the initial value of 400
     }
     
     createStars() {
         this.stars = [];
         
-        for (let i = 0; i < this.numStars; i++) {
+        // Limit number of stars on low-end devices
+        const numStarsToCreate = Math.min(this.posts.length, this.maxStars);
+        
+        console.log(`StarField3D: Creating ${numStarsToCreate} stars out of ${this.posts.length} posts (device: ${this.isLowEndDevice ? 'low-end' : 'high-end'})`);
+        
+        // Create stars for posts (prioritize most recent posts if limiting)
+        for (let i = 0; i < numStarsToCreate; i++) {
             // Generate random point on sphere using spherical coordinates
             const theta = Math.random() * Math.PI * 2; // Azimuth angle (0 to 2π)
             const phi = Math.acos(2 * Math.random() - 1); // Polar angle (0 to π) - uniform distribution
@@ -116,9 +217,6 @@ class StarField3D {
             const y = radius * Math.sin(phi) * Math.sin(theta);
             const z = radius * Math.cos(phi);
             
-            // Simple check: first N stars are clickable where N = number of posts
-            const isClickable = i < this.posts.length;
-            
             const star = {
                 originalX: x,
                 originalY: y,
@@ -126,58 +224,122 @@ class StarField3D {
                 x: x,
                 y: y,
                 z: z,
-                size: isClickable ? Math.random() * 1.2 + 0.8 : Math.random() * 0.6 + 0.3,
-                brightness: isClickable ? Math.random() * 0.6 + 0.6 : Math.random() * 0.4 + 0.2,
-                twinkleSpeed: Math.random() * 0.008 + 0.002,
-                twinkleOffset: Math.random() * Math.PI * 2,
-                color: isClickable ? this.getClickableStarColor() : this.getStarColor(),
-                isClickable: isClickable,
-                postIndex: isClickable ? i : -1,
+                size: Math.random() * 1.2 + 0.8, // All stars are clickable size
+                brightness: Math.random() * 0.6 + 0.6, // All stars are bright
+                color: { r: 255, g: 255, b: 255 }, // All stars are white
+                isClickable: true, // All stars are clickable
+                postIndex: i, // Each star maps to a post
                 starId: i // Add unique ID for debugging
             };
             
-            // Debug log for clickable stars
-            if (isClickable && this.posts[i]) {
-                console.log(`StarField3D: Star ${i} linked to post: "${this.posts[i].title}" (${this.posts[i].url})`);
-            }
+            // Debug log for each star
+            console.log(`StarField3D: Star ${i} linked to post: "${this.posts[i].title}" (${this.posts[i].url})`);
             
             this.stars.push(star);
         }
         
-        const clickableStars = this.stars.filter(s => s.isClickable);
-        console.log(`StarField3D: Created ${clickableStars.length} clickable stars out of ${this.posts.length} posts`);
+        console.log(`StarField3D: Created ${this.stars.length} clickable stars for ${this.posts.length} posts`);
+    }
+    
+    createStarsProgressively() {
+        // Create stars in small batches to avoid blocking
+        const batchSize = this.isLowEndDevice ? 10 : 25; // Smaller batches on low-end devices
+        const numStarsToCreate = Math.min(this.posts.length, this.maxStars);
+        let currentBatch = 0;
         
-        // Log details of each clickable star
-        clickableStars.forEach((star, index) => {
-            console.log(`  Clickable Star ${star.starId}: postIndex=${star.postIndex}, post="${this.posts[star.postIndex]?.title}"}`);
-        });
+        const createBatch = () => {
+            const start = currentBatch * batchSize;
+            const end = Math.min(start + batchSize, numStarsToCreate);
+            
+            // Create stars for this batch
+            for (let i = start; i < end; i++) {
+                // Generate random point on sphere using spherical coordinates
+                const theta = Math.random() * Math.PI * 2;
+                const phi = Math.acos(2 * Math.random() - 1);
+                const radius = this.sphereRadius * (0.7 + Math.random() * 0.6);
+                
+                // Convert spherical to cartesian coordinates
+                const x = radius * Math.sin(phi) * Math.cos(theta);
+                const y = radius * Math.sin(phi) * Math.sin(theta);
+                const z = radius * Math.cos(phi);
+                
+                const star = {
+                    originalX: x,
+                    originalY: y,
+                    originalZ: z,
+                    x: x,
+                    y: y,
+                    z: z,
+                    size: Math.random() * 1.2 + 0.8,
+                    brightness: Math.random() * 0.6 + 0.6,
+                    color: { r: 255, g: 255, b: 255 },
+                    isClickable: true,
+                    postIndex: i,
+                    starId: i
+                };
+                
+                this.stars.push(star);
+            }
+            
+            console.log(`StarField3D: Created batch ${currentBatch + 1}, stars: ${this.stars.length}/${numStarsToCreate}`);
+            
+            currentBatch++;
+            
+            // Schedule next batch if there are more stars to create
+            if (end < numStarsToCreate) {
+                setTimeout(createBatch, this.isLowEndDevice ? 16 : 8); // Smaller delay on high-end devices
+            } else {
+                this.isLoading = false;
+                console.log(`StarField3D: All ${this.stars.length} stars created progressively`);
+            }
+        };
+        
+        // Start creating the first batch
+        createBatch();
     }
     
-    getStarColor() {
-        const colors = [
-            { r: 255, g: 255, b: 255 }, // White
-            { r: 255, g: 248, b: 220 }, // Warm white
-            { r: 173, g: 216, b: 230 }, // Light blue
-            { r: 255, g: 223, b: 186 }, // Light orange
-            { r: 230, g: 230, b: 250 }  // Lavender
-        ];
-        return colors[Math.floor(Math.random() * colors.length)];
+    startAnimation() {
+        this.animate();
     }
     
-    getClickableStarColor() {
-        const colors = [
-            { r: 255, g: 215, b: 0 },   // Gold
-            { r: 255, g: 165, b: 0 },   // Orange
-            { r: 255, g: 105, b: 180 }, // Hot pink
-            { r: 50, g: 205, b: 50 },   // Lime green
-            { r: 135, g: 206, b: 235 }  // Sky blue
-        ];
-        return colors[Math.floor(Math.random() * colors.length)];
-    }
     
-    loadPosts() {
-        this.posts = window.siteData && window.siteData.posts ? window.siteData.posts : [];
-        console.log(`StarField3D: Loaded ${this.posts.length} posts`);
+    async loadPosts() {
+        try {
+            // Use cached data if available
+            if (window.searchDataCache) {
+                this.posts = window.searchDataCache;
+                console.log(`StarField3D: Loaded ${this.posts.length} posts from cache`);
+                return;
+            }
+            
+            console.log('StarField3D: Fetching search.xml...');
+            const response = await fetch('/search.xml');
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const xmlText = await response.text();
+            const parser = new DOMParser();
+            const xmlDoc = parser.parseFromString(xmlText, 'text/xml');
+            
+            const entries = xmlDoc.querySelectorAll('entry');
+            this.posts = Array.from(entries).map(entry => {
+                const title = entry.querySelector('title')?.textContent || 'Untitled';
+                const link = entry.querySelector('link')?.getAttribute('href') || 
+                           entry.querySelector('url')?.textContent || '#';
+                return {
+                    title: title,
+                    url: link
+                };
+            });
+            
+            // Cache the data for future use
+            window.searchDataCache = this.posts;
+            
+            console.log(`StarField3D: Loaded ${this.posts.length} posts from search.xml and cached`);
+        } catch (error) {
+            console.error('StarField3D: Failed to load posts from search.xml:', error);
+            this.posts = [];
+        }
     }
     
     drawRoundedRect(ctx, x, y, width, height, radius) {
@@ -407,68 +569,78 @@ class StarField3D {
         this.ctx.fillStyle = '#000000';
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
         
-        // Sort stars by z-depth for proper rendering order
-        const sortedStars = [...this.stars].sort((a, b) => b.z - a.z);
+        // Viewport culling - pre-filter stars that are definitely not visible
+        const visibleStars = [];
+        const margin = 50; // Slightly larger margin for safety
         
-        sortedStars.forEach((star) => {
+        for (let star of this.stars) {
             const projected = this.projectTo2D(star.x, star.y, star.z);
             
-            // Only draw stars that are on screen and in front
-            if (projected.x >= -10 && projected.x <= this.canvas.width + 10 && 
-                projected.y >= -10 && projected.y <= this.canvas.height + 10 &&
+            // Only process stars that are in viewport and in front of camera
+            if (projected.x >= -margin && projected.x <= this.canvas.width + margin && 
+                projected.y >= -margin && projected.y <= this.canvas.height + margin &&
                 projected.scale > 0.1) {
                 
-                // Calculate twinkling effect
-                const twinkle = Math.sin(Date.now() * star.twinkleSpeed + star.twinkleOffset);
-                let currentBrightness = star.brightness * (0.7 + 0.3 * twinkle) * projected.scale;
-                
-                // Enhance brightness for hovered stars
-                if (this.hoveredStar === star) {
-                    currentBrightness = Math.min(currentBrightness * 1.5, 1);
-                }
-                
-                // Adjust size based on distance - keep stars as small points
-                let starSize = Math.max(star.size * projected.scale, 0.5);
-                
-                // Make clickable stars slightly larger and add glow effect when hovered or pinned
-                if (star.isClickable) {
-                    starSize *= 1.2;
-                    
-                    if (this.hoveredStar === star || this.pinnedStar === star) {
-                        // Draw outer glow for hovered/pinned clickable stars
-                        const glowSize = starSize * 3;
-                        const glowAlpha = Math.min(currentBrightness * 0.4, 0.4);
-                        const glowColor = `rgba(${star.color.r}, ${star.color.g}, ${star.color.b}, ${glowAlpha})`;
-                        
-                        this.ctx.fillStyle = glowColor;
-                        this.ctx.beginPath();
-                        this.ctx.arc(projected.x, projected.y, glowSize, 0, Math.PI * 2);
-                        this.ctx.fill();
-                        
-                        // Draw expanded clickable area outline
-                        const expandedRadius = 30;
-                        const isPinned = this.pinnedStar === star;
-                        const outlineAlpha = isPinned ? 0.6 : 0.3; // Brighter outline when pinned
-                        const lineWidth = isPinned ? 2 : 1; // Thicker line when pinned
-                        
-                        this.ctx.strokeStyle = `rgba(${star.color.r}, ${star.color.g}, ${star.color.b}, ${outlineAlpha})`;
-                        this.ctx.lineWidth = lineWidth;
-                        this.ctx.beginPath();
-                        this.ctx.arc(projected.x, projected.y, expandedRadius, 0, Math.PI * 2);
-                        this.ctx.stroke();
-                    }
-                }
-                
-                // Create color with alpha based on brightness and distance
-                const alpha = Math.min(currentBrightness, 1);
-                const color = `rgba(${star.color.r}, ${star.color.g}, ${star.color.b}, ${alpha})`;
-                
-                // Draw simple point of light
-                this.ctx.fillStyle = color;
-                this.ctx.beginPath();
-                this.ctx.arc(projected.x, projected.y, starSize, 0, Math.PI * 2);
-                this.ctx.fill();
+                star.projected = projected; // Cache projection
+                visibleStars.push(star);
             }
+        }
+        
+        // Sort only visible stars by z-depth for proper rendering order
+        visibleStars.sort((a, b) => b.z - a.z);
+        
+        visibleStars.forEach((star) => {
+            const projected = star.projected; // Use cached projection
+                
+            // Use fixed brightness (no twinkling)
+            let currentBrightness = star.brightness * projected.scale;
+            
+            // Enhance brightness for hovered stars
+            if (this.hoveredStar === star) {
+                currentBrightness = Math.min(currentBrightness * 1.5, 1);
+            }
+            
+            // Adjust size based on distance - keep stars as small points
+            let starSize = Math.max(star.size * projected.scale, 0.5);
+            
+            // Make clickable stars slightly larger and add glow effect when hovered or pinned
+            if (star.isClickable) {
+                starSize *= 1.2;
+                
+                if (this.hoveredStar === star || this.pinnedStar === star) {
+                    // Draw outer glow for hovered/pinned clickable stars
+                    const glowSize = starSize * 3;
+                    const glowAlpha = Math.min(currentBrightness * 0.4, 0.4);
+                    const glowColor = `rgba(255, 255, 255, ${glowAlpha})`;
+                    
+                    this.ctx.fillStyle = glowColor;
+                    this.ctx.beginPath();
+                    this.ctx.arc(projected.x, projected.y, glowSize, 0, Math.PI * 2);
+                    this.ctx.fill();
+                    
+                    // Draw expanded clickable area outline
+                    const expandedRadius = 30;
+                    const isPinned = this.pinnedStar === star;
+                    const outlineAlpha = isPinned ? 0.6 : 0.3; // Brighter outline when pinned
+                    const lineWidth = isPinned ? 2 : 1; // Thicker line when pinned
+                    
+                    this.ctx.strokeStyle = `rgba(255, 255, 255, ${outlineAlpha})`;
+                    this.ctx.lineWidth = lineWidth;
+                    this.ctx.beginPath();
+                    this.ctx.arc(projected.x, projected.y, expandedRadius, 0, Math.PI * 2);
+                    this.ctx.stroke();
+                }
+            }
+            
+            // Create white color with alpha based on brightness and distance
+            const alpha = Math.min(currentBrightness, 1);
+            const color = `rgba(255, 255, 255, ${alpha})`;
+            
+            // Draw simple point of light
+            this.ctx.fillStyle = color;
+            this.ctx.beginPath();
+            this.ctx.arc(projected.x, projected.y, starSize, 0, Math.PI * 2);
+            this.ctx.fill();
         });
         
         // Draw tooltip
@@ -510,7 +682,7 @@ class StarField3D {
         
         // Draw tooltip border - different style for pinned tooltips
         if (tooltip.isPinned) {
-            ctx.strokeStyle = `rgba(255, 215, 0, ${0.8 * alpha})`; // Gold border for pinned
+            ctx.strokeStyle = `rgba(255, 255, 255, ${0.8 * alpha})`; // White border for pinned
             ctx.lineWidth = 2;
         } else {
             ctx.strokeStyle = `rgba(255, 255, 255, ${0.3 * alpha})`;
@@ -523,7 +695,7 @@ class StarField3D {
             const projected = this.projectTo2D(this.hoveredStar.x, this.hoveredStar.y, this.hoveredStar.z);
             const connectionAlpha = 0.4 * alpha;
             
-            ctx.strokeStyle = `rgba(${this.hoveredStar.color.r}, ${this.hoveredStar.color.g}, ${this.hoveredStar.color.b}, ${connectionAlpha})`;
+            ctx.strokeStyle = `rgba(255, 255, 255, ${connectionAlpha})`;
             ctx.lineWidth = 1;
             ctx.setLineDash([2, 3]);
             ctx.beginPath();
@@ -588,10 +760,18 @@ class StarField3D {
         });
     }
     
-    animate() {
-        this.update();
-        this.draw();
-        requestAnimationFrame(() => this.animate());
+    animate(currentTime = 0) {
+        // Only animate if visible
+        if (this.isVisible) {
+            // Frame rate limiting for low-end devices
+            if (currentTime - this.lastFrameTime >= this.frameInterval) {
+                this.update();
+                this.draw();
+                this.lastFrameTime = currentTime;
+            }
+        }
+        
+        this.animationId = requestAnimationFrame((time) => this.animate(time));
     }
     
     // Public methods to control the animation
@@ -599,10 +779,6 @@ class StarField3D {
         this.baseRotationSpeed = speed;
     }
     
-    setStarCount(count) {
-        this.numStars = count;
-        this.createStars();
-    }
     
     setSphereRadius(radius) {
         this.sphereRadius = radius;
@@ -610,9 +786,22 @@ class StarField3D {
     }
     
     destroy() {
+        // Stop animation loop
+        if (this.animationId) {
+            cancelAnimationFrame(this.animationId);
+            this.animationId = null;
+        }
+        
+        // Remove canvas
         if (this.canvas && this.canvas.parentNode) {
             this.canvas.parentNode.removeChild(this.canvas);
         }
+        
+        // Clear references
+        this.stars = [];
+        this.posts = [];
+        this.ctx = null;
+        this.canvas = null;
     }
     
 }
