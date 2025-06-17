@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang=en>
+  <head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Description This article will outline how to setup the KVM hypervisor on Ubuntu 22.04. Since KVM is part of Linux, it installs natively, enabling a straightforward user experience and smooth integrati">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to Install and Setup QEMU&#x2F;KVM on Ubuntu 22.04">
+<meta property="og:url" content="https://www.anthonyrussano.com/how-to-install-and-setup-qemu-kvm-on-ubuntu-22-04/index.html">
+<meta property="og:site_name" content="anthonyrussano">
+<meta property="og:description" content="Description This article will outline how to setup the KVM hypervisor on Ubuntu 22.04. Since KVM is part of Linux, it installs natively, enabling a straightforward user experience and smooth integrati">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-06-17T06:36:25.040Z">
+<meta property="article:modified_time" content="2025-06-17T06:36:25.040Z">
+<meta property="article:author" content="Anthony Russano">
+<meta property="article:tag" content="Virtualization">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="https://res.cloudinary.com/alchemist-cookbook/image/upload/v1674087936/christianity.jpg">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="https://res.cloudinary.com/alchemist-cookbook/image/upload/v1674087936/christianity.jpg" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="https://res.cloudinary.com/alchemist-cookbook/image/upload/v1674087936/christianity.jpg">
+        
+      
+    
+    <!-- title -->
+    <title>How to Install and Setup QEMU/KVM on Ubuntu 22.04</title>
+    <!-- async scripts -->
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+</head>
+
+
+    <body class="max-width mx-auto px3 ltr">
+      
+        <!-- <div id="header-post">
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/how-is-redis-a-message-broker/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/what-is-kvm/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-image fa-lg" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+        <li><a class="icon" aria-label="Home" href="/"><i class="fa-solid fa-home fa-lg" aria-hidden="true" onmouseover="$('#i-home').toggle();" onmouseout="$('#i-home').toggle();" onclick="$('#').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Image</span>
+      <span id="i-home" class="info" style="display:none;">Home</span>
+    </span>
+    <br/>
+    <div class="icon" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;" id="share" style>
+      
+    <div>
+      <img src="https://res.cloudinary.com/alchemist-cookbook/image/upload/w_400,f_auto/kvm" style="border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);">
+    </div>
+  
+  
+    </div>
+    
+    
+      <div id="toc">
+        Keywords
+        <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/virtualization/" rel="tag">Virtualization</a></li></ul>
+      </div>
+    
+  </span>
+</div> -->
+          
+            <div class="content index py4 ">
+              
+                    <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        How to Install and Setup QEMU/KVM on Ubuntu 22.04
+    </h1>
+
+
+
+      <div class="meta">
+        <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <span class="p-name" itemprop="name">
+          </span>
+        </span>
+        <a href="/">Home</a> › <a class="category-link" href="/categories/devops/">DevOps</a> › <a class="category-link" href="/categories/devops/servers/">Servers</a> › <a class="category-link" href="/categories/devops/servers/virtualization/">Virtualization</a> › <a class="category-link" href="/categories/devops/servers/virtualization/kvm/">KVM</a>
+<br>
+        
+    <hr>
+<div>
+    <a class="p-category" href="/tags/virtualization/" rel="tag">Virtualization</a>
+</div>
+
+      </div>
+  </header>
+  <div class="content e-content" itemprop="articleBody">
+    
+    <div>
+      <img src="https://res.cloudinary.com/alchemist-cookbook/image/upload/w_400,f_auto/kvm" style="border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);">
+    </div>
+  
+  
+    <h1>Description</h1>
+<p>This article will outline how to setup the KVM hypervisor on Ubuntu 22.04.</p>
+<p>Since KVM is part of Linux, it installs natively, enabling a straightforward user experience and smooth integration.<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup></p>
+<p>QEMU is a free and open-source machine emulator and virtualizer. It enables your host machine to run a variety of guest operating systems.<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></p>
+<h2 id="Instructions">Instructions <sup class="footnote-ref"><a href="#fn3" id="fnref3">[3]</a></sup> <sup class="footnote-ref"><a href="#fn4" id="fnref4">[4]</a></sup></h2>
+<h3 id="Install-Required-Packages">Install Required Packages</h3>
+<p>Update your system.</p>
+<p><code>sudo apt update</code></p>
+<p>Check if virtualization is enabled.</p>
+<p><code>egrep -c '(vmx|svm)' /proc/cpuinfo</code></p>
+<p>If the result of the above command is greater than <code>0</code>, then virtualization should be enabled.  If not, then you can attempt to enable virtualization in the BIOS settings.</p>
+<p>To verify if KVM virtualization is enabled run the following command:</p>
+<p><code>kvm-ok</code></p>
+<p>Install the cpu-checker package if you don’t have it already.</p>
+<p><code>sudo apt install -y cpu-checker</code></p>
+<p>Run the command below to install KVM and additional virtualization packages on Ubuntu 22.04.</p>
+<p><code>sudo apt install -y qemu-kvm virt-manager libvirt-daemon-system virtinst libvirt-clients bridge-utils</code></p>
+<p>Breakdown of packages to be installed:</p>
+<ul>
+<li>qemu-kvm  – An opensource emulator and virtualization package that provides hardware emulation.</li>
+<li>virt-manager – A Qt-based graphical interface for managing virtual machines via the libvirt daemon.</li>
+<li>libvirt-daemon-system – A package that provides configuration files required to run the libvirt daemon.</li>
+<li>virtinst – A  set of command-line utilities for provisioning and modifying virtual machines.</li>
+<li>libvirt-clients – A set of client-side libraries and APIs for managing and controlling virtual machines &amp; hypervisors from the command line.</li>
+<li>bridge-utils – A set of tools for creating and managing bridge devices.</li>
+</ul>
+<p>Enable and start the Libvirt daemon.</p>
+<p><code>sudo systemctl enable --now libvirtd</code></p>
+<p><code>sudo systemctl start libvirtd</code></p>
+<p>Confirm that the virtualization daemon is running as shown.</p>
+<p><code>sudo systemctl status libvirtd</code></p>
+<p>Add the currently logged-in user to the kvm and libvirt groups so that they can create and manage virtual machines.</p>
+<p><code>sudo usermod -aG kvm $USER</code></p>
+<p><code>sudo usermod -aG libvirt $USER</code></p>
+<p>To apply this change, you need to log out and log back again.</p>
+<h3 id="Create-a-Network-Bridge">Create a Network Bridge <sup class="footnote-ref"><a href="#fn5" id="fnref5">[5]</a></sup></h3>
+<p>If you plan to access the KVM virtual machines from outside your local system, follow these instructions to create a network bridge. This allows the virtual machines to be accessible by other hosts on the network.</p>
+<p>Otherwise, you can use the existing NAT settings.</p>
+<p>This setup requires the use of the Network Manager Text User Interface tool.</p>
+<p>To launch the Network Manager Text User Interface tool use the following command,</p>
+<p><code>sudo nmtui</code></p>
+<p>Follow these instructions:</p>
+<ol>
+<li>Deactivate the WIFI network (if it exists).</li>
+</ol>
+<ul>
+<li>Select <code>Activate a connection</code>.</li>
+<li>Select the Wi-Fi network.</li>
+<li>Select <code>&lt;Deactivate&gt;</code></li>
+<li>Select <code>&lt;Back&gt;</code></li>
+</ul>
+<ol start="2">
+<li>Create a new Bridge</li>
+</ol>
+<ul>
+<li>Select <code>Edit a connection</code>.</li>
+<li>Select <code>&lt;Add&gt;</code></li>
+<li>Select the type of connection you wish to create: <code>Bridge</code></li>
+<li>Select <code>&lt;Create&gt;</code></li>
+<li>The default name is <code>nm-bridge</code></li>
+<li>Select <code>Slave</code></li>
+<li>Select <code>Ethernet</code> to add as slave to this bridge connection.</li>
+<li>Select <code>&lt;Create&gt;</code></li>
+<li>Select <code>&lt;Ok&gt;</code></li>
+<li>Confirm <code>Ethernet Connection 1</code> has been added as slave to the bridge connection.</li>
+<li>Select <code>&lt;Ok&gt;</code></li>
+<li>Select <code>&lt;Back&gt;</code></li>
+</ul>
+<ol start="3">
+<li>Remove Direct Wired Connection</li>
+</ol>
+<ul>
+<li>Select <code>Edit a connection</code></li>
+<li>Select <code>Wired Connection 1</code> under <code>Ethernet</code></li>
+<li>Select <code>&lt;Delete&gt;</code></li>
+<li>Are you sure you want to delete the connection <code>Wired Connection 1</code>?
+<ul>
+<li>Select <code>Delete</code></li>
+</ul>
+</li>
+<li>Select <code>&lt;Back&gt;</code></li>
+<li>Select <code>Quit</code></li>
+</ul>
+<p>You should now be able to select the bridged connection for your virtual machine network interface.</p>
+<p>To verify the bridge was created, use the <code>bridge-utils</code> tool.</p>
+<p><code>brctl show</code></p>
+<p>This command should list the <code>nm-bridge</code> we created above.</p>
+<p>It should also display the ethernet connection under <code>interfaces</code>.</p>
+<h3 id="Download-ISOs">Download ISOs</h3>
+<p>TBD</p>
+<h3 id="Create-a-VM">Create a VM</h3>
+<p>TBD</p>
+<h4 id="Snapshots">Snapshots</h4>
+<p>TBD</p>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p><a target="_blank" rel="noopener" href="https://ubuntu.com/blog/kvm-hyphervisor">KVM hypervisor: a beginners’ guide</a> <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn2" class="footnote-item"><p><a target="_blank" rel="noopener" href="https://www.qemu.org/">https://www.qemu.org/</a> <a href="#fnref2" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn3" class="footnote-item"><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=BgZHbCDFODk">Veronica Explains - QEMU/KVM for absolute beginners</a> <a href="#fnref3" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn4" class="footnote-item"><p><a target="_blank" rel="noopener" href="https://www.linuxtechi.com/how-to-install-kvm-on-ubuntu-22-04/">Linux Techi - James Kiarie - How to Install KVM on Ubuntu 22.04 (Jammy Jellyfish)</a> <a href="#fnref4" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn5" class="footnote-item"><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=DYpaX4BnNlg">Abstract programmer - qemu/kvm bridge and NAT networking</a> <a href="#fnref5" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
+
+  </div>
+</article>
+                      
+                        
+
+                          
+                            <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2025
+    Anthony Russano
+  </div>
+
+  <div class="footer-right">
+    <nav>
+      <ul>
+        
+    <div>
+        <a
+            target="_blank" rel="noopener" href='https://github.com/anthonyrussano/anthonyrussano.com/edit/master/site/source/_posts/template'>
+            New</a> -
+        <a
+            target="_blank" rel="noopener" href='https://github.com/anthonyrussano/anthonyrussano.com/edit/master/site/source/_posts/DevOps/Servers/Virtualization/KVM/how-to-setup-kvm-qemu-ubuntu.md'>
+            Edit</a> -
+        <a
+            target="_blank" rel="noopener" href='https://github.com/anthonyrussano/anthonyrussano.com/commits/master/site/source/_posts/DevOps/Servers/Virtualization/KVM/how-to-setup-kvm-qemu-ubuntu.md'>
+            History</a> -
+        <a
+            target="_blank" rel="noopener" href='https://github.com/anthonyrussano/anthonyrussano.com/raw/master/site/source/_posts/DevOps/Servers/Virtualization/KVM/how-to-setup-kvm-qemu-ubuntu.md'>
+            Source</a>
+    </div>
+
+      </ul>
+    </nav>
+  </div>
+
+</footer>
+
+            </div>
+            <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+              <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+    
+
+          
+
+                        <!-- clipboard -->
+                        
+                          
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+                              
+                                    <script type="text/javascript">
+                                      $(function () {
+                                        // copy-btn HTML
+                                        var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+                                        btn += '<i class="fa-regular fa-clone"></i>';
+                                        btn += '</span>';
+                                        // mount it!
+                                        $(".highlight table").before(btn);
+                                        var clip = new ClipboardJS('.btn-copy', {
+                                          text: function (trigger) {
+                                            return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str, it) => str + it.innerText + '\n', '')
+                                          }
+                                        });
+                                        clip.on('success', function (e) {
+                                          e.trigger.setAttribute('aria-label', "Copied!");
+                                          e.clearSelection();
+                                        })
+                                      })
+                                    </script>
+                                    
+                                      
+<script src="/js/main.js"></script>
+
+                                        <!-- search -->
+                                        
+                                          
+<script src="/js/search.js"></script>
+
+                                            <script type="text/javascript">
+                                              $(function () {
+
+                                                var $inputArea = $("input#search-input");
+                                                var $resultArea = document.querySelector("div#search-result");
+
+                                                $inputArea.focus(function () {
+                                                  var search_path = "search.xml";
+                                                  if (search_path.length == 0) {
+                                                    search_path = "search.xml";
+                                                  }
+                                                  var path = "/" + search_path;
+                                                  searchFunc(path, 'search-input', 'search-result');
+                                                });
+
+                                                $inputArea.keydown(function (e) {
+                                                  if (e.which == 13) {
+                                                    e.preventDefault();
+                                                  }
+                                                });
+
+                                                var observer = new MutationObserver(function (mutationsList, observer) {
+                                                  if (mutationsList.length == 1) {
+                                                    if (mutationsList[0].addedNodes.length) {
+                                                      $(".search-no-result").hide();
+                                                    } else if (mutationsList[0].removedNodes.length) {
+                                                      $(".search-no-result").show(200);
+                                                    }
+                                                  }
+                                                });
+
+                                                observer.observe($resultArea, { childList: true });
+
+                                              });
+                                            </script>
+                                            
+                                              <!-- Baidu Analytics -->
+                                              
+                                                  <!-- Cloudflare Analytics -->
+                                                  
+                                                      <!-- Disqus Comments -->
+                                                      
+                                                          <!-- utterances Comments -->
+                                                          
+    </body>
+
+    </html>

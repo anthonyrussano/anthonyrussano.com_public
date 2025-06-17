@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang=en>
+  <head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Description dpkg (Debian Package) is the software at the base of the package management system in the free operating system Debian and its numerous derivatives. dpkg is used to install, remove, and pr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="dpkg">
+<meta property="og:url" content="https://www.anthonyrussano.com/dpkg/index.html">
+<meta property="og:site_name" content="anthonyrussano">
+<meta property="og:description" content="Description dpkg (Debian Package) is the software at the base of the package management system in the free operating system Debian and its numerous derivatives. dpkg is used to install, remove, and pr">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-06-17T06:36:25.037Z">
+<meta property="article:modified_time" content="2025-06-17T06:36:25.037Z">
+<meta property="article:author" content="Anthony Russano">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="https://res.cloudinary.com/alchemist-cookbook/image/upload/v1674087936/christianity.jpg">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="https://res.cloudinary.com/alchemist-cookbook/image/upload/v1674087936/christianity.jpg" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="https://res.cloudinary.com/alchemist-cookbook/image/upload/v1674087936/christianity.jpg">
+        
+      
+    
+    <!-- title -->
+    <title>dpkg</title>
+    <!-- async scripts -->
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+</head>
+
+
+    <body class="max-width mx-auto px3 ltr">
+      
+        <!-- <div id="header-post">
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/remove-the-default-pi-user/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/asus-zenbook-keyboard-not-working-after-fresh-ubuntu-install/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-image fa-lg" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+        <li><a class="icon" aria-label="Home" href="/"><i class="fa-solid fa-home fa-lg" aria-hidden="true" onmouseover="$('#i-home').toggle();" onmouseout="$('#i-home').toggle();" onclick="$('#').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Image</span>
+      <span id="i-home" class="info" style="display:none;">Home</span>
+    </span>
+    <br/>
+    <div class="icon" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;" id="share" style>
+      
+    <div>
+      <img src="https://res.cloudinary.com/alchemist-cookbook/image/upload/w_400,f_auto/dpkg" style="border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);">
+    </div>
+  
+  
+    </div>
+    
+    
+      <div id="toc">
+        Keywords
+        
+      </div>
+    
+  </span>
+</div> -->
+          
+            <div class="content index py4 ">
+              
+                    <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        dpkg
+    </h1>
+
+
+
+      <div class="meta">
+        <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <span class="p-name" itemprop="name">
+          </span>
+        </span>
+        <a href="/">Home</a> › <a class="category-link" href="/categories/devops/">DevOps</a> › <a class="category-link" href="/categories/devops/server-administration/">Server Administration</a> › <a class="category-link" href="/categories/devops/server-administration/linux/">Linux</a> › <a class="category-link" href="/categories/devops/server-administration/linux/distributions/">Distributions</a> › <a class="category-link" href="/categories/devops/server-administration/linux/distributions/ubuntu/">Ubuntu</a> › <a class="category-link" href="/categories/devops/server-administration/linux/distributions/ubuntu/package-managers/">Package Managers</a>
+<br>
+        
+      </div>
+  </header>
+  <div class="content e-content" itemprop="articleBody">
+    
+    <div>
+      <img src="https://res.cloudinary.com/alchemist-cookbook/image/upload/w_400,f_auto/dpkg" style="border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);">
+    </div>
+  
+  
+    <h2 id="Description">Description</h2>
+<p><code>dpkg</code> (Debian Package) is the software at the base of the package management system in the free operating system Debian and its numerous derivatives. <code>dpkg</code> is used to install, remove, and provide information about .deb packages. <code>dpkg</code> itself is a low-level tool. <code>APT</code> (Advanced Package Tool), a higher-level tool, is more commonly used than <code>dpkg</code> as it can fetch packages from remote locations and deal with complex package relations, such as dependency resolution. Frontends for <code>APT</code>, like aptitude (ncurses) and synaptic (GTK), are used for their friendlier interfaces.</p>
+<p>The Debian package “dpkg” provides the <code>dpkg</code> program, as well as several other programs necessary for run-time functioning of the packaging system, including: <code>dpkg-deb</code>, <code>dpkg-split</code>, <code>dpkg-query</code>, <code>dpkg-statoverride</code>, <code>dpkg-divert</code> and <code>dpkg-trigger</code>. It also includes the programs such as <code>update-alternatives</code> and <code>start-stop-daemon</code>.</p>
+<h2 id="Usage">Usage <sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup></h2>
+<p>To install a <code>.deb</code> package:</p>
+<p><code>dpkg -i filename.deb</code></p>
+<p>where <code>filename.deb</code> is the name of the Debian package (such as <code>pkgname_0.00-1_amd64.deb</code>).</p>
+<p>The list of installed packages can be obtained with:</p>
+<p><code>dpkg -l [optional pattern]</code></p>
+<p>To remove an installed package:</p>
+<p><code>dpkg -r packagename</code></p>
+<h2 id="Trobleshooting">Trobleshooting</h2>
+<h3 id="Package-Database-Corrupted">Package Database Corrupted <sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup> <sup class="footnote-ref"><a href="#fn3" id="fnref3">[3]</a></sup></h3>
+<p>If you run into conflits installing a package and running the <code>apt</code> command keeps producing errors, then the following steps may help repair your system.</p>
+<p>Run, <code>sudo dpkg --configure -a</code> to try reconfiguring the <code>dpkg</code> database.  This should produce a list of the software packages causing errors.</p>
+<p>Now remove the packages causing issues by running, <code>sudo dpkg --force-all -P &lt;software packages&gt;</code> (listing all the software packages from the previous step).</p>
+<p>Finally run <code>sudo apt install -f</code> and <code>sudo apt autoremove</code> to get back to a working state.</p>
+<p>You should now be able to run <code>sudo apt update &amp;&amp; sudo apt upgrade</code> without errors.</p>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p><a target="_blank" rel="noopener" href="https://man7.org/linux/man-pages/man1/dpkg.1.html">https://man7.org/linux/man-pages/man1/dpkg.1.html</a> <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn2" class="footnote-item"><p><a target="_blank" rel="noopener" href="https://forums.linuxmint.com/viewtopic.php?t=298636">https://forums.linuxmint.com/viewtopic.php?t=298636</a> <a href="#fnref2" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn3" class="footnote-item"><p><a target="_blank" rel="noopener" href="https://phoenixnap.com/kb/fix-sub-process-usr-bin-dpkg-returned-error-code-1">https://phoenixnap.com/kb/fix-sub-process-usr-bin-dpkg-returned-error-code-1</a> <a href="#fnref3" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
+
+  </div>
+</article>
+                      
+                        
+
+                          
+                            <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2025
+    Anthony Russano
+  </div>
+
+  <div class="footer-right">
+    <nav>
+      <ul>
+        
+    <div>
+        <a
+            target="_blank" rel="noopener" href='https://github.com/anthonyrussano/anthonyrussano.com/edit/master/site/source/_posts/template'>
+            New</a> -
+        <a
+            target="_blank" rel="noopener" href='https://github.com/anthonyrussano/anthonyrussano.com/edit/master/site/source/_posts/DevOps/Server Administration/Linux/Distributions/Ubuntu/Package Managers/dpkg.md'>
+            Edit</a> -
+        <a
+            target="_blank" rel="noopener" href='https://github.com/anthonyrussano/anthonyrussano.com/commits/master/site/source/_posts/DevOps/Server Administration/Linux/Distributions/Ubuntu/Package Managers/dpkg.md'>
+            History</a> -
+        <a
+            target="_blank" rel="noopener" href='https://github.com/anthonyrussano/anthonyrussano.com/raw/master/site/source/_posts/DevOps/Server Administration/Linux/Distributions/Ubuntu/Package Managers/dpkg.md'>
+            Source</a>
+    </div>
+
+      </ul>
+    </nav>
+  </div>
+
+</footer>
+
+            </div>
+            <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+              <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+    
+
+          
+
+                        <!-- clipboard -->
+                        
+                          
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+                              
+                                    <script type="text/javascript">
+                                      $(function () {
+                                        // copy-btn HTML
+                                        var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+                                        btn += '<i class="fa-regular fa-clone"></i>';
+                                        btn += '</span>';
+                                        // mount it!
+                                        $(".highlight table").before(btn);
+                                        var clip = new ClipboardJS('.btn-copy', {
+                                          text: function (trigger) {
+                                            return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str, it) => str + it.innerText + '\n', '')
+                                          }
+                                        });
+                                        clip.on('success', function (e) {
+                                          e.trigger.setAttribute('aria-label', "Copied!");
+                                          e.clearSelection();
+                                        })
+                                      })
+                                    </script>
+                                    
+                                      
+<script src="/js/main.js"></script>
+
+                                        <!-- search -->
+                                        
+                                          
+<script src="/js/search.js"></script>
+
+                                            <script type="text/javascript">
+                                              $(function () {
+
+                                                var $inputArea = $("input#search-input");
+                                                var $resultArea = document.querySelector("div#search-result");
+
+                                                $inputArea.focus(function () {
+                                                  var search_path = "search.xml";
+                                                  if (search_path.length == 0) {
+                                                    search_path = "search.xml";
+                                                  }
+                                                  var path = "/" + search_path;
+                                                  searchFunc(path, 'search-input', 'search-result');
+                                                });
+
+                                                $inputArea.keydown(function (e) {
+                                                  if (e.which == 13) {
+                                                    e.preventDefault();
+                                                  }
+                                                });
+
+                                                var observer = new MutationObserver(function (mutationsList, observer) {
+                                                  if (mutationsList.length == 1) {
+                                                    if (mutationsList[0].addedNodes.length) {
+                                                      $(".search-no-result").hide();
+                                                    } else if (mutationsList[0].removedNodes.length) {
+                                                      $(".search-no-result").show(200);
+                                                    }
+                                                  }
+                                                });
+
+                                                observer.observe($resultArea, { childList: true });
+
+                                              });
+                                            </script>
+                                            
+                                              <!-- Baidu Analytics -->
+                                              
+                                                  <!-- Cloudflare Analytics -->
+                                                  
+                                                      <!-- Disqus Comments -->
+                                                      
+                                                          <!-- utterances Comments -->
+                                                          
+    </body>
+
+    </html>

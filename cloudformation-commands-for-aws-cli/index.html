@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang=en>
+  <head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Description This document contains a list of available AWS CloudFormation commands for AWS CLI.[1] Available Commands activate-type Activates a public third-party extension, making it available for us">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CloudFormation Commands for AWS CLI">
+<meta property="og:url" content="https://www.anthonyrussano.com/cloudformation-commands-for-aws-cli/index.html">
+<meta property="og:site_name" content="anthonyrussano">
+<meta property="og:description" content="Description This document contains a list of available AWS CloudFormation commands for AWS CLI.[1] Available Commands activate-type Activates a public third-party extension, making it available for us">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-06-17T06:36:25.026Z">
+<meta property="article:modified_time" content="2025-06-17T06:36:25.026Z">
+<meta property="article:author" content="Anthony Russano">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="https://res.cloudinary.com/alchemist-cookbook/image/upload/v1674087936/christianity.jpg">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="https://res.cloudinary.com/alchemist-cookbook/image/upload/v1674087936/christianity.jpg" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="https://res.cloudinary.com/alchemist-cookbook/image/upload/v1674087936/christianity.jpg">
+        
+      
+    
+    <!-- title -->
+    <title>CloudFormation Commands for AWS CLI</title>
+    <!-- async scripts -->
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+</head>
+
+
+    <body class="max-width mx-auto px3 ltr">
+      
+        <!-- <div id="header-post">
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/cloudformation-cli-tool/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/cloudformation-resource-and-property-types-reference/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-image fa-lg" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+        <li><a class="icon" aria-label="Home" href="/"><i class="fa-solid fa-home fa-lg" aria-hidden="true" onmouseover="$('#i-home').toggle();" onmouseout="$('#i-home').toggle();" onclick="$('#').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Image</span>
+      <span id="i-home" class="info" style="display:none;">Home</span>
+    </span>
+    <br/>
+    <div class="icon" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;" id="share" style>
+      
+    <div>
+      <img src="https://res.cloudinary.com/alchemist-cookbook/image/upload/w_400,f_auto/aws" style="border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);">
+    </div>
+  
+  
+    </div>
+    
+    
+      <div id="toc">
+        Keywords
+        
+      </div>
+    
+  </span>
+</div> -->
+          
+            <div class="content index py4 ">
+              
+                    <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        CloudFormation Commands for AWS CLI
+    </h1>
+
+
+
+      <div class="meta">
+        <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <span class="p-name" itemprop="name">
+          </span>
+        </span>
+        <a href="/">Home</a> › <a class="category-link" href="/categories/devops/">DevOps</a> › <a class="category-link" href="/categories/devops/infrastructure-as-code/">Infrastructure as Code</a> › <a class="category-link" href="/categories/devops/infrastructure-as-code/infrastructure-provisioning/">Infrastructure Provisioning</a> › <a class="category-link" href="/categories/devops/infrastructure-as-code/infrastructure-provisioning/aws-cloudformation/">AWS CloudFormation</a>
+<br>
+        
+      </div>
+  </header>
+  <div class="content e-content" itemprop="articleBody">
+    
+    <div>
+      <img src="https://res.cloudinary.com/alchemist-cookbook/image/upload/w_400,f_auto/aws" style="border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);">
+    </div>
+  
+  
+    <h2 id="Description">Description</h2>
+<p>This document contains a list of available AWS CloudFormation commands for AWS CLI.<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup></p>
+<h2 id="Available-Commands">Available Commands</h2>
+<h3 id="activate-type">activate-type</h3>
+<p>Activates a public third-party extension, making it available for use in stack templates. For more information, see Using public extensions in the CloudFormation User Guide.</p>
+<p>Once you have activated a public third-party extension in your account and region, use SetTypeConfiguration to specify configuration properties for the extension. For more information, see Configuring extensions at the account level in the CloudFormation User Guide.</p>
+<h3 id="batch-describe-type-configurations">batch-describe-type-configurations</h3>
+<p>Returns configuration data for the specified CloudFormation extensions, from the CloudFormation registry for the account and region.</p>
+<h3 id="cancel-update-stack">cancel-update-stack</h3>
+<h3 id="continue-update-rollback">continue-update-rollback</h3>
+<h3 id="create-change-set">create-change-set</h3>
+<h3 id="create-stack">create-stack</h3>
+<h3 id="create-stack-instances">create-stack-instances</h3>
+<h3 id="create-stack-set">create-stack-set</h3>
+<h3 id="deactivate-type">deactivate-type</h3>
+<p>Deactivates a public extension that was previously activated in this account and region.</p>
+<p>Once deactivated, an extension cannot be used in any CloudFormation operation. This includes stack update operations where the stack template includes the extension, even if no updates are being made to the extension. In addition, deactivated extensions are not automatically updated if a new version of the extension is released.</p>
+<h3 id="delete-change-set">delete-change-set</h3>
+<h3 id="delete-stack">delete-stack</h3>
+<h3 id="delete-stack-instances">delete-stack-instances</h3>
+<h3 id="delete-stack-set">delete-stack-set</h3>
+<h3 id="deploy">deploy</h3>
+<h3 id="deregister-type">deregister-type</h3>
+<h3 id="describe-account-limits">describe-account-limits</h3>
+<h3 id="describe-change-set">describe-change-set</h3>
+<h3 id="describe-publisher">describe-publisher</h3>
+<h3 id="describe-stack-drift-detection-status">describe-stack-drift-detection-status</h3>
+<h3 id="describe-stack-events">describe-stack-events</h3>
+<h3 id="describe-stack-instance">describe-stack-instance</h3>
+<h3 id="describe-stack-resource">describe-stack-resource</h3>
+<h3 id="describe-stack-resource-drifts">describe-stack-resource-drifts</h3>
+<h3 id="describe-stack-resources">describe-stack-resources</h3>
+<h3 id="describe-stack-set">describe-stack-set</h3>
+<h3 id="describe-stack-set-operation">describe-stack-set-operation</h3>
+<h3 id="describe-stacks">describe-stacks</h3>
+<h3 id="describe-type">describe-type</h3>
+<h3 id="describe-type-registration">describe-type-registration</h3>
+<h3 id="detect-stack-drift">detect-stack-drift</h3>
+<h3 id="detect-stack-resource-drift">detect-stack-resource-drift</h3>
+<h3 id="detect-stack-set-drift">detect-stack-set-drift</h3>
+<h3 id="estimate-template-cost">estimate-template-cost</h3>
+<h3 id="execute-change-set">execute-change-set</h3>
+<h3 id="get-stack-policy">get-stack-policy</h3>
+<h3 id="get-template">get-template</h3>
+<h3 id="get-template-summary">get-template-summary</h3>
+<h3 id="import-stacks-to-stack-set">import-stacks-to-stack-set</h3>
+<h3 id="list-change-sets">list-change-sets</h3>
+<h3 id="list-exports">list-exports</h3>
+<h3 id="list-imports">list-imports</h3>
+<p>Lists all stacks that are importing an exported output value. To modify or remove an exported output value, first use this action to see which stacks are using it. To see the exported output values in your account, see ListExports.</p>
+<p><code>list-imports</code> is a paginated operation. Multiple API calls may be issued in order to retrieve the entire data set of results. You can disable pagination by providing the <code>--no-paginate</code> argument. When using <code>--output text</code> and the <code>--query</code> argument on a paginated response, the <code>--query</code> argument must extract data from the results of the following query expressions: <code>Imports</code></p>
+<h3 id="list-stack-instances">list-stack-instances</h3>
+<h3 id="list-stack-resources">list-stack-resources</h3>
+<h3 id="list-stack-set-operation-results">list-stack-set-operation-results</h3>
+<h3 id="list-stack-set-operations">list-stack-set-operations</h3>
+<h3 id="list-stack-sets">list-stack-sets</h3>
+<h3 id="list-stacks">list-stacks</h3>
+<h3 id="list-type-registrations">list-type-registrations</h3>
+<h3 id="list-type-versions">list-type-versions</h3>
+<h3 id="list-types">list-types</h3>
+<h3 id="package">package</h3>
+<h3 id="publish-type">publish-type</h3>
+<h3 id="record-handler-progress">record-handler-progress</h3>
+<h3 id="register-publisher">register-publisher</h3>
+<h3 id="register-type">register-type</h3>
+<h3 id="rollback-stack">rollback-stack</h3>
+<h3 id="set-stack-policy">set-stack-policy</h3>
+<h3 id="set-type-configuration">set-type-configuration</h3>
+<h3 id="set-type-default-version">set-type-default-version</h3>
+<h3 id="signal-resource">signal-resource</h3>
+<h3 id="stop-stack-set-operation">stop-stack-set-operation</h3>
+<h3 id="test-type">test-type</h3>
+<h3 id="update-stack">update-stack</h3>
+<h3 id="update-stack-instances">update-stack-instances</h3>
+<h3 id="update-stack-set">update-stack-set</h3>
+<h3 id="update-termination-protection">update-termination-protection</h3>
+<h3 id="validate-template">validate-template</h3>
+<h3 id="wait">wait</h3>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p><a target="_blank" rel="noopener" href="https://awscli.amazonaws.com/v2/documentation/api/latest/reference/cloudformation/index.html">https://awscli.amazonaws.com/v2/documentation/api/latest/reference/cloudformation/index.html</a> <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
+
+  </div>
+</article>
+                      
+                        
+
+                          
+                            <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2025
+    Anthony Russano
+  </div>
+
+  <div class="footer-right">
+    <nav>
+      <ul>
+        
+    <div>
+        <a
+            target="_blank" rel="noopener" href='https://github.com/anthonyrussano/anthonyrussano.com/edit/master/site/source/_posts/template'>
+            New</a> -
+        <a
+            target="_blank" rel="noopener" href='https://github.com/anthonyrussano/anthonyrussano.com/edit/master/site/source/_posts/DevOps/Infrastructure as Code/Infrastructure Provisioning/AWS CloudFormation/cloudformation-commands-for-aws-cli.md'>
+            Edit</a> -
+        <a
+            target="_blank" rel="noopener" href='https://github.com/anthonyrussano/anthonyrussano.com/commits/master/site/source/_posts/DevOps/Infrastructure as Code/Infrastructure Provisioning/AWS CloudFormation/cloudformation-commands-for-aws-cli.md'>
+            History</a> -
+        <a
+            target="_blank" rel="noopener" href='https://github.com/anthonyrussano/anthonyrussano.com/raw/master/site/source/_posts/DevOps/Infrastructure as Code/Infrastructure Provisioning/AWS CloudFormation/cloudformation-commands-for-aws-cli.md'>
+            Source</a>
+    </div>
+
+      </ul>
+    </nav>
+  </div>
+
+</footer>
+
+            </div>
+            <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+              <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+    
+
+          
+
+                        <!-- clipboard -->
+                        
+                          
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+                              
+                                    <script type="text/javascript">
+                                      $(function () {
+                                        // copy-btn HTML
+                                        var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+                                        btn += '<i class="fa-regular fa-clone"></i>';
+                                        btn += '</span>';
+                                        // mount it!
+                                        $(".highlight table").before(btn);
+                                        var clip = new ClipboardJS('.btn-copy', {
+                                          text: function (trigger) {
+                                            return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str, it) => str + it.innerText + '\n', '')
+                                          }
+                                        });
+                                        clip.on('success', function (e) {
+                                          e.trigger.setAttribute('aria-label', "Copied!");
+                                          e.clearSelection();
+                                        })
+                                      })
+                                    </script>
+                                    
+                                      
+<script src="/js/main.js"></script>
+
+                                        <!-- search -->
+                                        
+                                          
+<script src="/js/search.js"></script>
+
+                                            <script type="text/javascript">
+                                              $(function () {
+
+                                                var $inputArea = $("input#search-input");
+                                                var $resultArea = document.querySelector("div#search-result");
+
+                                                $inputArea.focus(function () {
+                                                  var search_path = "search.xml";
+                                                  if (search_path.length == 0) {
+                                                    search_path = "search.xml";
+                                                  }
+                                                  var path = "/" + search_path;
+                                                  searchFunc(path, 'search-input', 'search-result');
+                                                });
+
+                                                $inputArea.keydown(function (e) {
+                                                  if (e.which == 13) {
+                                                    e.preventDefault();
+                                                  }
+                                                });
+
+                                                var observer = new MutationObserver(function (mutationsList, observer) {
+                                                  if (mutationsList.length == 1) {
+                                                    if (mutationsList[0].addedNodes.length) {
+                                                      $(".search-no-result").hide();
+                                                    } else if (mutationsList[0].removedNodes.length) {
+                                                      $(".search-no-result").show(200);
+                                                    }
+                                                  }
+                                                });
+
+                                                observer.observe($resultArea, { childList: true });
+
+                                              });
+                                            </script>
+                                            
+                                              <!-- Baidu Analytics -->
+                                              
+                                                  <!-- Cloudflare Analytics -->
+                                                  
+                                                      <!-- Disqus Comments -->
+                                                      
+                                                          <!-- utterances Comments -->
+                                                          
+    </body>
+
+    </html>

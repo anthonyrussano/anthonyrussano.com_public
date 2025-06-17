@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang=en>
+  <head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Description The SSH config file allows each user to define specific SSH options for connecting to multiple different remote hosts. Instructions Files ~&#x2F;.ssh&#x2F;config This is the per-user configuration f">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SSH Config File Settings">
+<meta property="og:url" content="https://www.anthonyrussano.com/ssh-config-file-settings/index.html">
+<meta property="og:site_name" content="anthonyrussano">
+<meta property="og:description" content="Description The SSH config file allows each user to define specific SSH options for connecting to multiple different remote hosts. Instructions Files ~&#x2F;.ssh&#x2F;config This is the per-user configuration f">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-06-17T06:36:25.029Z">
+<meta property="article:modified_time" content="2025-06-17T06:36:25.029Z">
+<meta property="article:author" content="Anthony Russano">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="https://res.cloudinary.com/alchemist-cookbook/image/upload/v1674087936/christianity.jpg">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="https://res.cloudinary.com/alchemist-cookbook/image/upload/v1674087936/christianity.jpg" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="https://res.cloudinary.com/alchemist-cookbook/image/upload/v1674087936/christianity.jpg">
+        
+      
+    
+    <!-- title -->
+    <title>SSH Config File Settings</title>
+    <!-- async scripts -->
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+</head>
+
+
+    <body class="max-width mx-auto px3 ltr">
+      
+        <!-- <div id="header-post">
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" aria-label="Previous post" href="/what-is-network-file-system/"><i class="fa-solid fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/how-to-use-ssh-with-a-bastion-host/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-image fa-lg" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+        <li><a class="icon" aria-label="Home" href="/"><i class="fa-solid fa-home fa-lg" aria-hidden="true" onmouseover="$('#i-home').toggle();" onmouseout="$('#i-home').toggle();" onclick="$('#').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Image</span>
+      <span id="i-home" class="info" style="display:none;">Home</span>
+    </span>
+    <br/>
+    <div class="icon" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;" id="share" style>
+      
+    <div>
+      <img src="https://res.cloudinary.com/alchemist-cookbook/image/upload/w_400,f_auto/ssh" style="border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);">
+    </div>
+  
+  
+    </div>
+    
+    
+      <div id="toc">
+        Keywords
+        
+      </div>
+    
+  </span>
+</div> -->
+          
+            <div class="content index py4 ">
+              
+                    <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        SSH Config File Settings
+    </h1>
+
+
+
+      <div class="meta">
+        <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <span class="p-name" itemprop="name">
+          </span>
+        </span>
+        <a href="/">Home</a> › <a class="category-link" href="/categories/devops/">DevOps</a> › <a class="category-link" href="/categories/devops/network-and-security/">Network and Security</a> › <a class="category-link" href="/categories/devops/network-and-security/remote-access/">Remote Access</a> › <a class="category-link" href="/categories/devops/network-and-security/remote-access/ssh/">SSH</a>
+<br>
+        
+      </div>
+  </header>
+  <div class="content e-content" itemprop="articleBody">
+    
+    <div>
+      <img src="https://res.cloudinary.com/alchemist-cookbook/image/upload/w_400,f_auto/ssh" style="border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);">
+    </div>
+  
+  
+    <h2 id="Description">Description</h2>
+<p>The SSH config file allows each user to define specific SSH options for connecting to multiple different remote hosts.</p>
+<h2 id="Instructions">Instructions</h2>
+<h3 id="Files">Files</h3>
+<h4 id="ssh-config"><code>~/.ssh/config</code></h4>
+<p>This is the per-user configuration file. This file is used by the SSH client. Because of the potential for abuse, this file must have strict permissions: read/write for the user, and not writable by others.</p>
+<h4 id="etc-ssh-ssh-config"><code>/etc/ssh/ssh_config</code></h4>
+<p>Systemwide configuration file. This file provides defaults for those values that are not specified in the user’s configuration file, and for those users who do not have a configuration file. This file must be world-readable.</p>
+<p>If these files don’t exist, you may need to create them first.</p>
+<p>If the config file is new, you might need to set the following permissions:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ chmod 600 ~/.ssh/config</span><br></pre></td></tr></table></figure>
+<p>This ensures that ONLY your user has access to edit this file.</p>
+<h3 id="Example-1-Basic-Usage">Example 1: Basic Usage</h3>
+<p>The following example can be used to setup pre-defined connections to hosts on your local network.</p>
+<p><code>~/.ssh/config</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Host my-ssh-host</span><br><span class="line">  HostName 10.0.0.5</span><br><span class="line">  Port 22</span><br><span class="line">  ForwardX11 no</span><br><span class="line">  User anthony</span><br><span class="line">  Compression no</span><br><span class="line">  IdentityFile ~/.ssh/id_rsa</span><br><span class="line">  IdentitiesOnly yes</span><br></pre></td></tr></table></figure>
+<p>Sample connection:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh my-ssh-host</span><br></pre></td></tr></table></figure>
+<h3 id="Example-2-Connecting-to-GitHub-com">Example 2: Connecting to <a target="_blank" rel="noopener" href="http://GitHub.com">GitHub.com</a></h3>
+<p>The following example allows you to connect to multiple <a target="_blank" rel="noopener" href="http://github.com">github.com</a> accounts using seperate keys for each connection.  Since <a target="_blank" rel="noopener" href="http://GitHub.com">GitHub.com</a> does <strong>not</strong> allow the use of the same SSH key accross multiple accounts.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Host podcast</span><br><span class="line">    HostName github.com</span><br><span class="line">    IdentityFile ~/.ssh/podcast</span><br><span class="line">Host example.com</span><br><span class="line">    HostName github.com</span><br><span class="line">    IdentityFile ~/.ssh/example.com</span><br><span class="line">Host radio</span><br><span class="line">    HostName github.com</span><br><span class="line">    IdentityFile ~/.ssh/radio</span><br></pre></td></tr></table></figure>
+<p>In the above example three host entries are defined; <code>podcast</code>, <code>example.com</code>, and <code>radio</code>.</p>
+<p>The <code>HostName</code> for each <code>Host</code> entry points to <code>github.com</code></p>
+<p>A unique <code>IdentityFile</code> is specified for each <code>Host</code> entry.</p>
+<p>Verify that the permissions of each IdentityFile are 400.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ chmod 400 ~/.ssh/id_rsa_github</span><br></pre></td></tr></table></figure>
+<p>This verifies that the file is read-only and accessible only by your user.</p>
+<p>The following example shows how to reference each git repo based on the above config file:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git clone git@&#123;HOST&#125;:&#123;ORG_NAME&#125;/&#123;REPO_NAME&#125;.git</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git@podcast:username/podcast.git</span><br><span class="line">git@example.com:username/example.com.git</span><br><span class="line">git@radio:username/radio.git</span><br></pre></td></tr></table></figure>
+<h2 id="Sources">Sources</h2>
+<p><sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> <sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup> <sup class="footnote-ref"><a href="#fn3" id="fnref3">[3]</a></sup> <sup class="footnote-ref"><a href="#fn4" id="fnref4">[4]</a></sup> <sup class="footnote-ref"><a href="#fn5" id="fnref5">[5]</a></sup> <sup class="footnote-ref"><a href="#fn6" id="fnref6">[6]</a></sup> <sup class="footnote-ref"><a href="#fn7" id="fnref7">[7]</a></sup> <sup class="footnote-ref"><a href="#fn8" id="fnref8">[8]</a></sup> <sup class="footnote-ref"><a href="#fn9" id="fnref9">[9]</a></sup> <sup class="footnote-ref"><a href="#fn10" id="fnref10">[10]</a></sup> <sup class="footnote-ref"><a href="#fn11" id="fnref11">[11]</a></sup> <sup class="footnote-ref"><a href="#fn12" id="fnref12">[12]</a></sup></p>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p><a target="_blank" rel="noopener" href="https://dev.to/arnellebalane/setting-up-multiple-github-accounts-the-nicer-way-1m5m#:~:text=GitHub%20does%20not%20allow%20us,~%2F">https://dev.to/arnellebalane/setting-up-multiple-github-accounts-the-nicer-way-1m5m#:~:text=GitHub does not allow us,~%2F</a>. <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn2" class="footnote-item"><p><a target="_blank" rel="noopener" href="https://futurestud.io/tutorials/simplify-your-ssh-connections-with-ssh-config-file">https://futurestud.io/tutorials/simplify-your-ssh-connections-with-ssh-config-file</a> <a href="#fnref2" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn3" class="footnote-item"><p><a target="_blank" rel="noopener" href="https://www.cloudsavvyit.com/4274/how-to-manage-an-ssh-config-file-in-windows-linux/">https://www.cloudsavvyit.com/4274/how-to-manage-an-ssh-config-file-in-windows-linux/</a> <a href="#fnref3" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn4" class="footnote-item"><p><a target="_blank" rel="noopener" href="https://linuxize.com/post/using-the-ssh-config-file/">https://linuxize.com/post/using-the-ssh-config-file/</a> <a href="#fnref4" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn5" class="footnote-item"><p><a target="_blank" rel="noopener" href="https://linuxhint.com/ssh-config-file/">https://linuxhint.com/ssh-config-file/</a> <a href="#fnref5" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn6" class="footnote-item"><p><a target="_blank" rel="noopener" href="https://man.openbsd.org/ssh_config">https://man.openbsd.org/ssh_config</a> <a href="#fnref6" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn7" class="footnote-item"><p><a target="_blank" rel="noopener" href="https://superuser.com/questions/772660/howto-force-ssh-to-use-a-specific-private-key">https://superuser.com/questions/772660/howto-force-ssh-to-use-a-specific-private-key</a> <a href="#fnref7" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn8" class="footnote-item"><p><a target="_blank" rel="noopener" href="https://superuser.com/questions/268776/how-do-i-configure-ssh-so-it-doesnt-try-all-the-identity-files-automatically">https://superuser.com/questions/268776/how-do-i-configure-ssh-so-it-doesnt-try-all-the-identity-files-automatically</a> <a href="#fnref8" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn9" class="footnote-item"><p><a target="_blank" rel="noopener" href="https://www.ssh.com/academy/ssh/sshd_config">https://www.ssh.com/academy/ssh/sshd_config</a> <a href="#fnref9" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn10" class="footnote-item"><p><a target="_blank" rel="noopener" href="https://www.cyberciti.biz/faq/create-ssh-config-file-on-linux-unix/">https://www.cyberciti.biz/faq/create-ssh-config-file-on-linux-unix/</a> <a href="#fnref10" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn11" class="footnote-item"><p><a target="_blank" rel="noopener" href="https://unix.stackexchange.com/questions/606832/ssh-config-global-settings-vs-host">https://unix.stackexchange.com/questions/606832/ssh-config-global-settings-vs-host</a> <a href="#fnref11" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn12" class="footnote-item"><p><a target="_blank" rel="noopener" href="https://superuser.com/questions/232373/how-to-tell-git-which-private-key-to-use">https://superuser.com/questions/232373/how-to-tell-git-which-private-key-to-use</a> <a href="#fnref12" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
+
+  </div>
+</article>
+                      
+                        
+
+                          
+                            <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2025
+    Anthony Russano
+  </div>
+
+  <div class="footer-right">
+    <nav>
+      <ul>
+        
+    <div>
+        <a
+            target="_blank" rel="noopener" href='https://github.com/anthonyrussano/anthonyrussano.com/edit/master/site/source/_posts/template'>
+            New</a> -
+        <a
+            target="_blank" rel="noopener" href='https://github.com/anthonyrussano/anthonyrussano.com/edit/master/site/source/_posts/DevOps/Network and Security/Remote Access/SSH/ssh-config-file-settings.md'>
+            Edit</a> -
+        <a
+            target="_blank" rel="noopener" href='https://github.com/anthonyrussano/anthonyrussano.com/commits/master/site/source/_posts/DevOps/Network and Security/Remote Access/SSH/ssh-config-file-settings.md'>
+            History</a> -
+        <a
+            target="_blank" rel="noopener" href='https://github.com/anthonyrussano/anthonyrussano.com/raw/master/site/source/_posts/DevOps/Network and Security/Remote Access/SSH/ssh-config-file-settings.md'>
+            Source</a>
+    </div>
+
+      </ul>
+    </nav>
+  </div>
+
+</footer>
+
+            </div>
+            <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+              <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+    
+
+          
+
+                        <!-- clipboard -->
+                        
+                          
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+                              
+                                    <script type="text/javascript">
+                                      $(function () {
+                                        // copy-btn HTML
+                                        var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+                                        btn += '<i class="fa-regular fa-clone"></i>';
+                                        btn += '</span>';
+                                        // mount it!
+                                        $(".highlight table").before(btn);
+                                        var clip = new ClipboardJS('.btn-copy', {
+                                          text: function (trigger) {
+                                            return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str, it) => str + it.innerText + '\n', '')
+                                          }
+                                        });
+                                        clip.on('success', function (e) {
+                                          e.trigger.setAttribute('aria-label', "Copied!");
+                                          e.clearSelection();
+                                        })
+                                      })
+                                    </script>
+                                    
+                                      
+<script src="/js/main.js"></script>
+
+                                        <!-- search -->
+                                        
+                                          
+<script src="/js/search.js"></script>
+
+                                            <script type="text/javascript">
+                                              $(function () {
+
+                                                var $inputArea = $("input#search-input");
+                                                var $resultArea = document.querySelector("div#search-result");
+
+                                                $inputArea.focus(function () {
+                                                  var search_path = "search.xml";
+                                                  if (search_path.length == 0) {
+                                                    search_path = "search.xml";
+                                                  }
+                                                  var path = "/" + search_path;
+                                                  searchFunc(path, 'search-input', 'search-result');
+                                                });
+
+                                                $inputArea.keydown(function (e) {
+                                                  if (e.which == 13) {
+                                                    e.preventDefault();
+                                                  }
+                                                });
+
+                                                var observer = new MutationObserver(function (mutationsList, observer) {
+                                                  if (mutationsList.length == 1) {
+                                                    if (mutationsList[0].addedNodes.length) {
+                                                      $(".search-no-result").hide();
+                                                    } else if (mutationsList[0].removedNodes.length) {
+                                                      $(".search-no-result").show(200);
+                                                    }
+                                                  }
+                                                });
+
+                                                observer.observe($resultArea, { childList: true });
+
+                                              });
+                                            </script>
+                                            
+                                              <!-- Baidu Analytics -->
+                                              
+                                                  <!-- Cloudflare Analytics -->
+                                                  
+                                                      <!-- Disqus Comments -->
+                                                      
+                                                          <!-- utterances Comments -->
+                                                          
+    </body>
+
+    </html>
