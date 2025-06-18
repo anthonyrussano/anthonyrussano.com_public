@@ -38,7 +38,7 @@ class StarField3D {
         
         // Performance optimizations
         this.isLowEndDevice = this.detectLowEndDevice();
-        this.maxStars = this.isLowEndDevice ? 100 : 500; // Further reduced limits for better performance
+        this.maxStars = this.isLowEndDevice ? 500 : 1000; // Increased limits to show more stars consistently
         this.animationId = null;
         this.lastFrameTime = 0;
         this.targetFPS = this.isLowEndDevice ? 30 : 60;
