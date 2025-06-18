@@ -303,39 +303,54 @@ class StarField3D {
     }
     
     
+    shuffleArray(array) {
+        // Fisher-Yates shuffle algorithm
+        const shuffled = [...array];
+        for (let i = shuffled.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
+        return shuffled;
+    }
+
     async loadPosts() {
         try {
+            let allPosts;
+            
             // Use cached data if available
             if (window.searchDataCache) {
-                this.posts = window.searchDataCache;
-                console.log(`StarField3D: Loaded ${this.posts.length} posts from cache`);
-                return;
+                allPosts = window.searchDataCache;
+                console.log(`StarField3D: Loaded ${allPosts.length} posts from cache`);
+            } else {
+                console.log('StarField3D: Fetching search.xml...');
+                const response = await fetch('/search.xml');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const xmlText = await response.text();
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(xmlText, 'text/xml');
+                
+                const entries = xmlDoc.querySelectorAll('entry');
+                allPosts = Array.from(entries).map(entry => {
+                    const title = entry.querySelector('title')?.textContent || 'Untitled';
+                    const link = entry.querySelector('link')?.getAttribute('href') || 
+                               entry.querySelector('url')?.textContent || '#';
+                    return {
+                        title: title,
+                        url: link
+                    };
+                });
+                
+                // Cache the data for future use
+                window.searchDataCache = allPosts;
+                console.log(`StarField3D: Loaded ${allPosts.length} posts from search.xml and cached`);
             }
             
-            console.log('StarField3D: Fetching search.xml...');
-            const response = await fetch('/search.xml');
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            const xmlText = await response.text();
-            const parser = new DOMParser();
-            const xmlDoc = parser.parseFromString(xmlText, 'text/xml');
+            // Always shuffle the posts for random selection on each page load
+            this.posts = this.shuffleArray(allPosts);
+            console.log(`StarField3D: Posts shuffled for random star assignment`);
             
-            const entries = xmlDoc.querySelectorAll('entry');
-            this.posts = Array.from(entries).map(entry => {
-                const title = entry.querySelector('title')?.textContent || 'Untitled';
-                const link = entry.querySelector('link')?.getAttribute('href') || 
-                           entry.querySelector('url')?.textContent || '#';
-                return {
-                    title: title,
-                    url: link
-                };
-            });
-            
-            // Cache the data for future use
-            window.searchDataCache = this.posts;
-            
-            console.log(`StarField3D: Loaded ${this.posts.length} posts from search.xml and cached`);
         } catch (error) {
             console.error('StarField3D: Failed to load posts from search.xml:', error);
             this.posts = [];
