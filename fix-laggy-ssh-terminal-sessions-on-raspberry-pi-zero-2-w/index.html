@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang=en>
+  <head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Description This guide documents a practical fix for slow or laggy SSH terminal sessions on a Raspberry Pi Zero 2 W. In this case, CPU throttling was not the issue, but WiFi behavior and SSH connectio">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Fix Laggy SSH Terminal Sessions on Raspberry Pi Zero 2 W">
+<meta property="og:url" content="https://www.anthonyrussano.com/fix-laggy-ssh-terminal-sessions-on-raspberry-pi-zero-2-w/index.html">
+<meta property="og:site_name" content="anthonyrussano">
+<meta property="og:description" content="Description This guide documents a practical fix for slow or laggy SSH terminal sessions on a Raspberry Pi Zero 2 W. In this case, CPU throttling was not the issue, but WiFi behavior and SSH connectio">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-03-01T00:14:19.324Z">
+<meta property="article:modified_time" content="2026-03-01T00:14:19.325Z">
+<meta property="article:author" content="Anthony Russano">
+<meta property="article:tag" content="Raspberry Pi">
+<meta property="article:tag" content="Troubleshooting">
+<meta property="article:tag" content="SSH">
+<meta property="article:tag" content="WiFi">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="https://res.cloudinary.com/alchemist-cookbook/image/upload/v1674087936/christianity.jpg">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="https://res.cloudinary.com/alchemist-cookbook/image/upload/v1674087936/christianity.jpg" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="https://res.cloudinary.com/alchemist-cookbook/image/upload/v1674087936/christianity.jpg">
+        
+      
+    
+    <!-- title -->
+    <title>Fix Laggy SSH Terminal Sessions on Raspberry Pi Zero 2 W</title>
+    <!-- async scripts -->
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+</head>
+
+
+    <body class="max-width mx-auto px3 ltr">
+      
+        <!-- <div id="header-post">
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-image fa-lg" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+        <li><a class="icon" aria-label="Home" href="/"><i class="fa-solid fa-home fa-lg" aria-hidden="true" onmouseover="$('#i-home').toggle();" onmouseout="$('#i-home').toggle();" onclick="$('#').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Image</span>
+      <span id="i-home" class="info" style="display:none;">Home</span>
+    </span>
+    <br/>
+    <div class="icon" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;" id="share" style>
+      
+    <div>
+      <img src="https://res.cloudinary.com/alchemist-cookbook/image/upload/w_400,f_auto/raspberry-pi" style="border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);">
+    </div>
+  
+  
+    </div>
+    
+    
+      <div id="toc">
+        Keywords
+        <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/raspberry-pi/" rel="tag">Raspberry Pi</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ssh/" rel="tag">SSH</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/troubleshooting/" rel="tag">Troubleshooting</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wifi/" rel="tag">WiFi</a></li></ul>
+      </div>
+    
+  </span>
+</div> -->
+          
+            <div class="content index py4 ">
+              
+                    <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Fix Laggy SSH Terminal Sessions on Raspberry Pi Zero 2 W
+    </h1>
+
+
+
+      <div class="meta">
+        <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <span class="p-name" itemprop="name">
+          </span>
+        </span>
+        <a href="/">Home</a> › <a class="category-link" href="/categories/devops/">DevOps</a> › <a class="category-link" href="/categories/devops/server-administration/">Server Administration</a> › <a class="category-link" href="/categories/devops/server-administration/linux/">Linux</a> › <a class="category-link" href="/categories/devops/server-administration/linux/distributions/">Distributions</a> › <a class="category-link" href="/categories/devops/server-administration/linux/distributions/raspberry-pi-os/">Raspberry Pi OS</a> › <a class="category-link" href="/categories/devops/server-administration/linux/distributions/raspberry-pi-os/troubleshooting/">Troubleshooting</a>
+<br>
+        
+    <hr>
+<div>
+    <a class="p-category" href="/tags/raspberry-pi/" rel="tag">Raspberry Pi</a>, <a class="p-category" href="/tags/ssh/" rel="tag">SSH</a>, <a class="p-category" href="/tags/troubleshooting/" rel="tag">Troubleshooting</a>, <a class="p-category" href="/tags/wifi/" rel="tag">WiFi</a>
+</div>
+
+      </div>
+  </header>
+  <div class="content e-content" itemprop="articleBody">
+    
+    <div>
+      <img src="https://res.cloudinary.com/alchemist-cookbook/image/upload/w_400,f_auto/raspberry-pi" style="border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);">
+    </div>
+  
+  
+    <h2 id="Description">Description</h2>
+<p>This guide documents a practical fix for slow or laggy SSH terminal sessions on a Raspberry Pi Zero 2 W.</p>
+<p>In this case, CPU throttling was not the issue, but WiFi behavior and SSH connection setup overhead were.</p>
+<h2 id="Requirements">Requirements</h2>
+<ul>
+<li>Raspberry Pi Zero 2 W running Raspberry Pi OS</li>
+<li>SSH access to the Pi</li>
+<li><code>sudo</code> access on the Pi</li>
+<li>Access to your client machine’s <code>~/.ssh/config</code></li>
+</ul>
+<h2 id="Diagnostics">Diagnostics</h2>
+<h3 id="Check-for-CPU-throttling">Check for CPU throttling</h3>
+<p><code>vcgencmd get_throttled</code></p>
+<p>Expected healthy output:</p>
+<p><code>throttled=0x0</code></p>
+<h3 id="Check-for-WiFi-firmware-warnings">Check for WiFi firmware warnings</h3>
+<p><code>dmesg -T | egrep -i &quot;brcmfmac|clm_blob|failed with error -2&quot;</code></p>
+<p>A problematic output looks like:</p>
+<p><code>Direct firmware load for brcm/brcmfmac43436s-sdio.clm_blob failed with error -2</code></p>
+<h3 id="Check-WiFi-power-saving-status">Check WiFi power saving status</h3>
+<p><code>/sbin/iw dev wlan0 get power_save</code></p>
+<h2 id="Fixes-Applied">Fixes Applied</h2>
+<h3 id="1-Add-missing-CLM-blob-symlink-for-Zero-2-W-WiFi-firmware">1. Add missing CLM blob symlink for Zero 2 W WiFi firmware</h3>
+<p>If the file is missing:</p>
+<p><code>/lib/firmware/brcm/brcmfmac43436s-sdio.clm_blob</code></p>
+<p>Create a symlink to the available CLM blob:</p>
+<p><code>sudo ln -s brcmfmac43436-sdio.clm_blob /lib/firmware/brcm/brcmfmac43436s-sdio.clm_blob</code></p>
+<h3 id="2-Disable-WiFi-power-saving-persistently">2. Disable WiFi power saving persistently</h3>
+<p>Install <code>iw</code> if needed:</p>
+<p><code>sudo apt-get update &amp;&amp; sudo apt-get install -y iw</code></p>
+<p>Create a systemd unit at <code>/etc/systemd/system/wifi-powersave-off.service</code>:</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[Unit]</span></span><br><span class="line"><span class="attr">Description</span>=Disable WiFi power saving <span class="literal">on</span> wlan0</span><br><span class="line"><span class="attr">After</span>=network-pre.target</span><br><span class="line"><span class="attr">Wants</span>=network-pre.target</span><br><span class="line"></span><br><span class="line"><span class="section">[Service]</span></span><br><span class="line"><span class="attr">Type</span>=<span class="literal">on</span>eshot</span><br><span class="line"><span class="attr">ExecStart</span>=/sbin/iw dev wlan0 set power_save <span class="literal">off</span></span><br><span class="line"><span class="attr">RemainAfterExit</span>=<span class="literal">yes</span></span><br><span class="line"></span><br><span class="line"><span class="section">[Install]</span></span><br><span class="line"><span class="attr">WantedBy</span>=multi-user.target</span><br></pre></td></tr></table></figure>
+<p>Enable and start the service:</p>
+<p><code>sudo systemctl daemon-reload &amp;&amp; sudo systemctl enable --now wifi-powersave-off.service</code></p>
+<p>Confirm:</p>
+<ul>
+<li><code>/sbin/iw dev wlan0 get power_save</code> should show <code>Power save: off</code></li>
+<li><code>systemctl status wifi-powersave-off.service</code></li>
+</ul>
+<h3 id="3-Speed-up-repeated-SSH-sessions-from-your-client-machine">3. Speed up repeated SSH sessions from your client machine</h3>
+<p>Add host settings to <code>~/.ssh/config</code> on your workstation:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Host gideon</span><br><span class="line">  HostName gideon</span><br><span class="line">  User anthony</span><br><span class="line">  ControlMaster auto</span><br><span class="line">  ControlPath ~/.ssh/cm-%r@%h:%p</span><br><span class="line">  ControlPersist 10m</span><br><span class="line">  ServerAliveInterval 30</span><br><span class="line">  ServerAliveCountMax 3</span><br></pre></td></tr></table></figure>
+<p>This enables SSH connection multiplexing. The first connection stays normal, but additional terminal sessions reuse the existing secure connection and open much faster.</p>
+<h2 id="Results">Results</h2>
+<p>Observed behavior after applying the changes:</p>
+<ul>
+<li>SSH latency became more consistent</li>
+<li>New terminal sessions were significantly faster after the first connection</li>
+<li>WiFi power save was confirmed as off across reboots (via systemd service)</li>
+</ul>
+<h2 id="Notes">Notes</h2>
+<ul>
+<li>Reboot the Pi once after adding the firmware symlink to ensure the corrected firmware path is used at boot.</li>
+<li>If sessions are still laggy, test Ethernet or move the Pi closer to the access point to rule out WiFi signal and interference issues.</li>
+</ul>
+
+  </div>
+</article>
+                      
+                        
+
+                          
+                            <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2026
+    Anthony Russano
+  </div>
+
+  <div class="footer-right">
+    <nav>
+      <ul>
+        
+    <div>
+        <a
+            target="_blank" rel="noopener" href='https://github.com/anthonyrussano/anthonyrussano.com/edit/master/site/source/_posts/template'>
+            New</a> -
+        <a
+            target="_blank" rel="noopener" href='https://github.com/anthonyrussano/anthonyrussano.com/edit/master/site/source/_posts/DevOps/Server Administration/Linux/Distributions/Raspberry Pi OS/Troubleshooting/fix-laggy-ssh-terminal-on-pi-zero-2w.md'>
+            Edit</a> -
+        <a
+            target="_blank" rel="noopener" href='https://github.com/anthonyrussano/anthonyrussano.com/commits/master/site/source/_posts/DevOps/Server Administration/Linux/Distributions/Raspberry Pi OS/Troubleshooting/fix-laggy-ssh-terminal-on-pi-zero-2w.md'>
+            History</a> -
+        <a
+            target="_blank" rel="noopener" href='https://github.com/anthonyrussano/anthonyrussano.com/raw/master/site/source/_posts/DevOps/Server Administration/Linux/Distributions/Raspberry Pi OS/Troubleshooting/fix-laggy-ssh-terminal-on-pi-zero-2w.md'>
+            Source</a>
+    </div>
+
+      </ul>
+    </nav>
+  </div>
+
+</footer>
+
+            </div>
+            <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+              <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+    
+
+          
+
+                        <!-- clipboard -->
+                        
+                          
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+                              
+                                    <script type="text/javascript">
+                                      $(function () {
+                                        // copy-btn HTML
+                                        var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+                                        btn += '<i class="fa-regular fa-clone"></i>';
+                                        btn += '</span>';
+                                        // mount it!
+                                        $(".highlight table").before(btn);
+                                        var clip = new ClipboardJS('.btn-copy', {
+                                          text: function (trigger) {
+                                            return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str, it) => str + it.innerText + '\n', '')
+                                          }
+                                        });
+                                        clip.on('success', function (e) {
+                                          e.trigger.setAttribute('aria-label', "Copied!");
+                                          e.clearSelection();
+                                        })
+                                      })
+                                    </script>
+                                    
+                                      
+<script src="/js/main.js"></script>
+
+                                        <!-- search -->
+                                        
+                                          
+<script src="/js/search.js"></script>
+
+                                            <script type="text/javascript">
+                                              $(function () {
+
+                                                var $inputArea = $("input#search-input");
+                                                var $resultArea = document.querySelector("div#search-result");
+
+                                                $inputArea.focus(function () {
+                                                  var search_path = "search.xml";
+                                                  if (search_path.length == 0) {
+                                                    search_path = "search.xml";
+                                                  }
+                                                  var path = "/" + search_path;
+                                                  searchFunc(path, 'search-input', 'search-result');
+                                                });
+
+                                                $inputArea.keydown(function (e) {
+                                                  if (e.which == 13) {
+                                                    e.preventDefault();
+                                                  }
+                                                });
+
+                                                var observer = new MutationObserver(function (mutationsList, observer) {
+                                                  if (mutationsList.length == 1) {
+                                                    if (mutationsList[0].addedNodes.length) {
+                                                      $(".search-no-result").hide();
+                                                    } else if (mutationsList[0].removedNodes.length) {
+                                                      $(".search-no-result").show(200);
+                                                    }
+                                                  }
+                                                });
+
+                                                observer.observe($resultArea, { childList: true });
+
+                                              });
+                                            </script>
+                                            
+                                              <!-- Baidu Analytics -->
+                                              
+                                                  <!-- Cloudflare Analytics -->
+                                                  
+                                                      <!-- Disqus Comments -->
+                                                      
+                                                          <!-- utterances Comments -->
+                                                          
+    </body>
+
+    </html>
