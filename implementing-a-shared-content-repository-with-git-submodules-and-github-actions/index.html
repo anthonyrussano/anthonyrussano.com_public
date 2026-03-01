@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang=en>
+  <head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Description This article documents the implementation of a shared content repository architecture using Git submodules and GitHub Actions to manage markdown content across multiple static site deploym">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Implementing a Shared Content Repository with Git Submodules and GitHub Actions">
+<meta property="og:url" content="https://www.anthonyrussano.com/implementing-a-shared-content-repository-with-git-submodules-and-github-actions/index.html">
+<meta property="og:site_name" content="anthonyrussano">
+<meta property="og:description" content="Description This article documents the implementation of a shared content repository architecture using Git submodules and GitHub Actions to manage markdown content across multiple static site deploym">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-03-01T00:34:07.251Z">
+<meta property="article:modified_time" content="2026-03-01T00:34:07.251Z">
+<meta property="article:author" content="Anthony Russano">
+<meta property="article:tag" content="GitHub Actions">
+<meta property="article:tag" content="Git">
+<meta property="article:tag" content="CI&#x2F;CD">
+<meta property="article:tag" content="Submodules">
+<meta property="article:tag" content="Automation">
+<meta property="article:tag" content="DevOps">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="Static Sites">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="https://res.cloudinary.com/alchemist-cookbook/image/upload/v1674087936/christianity.jpg">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="https://res.cloudinary.com/alchemist-cookbook/image/upload/v1674087936/christianity.jpg" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="https://res.cloudinary.com/alchemist-cookbook/image/upload/v1674087936/christianity.jpg">
+        
+      
+    
+    <!-- title -->
+    <title>Implementing a Shared Content Repository with Git Submodules and GitHub Actions</title>
+    <!-- async scripts -->
+
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+</head>
+
+
+    <body class="max-width mx-auto px3 ltr">
+      
+        <!-- <div id="header-post">
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fa-solid fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" aria-label="Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa-solid fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post" href="/"><i class="fa-solid fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa-solid fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post" href="#"><i class="fa-solid fa-image fa-lg" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+        <li><a class="icon" aria-label="Home" href="/"><i class="fa-solid fa-home fa-lg" aria-hidden="true" onmouseover="$('#i-home').toggle();" onmouseout="$('#i-home').toggle();" onclick="$('#').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Image</span>
+      <span id="i-home" class="info" style="display:none;">Home</span>
+    </span>
+    <br/>
+    <div class="icon" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;" id="share" style>
+      
+    <div>
+      <img src="https://res.cloudinary.com/alchemist-cookbook/image/upload/w_400,f_auto/git" style="border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);">
+    </div>
+  
+  
+    </div>
+    
+    
+      <div id="toc">
+        Keywords
+        <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/automation/" rel="tag">Automation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ci-cd/" rel="tag">CI&#x2F;CD</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/devops/" rel="tag">DevOps</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">Git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github-actions/" rel="tag">GitHub Actions</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/static-sites/" rel="tag">Static Sites</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/submodules/" rel="tag">Submodules</a></li></ul>
+      </div>
+    
+  </span>
+</div> -->
+          
+            <div class="content index py4 ">
+              
+                    <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle p-name" itemprop="name headline">
+        Implementing a Shared Content Repository with Git Submodules and GitHub Actions
+    </h1>
+
+
+
+      <div class="meta">
+        <span class="author p-author h-card" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <span class="p-name" itemprop="name">
+          </span>
+        </span>
+        <a href="/">Home</a> › <a class="category-link" href="/categories/devops/">DevOps</a> › <a class="category-link" href="/categories/devops/cicd/">CICD</a> › <a class="category-link" href="/categories/devops/cicd/github-actions/">GitHub Actions</a>
+<br>
+        
+    <hr>
+<div>
+    <a class="p-category" href="/tags/automation/" rel="tag">Automation</a>, <a class="p-category" href="/tags/ci-cd/" rel="tag">CI/CD</a>, <a class="p-category" href="/tags/devops/" rel="tag">DevOps</a>, <a class="p-category" href="/tags/git/" rel="tag">Git</a>, <a class="p-category" href="/tags/github-actions/" rel="tag">GitHub Actions</a>, <a class="p-category" href="/tags/hexo/" rel="tag">Hexo</a>, <a class="p-category" href="/tags/static-sites/" rel="tag">Static Sites</a>, <a class="p-category" href="/tags/submodules/" rel="tag">Submodules</a>
+</div>
+
+      </div>
+  </header>
+  <div class="content e-content" itemprop="articleBody">
+    
+    <div>
+      <img src="https://res.cloudinary.com/alchemist-cookbook/image/upload/w_400,f_auto/git" style="border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);">
+    </div>
+  
+  
+    <h2 id="Description">Description</h2>
+<p>This article documents the implementation of a shared content repository architecture using Git submodules and GitHub Actions to manage markdown content across multiple static site deployments. The solution enables centralized content management with automated deployment to multiple frontends.</p>
+<h2 id="Architecture-Overview">Architecture Overview</h2>
+<p>The implementation uses a three-repository structure:</p>
+<ol>
+<li><strong>Content Repository</strong> (<code>wikip-co/content</code>): Central repository containing all markdown files</li>
+<li><strong>Site Repository 1</strong> (<code>wikip-co/wikip.co</code>): Hexo static site using content as a submodule</li>
+<li><strong>Site Repository 2</strong> (<code>anthonyrussano/anthonyrussano.com</code>): Hexo static site using content as a submodule</li>
+</ol>
+<p>When markdown files are modified in the content repository, GitHub Actions automatically triggers rebuilds of both site repositories.</p>
+<h2 id="Implementation-Steps">Implementation Steps</h2>
+<h3 id="Step-1-Analyze-Existing-Content">Step 1: Analyze Existing Content</h3>
+<p>First, compare the content between both repositories to identify differences:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Count markdown files in each repo</span></span><br><span class="line">find /home/anthony/wikip.co/site/source/_posts -name <span class="string">&quot;*.md&quot;</span> | <span class="built_in">wc</span> -l</span><br><span class="line"><span class="comment"># Result: 3,188 files</span></span><br><span class="line"></span><br><span class="line">find /home/anthony/anthonyrussano.com/site/source/_posts -name <span class="string">&quot;*.md&quot;</span> | <span class="built_in">wc</span> -l</span><br><span class="line"><span class="comment"># Result: 3,195 files</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Compare directories to find differences</span></span><br><span class="line">diff -r wikip.co/site/source/_posts/ anthonyrussano.com/site/source/_posts/ --brief</span><br></pre></td></tr></table></figure>
+<p><strong>Reasoning</strong>: Understanding the differences between repositories ensures no content is lost during the merge. In this case, there were only 8 differences:</p>
+<ul>
+<li>2 files with different content</li>
+<li>6 unique files/folders across both repos</li>
+</ul>
+<h3 id="Step-2-Create-Unified-Content-Repository">Step 2: Create Unified Content Repository</h3>
+<p>Merge content from both repositories into a single unified collection:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Create unified directory with content from one repo</span></span><br><span class="line"><span class="built_in">mkdir</span> -p /home/anthony/content-unified</span><br><span class="line"><span class="built_in">cp</span> -r /home/anthony/anthonyrussano.com/site/source/_posts/* /home/anthony/content-unified/</span><br><span class="line"></span><br><span class="line"><span class="comment"># Copy unique files from the other repo</span></span><br><span class="line"><span class="built_in">cp</span> -r <span class="string">&quot;/home/anthony/wikip.co/site/source/_posts/Child Development/Parenting&quot;</span> \</span><br><span class="line">     <span class="string">&quot;/home/anthony/content-unified/Child Development/&quot;</span></span><br><span class="line"><span class="built_in">cp</span> -r <span class="string">&quot;/home/anthony/wikip.co/site/source/_posts/Current Events/Technology&quot;</span> \</span><br><span class="line">     <span class="string">&quot;/home/anthony/content-unified/Current Events/&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Resolve conflicts by choosing the better version</span></span><br><span class="line"><span class="built_in">cp</span> <span class="string">&quot;/home/anthony/wikip.co/site/source/_posts/Natural Healing/Oils and Fats/coconut-oil.md&quot;</span> \</span><br><span class="line">   <span class="string">&quot;/home/anthony/content-unified/Natural Healing/Oils and Fats/coconut-oil.md&quot;</span></span><br></pre></td></tr></table></figure>
+<p><strong>Reasoning</strong>: Starting with the repo containing more files (<a target="_blank" rel="noopener" href="http://anthonyrussano.com">anthonyrussano.com</a> with 3,195 files) as the base, then adding unique content from the other repo ensures all content is preserved. For conflicting files, manual review determined which version had more complete information.</p>
+<p>Final unified count: <strong>3,198 markdown files</strong></p>
+<h3 id="Step-3-Create-GitHub-Repository-for-Content">Step 3: Create GitHub Repository for Content</h3>
+<p>Initialize the unified content as a Git repository and push to GitHub:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /home/anthony/content-unified</span><br><span class="line">git init</span><br><span class="line">git config user.email <span class="string">&quot;me@anthonyrussano.com&quot;</span></span><br><span class="line">git config user.name <span class="string">&quot;Anthony Russano&quot;</span></span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&quot;Initial commit: unified markdown content from wikip.co and anthonyrussano.com&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Create repository using GitHub CLI</span></span><br><span class="line">gh repo create wikip-co/content --public \</span><br><span class="line">  --description <span class="string">&quot;Shared markdown content for wikip.co and anthonyrussano.com&quot;</span> \</span><br><span class="line">  --<span class="built_in">source</span> . --remote origin</span><br><span class="line"></span><br><span class="line"><span class="comment"># Push to GitHub</span></span><br><span class="line">git branch -M main</span><br><span class="line">git push -u origin main</span><br></pre></td></tr></table></figure>
+<p><strong>Reasoning</strong>: Using <code>gh</code> CLI streamlines repository creation and automatically configures the remote. The organization account (<code>wikip-co</code>) provides a neutral namespace for shared content accessible to both sites.</p>
+<h3 id="Step-4-Configure-Submodules-in-Site-Repositories">Step 4: Configure Submodules in Site Repositories</h3>
+<p>Replace the <code>_posts</code> directory in each site repository with the content submodule:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># For wikip.co</span></span><br><span class="line"><span class="built_in">cd</span> /home/anthony/wikip.co</span><br><span class="line">git <span class="built_in">rm</span> -r site/source/_posts</span><br><span class="line">git submodule add https://github.com/wikip-co/content.git site/source/_posts</span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&quot;Replace _posts with content submodule&quot;</span></span><br><span class="line">git push</span><br><span class="line"></span><br><span class="line"><span class="comment"># For anthonyrussano.com</span></span><br><span class="line"><span class="built_in">cd</span> /home/anthony/anthonyrussano.com</span><br><span class="line">git <span class="built_in">rm</span> -r site/source/_posts</span><br><span class="line">git submodule add https://github.com/wikip-co/content.git site/source/_posts</span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&quot;Replace _posts with content submodule&quot;</span></span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
+<p><strong>Reasoning</strong>: Git submodules allow referencing an external repository at a specific commit. This enables both site repos to share the same content while maintaining their own site configurations, themes, and build processes.</p>
+<h3 id="Step-5-Configure-Submodule-to-Track-Main-Branch">Step 5: Configure Submodule to Track Main Branch</h3>
+<p>Update <code>.gitmodules</code> to track the main branch:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Edit .gitmodules in both repos to add:</span></span><br><span class="line">[submodule <span class="string">&quot;site/source/_posts&quot;</span>]</span><br><span class="line">    path = site/source/_posts</span><br><span class="line">    url = https://github.com/wikip-co/content.git</span><br><span class="line">    branch = main</span><br></pre></td></tr></table></figure>
+<p><strong>Reasoning</strong>: By specifying <code>branch = main</code>, <code>git submodule update --remote</code> will fetch the latest commit from the main branch rather than staying locked to a specific commit. This enables automatic content updates.</p>
+<h3 id="Step-6-Create-Trigger-Workflow-in-Content-Repository">Step 6: Create Trigger Workflow in Content Repository</h3>
+<p>Create a GitHub Actions workflow that triggers both site repositories when content changes:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># .github/workflows/trigger-sites.yml</span></span><br><span class="line"><span class="attr">name:</span> <span class="string">Trigger</span> <span class="string">Site</span> <span class="string">Rebuilds</span></span><br><span class="line"></span><br><span class="line"><span class="attr">on:</span></span><br><span class="line">  <span class="attr">push:</span></span><br><span class="line">    <span class="attr">branches:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">main</span></span><br><span class="line">    <span class="attr">paths:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&#x27;**/*.md&#x27;</span></span><br><span class="line">  <span class="attr">workflow_dispatch:</span></span><br><span class="line"></span><br><span class="line"><span class="attr">permissions:</span></span><br><span class="line">  <span class="attr">contents:</span> <span class="string">read</span></span><br><span class="line"></span><br><span class="line"><span class="attr">jobs:</span></span><br><span class="line">  <span class="attr">trigger-rebuilds:</span></span><br><span class="line">    <span class="attr">runs-on:</span> <span class="string">ubuntu-latest</span></span><br><span class="line">    <span class="attr">steps:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Trigger</span> <span class="string">wikip.co</span> <span class="string">rebuild</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">          curl -L \</span></span><br><span class="line"><span class="string">            -X POST \</span></span><br><span class="line"><span class="string">            -H &quot;Accept: application/vnd.github+json&quot; \</span></span><br><span class="line"><span class="string">            -H &quot;Authorization: Bearer $&#123;&#123; secrets.TRIGGER_TOKEN &#125;&#125;&quot; \</span></span><br><span class="line"><span class="string">            -H &quot;X-GitHub-Api-Version: 2022-11-28&quot; \</span></span><br><span class="line"><span class="string">            https://api.github.com/repos/wikip-co/wikip.co/dispatches \</span></span><br><span class="line"><span class="string">            -d &#x27;&#123;&quot;event_type&quot;:&quot;content-updated&quot;,&quot;client_payload&quot;:&#123;&#125;&#125;&#x27;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Trigger</span> <span class="string">anthonyrussano.com</span> <span class="string">rebuild</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">          curl -L \</span></span><br><span class="line"><span class="string">            -X POST \</span></span><br><span class="line"><span class="string">            -H &quot;Accept: application/vnd.github+json&quot; \</span></span><br><span class="line"><span class="string">            -H &quot;Authorization: Bearer $&#123;&#123; secrets.TRIGGER_TOKEN &#125;&#125;&quot; \</span></span><br><span class="line"><span class="string">            -H &quot;X-GitHub-Api-Version: 2022-11-28&quot; \</span></span><br><span class="line"><span class="string">            https://api.github.com/repos/anthonyrussano/anthonyrussano.com/dispatches \</span></span><br><span class="line"><span class="string">            -d &#x27;&#123;&quot;event_type&quot;:&quot;content-updated&quot;,&quot;client_payload&quot;:&#123;&#125;&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+<p><strong>Reasoning</strong>: Using <code>repository_dispatch</code> events allows triggering workflows in other repositories. The workflow only runs when <code>.md</code> files change, avoiding unnecessary builds for infrastructure changes.</p>
+<h3 id="Step-7-Set-Up-GitHub-Token">Step 7: Set Up GitHub Token</h3>
+<p>Create and configure a Personal Access Token for triggering workflows:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># The existing gh CLI token already had repo scope</span></span><br><span class="line"><span class="comment"># Store it as a secret in the content repository</span></span><br><span class="line">gh auth token | gh secret <span class="built_in">set</span> TRIGGER_TOKEN -R wikip-co/content</span><br><span class="line"></span><br><span class="line"><span class="comment"># Verify the secret was created</span></span><br><span class="line">gh secret list -R wikip-co/content</span><br></pre></td></tr></table></figure>
+<p><strong>Reasoning</strong>: The <code>repo</code> scope includes permission to trigger <code>repository_dispatch</code> events. Using the existing <code>gh</code> CLI token avoids creating additional tokens, and storing it as a GitHub Secret keeps it secure.</p>
+<h3 id="Step-8-Update-Site-Repository-Workflows">Step 8: Update Site Repository Workflows</h3>
+<p>Modify the deployment workflows in both site repositories to:</p>
+<ol>
+<li>Listen for <code>repository_dispatch</code> events</li>
+<li>Update submodules to pull latest content</li>
+</ol>
+<p><strong>For <a target="_blank" rel="noopener" href="http://wikip.co">wikip.co</a></strong> (<code>/.github/workflows/generator.yml</code>):</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">on:</span></span><br><span class="line">  <span class="attr">workflow_dispatch:</span></span><br><span class="line">  <span class="attr">repository_dispatch:</span></span><br><span class="line">    <span class="attr">types:</span> [<span class="string">content-updated</span>]</span><br><span class="line">  <span class="attr">push:</span></span><br><span class="line">    <span class="attr">branches:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">main</span></span><br><span class="line">    <span class="attr">paths:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&#x27;site/**&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>Update the build step:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Build</span> <span class="string">site</span></span><br><span class="line">  <span class="attr">env:</span></span><br><span class="line">    <span class="attr">NODE_OPTIONS:</span> <span class="string">--max-old-space-size=5168</span></span><br><span class="line">  <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line"><span class="string">    git config --global user.email &quot;me@anthonyrussano.com&quot;</span></span><br><span class="line"><span class="string">    git config --global user.name &quot;Anthony Russano&quot;</span></span><br><span class="line"><span class="string">    git submodule update --init --remote</span></span><br><span class="line"><span class="string">    git pull</span></span><br><span class="line"><span class="string">    # ... rest of build steps</span></span><br></pre></td></tr></table></figure>
+<p><strong>For <a target="_blank" rel="noopener" href="http://anthonyrussano.com">anthonyrussano.com</a></strong> (<code>.github/workflows/generator.yml</code>):</p>
+<p>Same changes as <a target="_blank" rel="noopener" href="http://wikip.co">wikip.co</a>, but with <code>master</code> branch instead of <code>main</code>.</p>
+<p><strong>Reasoning</strong>:</p>
+<ul>
+<li><code>repository_dispatch</code> with type <code>content-updated</code> allows external triggers from the content repo</li>
+<li><code>git submodule update --init --remote</code> fetches the latest commit from the tracked branch (main)</li>
+<li>Removing <code>--merge</code> flag avoids merge conflicts by simply checking out the latest commit</li>
+</ul>
+<h3 id="Step-9-Add-Email-Notifications-Optional">Step 9: Add Email Notifications (Optional)</h3>
+<p>Fetch email credentials from Vault and store as GitHub Secrets:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Fetch credentials from on-prem Vault</span></span><br><span class="line">curl -s -H <span class="string">&quot;X-Vault-Token: &lt;token&gt;&quot;</span> \</span><br><span class="line">  https://vault.wikip.co/v1/secret/data/jarvis/email | jq -r <span class="string">&#x27;.data.data&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Store as GitHub Secrets in both site repos</span></span><br><span class="line"><span class="built_in">printf</span> <span class="string">&quot;jarvis@wikip.co&quot;</span> | gh secret <span class="built_in">set</span> EMAIL_USERNAME -R wikip-co/wikip.co</span><br><span class="line"><span class="built_in">printf</span> <span class="string">&quot;&lt;password&gt;&quot;</span> | gh secret <span class="built_in">set</span> EMAIL_PASSWORD -R wikip-co/wikip.co</span><br><span class="line"><span class="built_in">printf</span> <span class="string">&quot;smtp.protonmail.ch&quot;</span> | gh secret <span class="built_in">set</span> EMAIL_SMTP_SERVER -R wikip-co/wikip.co</span><br><span class="line"><span class="built_in">printf</span> <span class="string">&quot;587&quot;</span> | gh secret <span class="built_in">set</span> EMAIL_SMTP_PORT -R wikip-co/wikip.co</span><br><span class="line"></span><br><span class="line"><span class="comment"># Repeat for anthonyrussano.com</span></span><br></pre></td></tr></table></figure>
+<p>Add email notification step to workflows:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Send</span> <span class="string">email</span> <span class="string">notification</span></span><br><span class="line">  <span class="attr">if:</span> <span class="string">always()</span></span><br><span class="line">  <span class="attr">uses:</span> <span class="string">dawidd6/action-send-mail@v3</span></span><br><span class="line">  <span class="attr">with:</span></span><br><span class="line">    <span class="attr">server_address:</span> <span class="string">$&#123;&#123;</span> <span class="string">secrets.EMAIL_SMTP_SERVER</span> <span class="string">&#125;&#125;</span></span><br><span class="line">    <span class="attr">server_port:</span> <span class="string">$&#123;&#123;</span> <span class="string">secrets.EMAIL_SMTP_PORT</span> <span class="string">&#125;&#125;</span></span><br><span class="line">    <span class="attr">username:</span> <span class="string">$&#123;&#123;</span> <span class="string">secrets.EMAIL_USERNAME</span> <span class="string">&#125;&#125;</span></span><br><span class="line">    <span class="attr">password:</span> <span class="string">$&#123;&#123;</span> <span class="string">secrets.EMAIL_PASSWORD</span> <span class="string">&#125;&#125;</span></span><br><span class="line">    <span class="attr">subject:</span> <span class="string">&#x27;wikip.co Build $<span class="template-variable">&#123;&#123; job.status &#125;&#125;</span>: $<span class="template-variable">&#123;&#123; github.event.head_commit.message &#125;&#125;</span>&#x27;</span></span><br><span class="line">    <span class="attr">to:</span> <span class="string">me@anthonyrussano.com</span></span><br><span class="line">    <span class="attr">from:</span> <span class="string">$&#123;&#123;</span> <span class="string">secrets.EMAIL_USERNAME</span> <span class="string">&#125;&#125;</span></span><br><span class="line">    <span class="attr">body:</span> <span class="string">|</span></span><br><span class="line"><span class="string">      Repository: $&#123;&#123; github.repository &#125;&#125;</span></span><br><span class="line"><span class="string">      Branch: $&#123;&#123; github.ref &#125;&#125;</span></span><br><span class="line"><span class="string">      Commit: $&#123;&#123; github.sha &#125;&#125;</span></span><br><span class="line"><span class="string">      Status: $&#123;&#123; job.status &#125;&#125;</span></span><br><span class="line"><span class="string">      Workflow: $&#123;&#123; github.workflow &#125;&#125;</span></span><br><span class="line"><span class="string">      Run: $&#123;&#123; github.server_url &#125;&#125;/$&#123;&#123; github.repository &#125;&#125;/actions/runs/$&#123;&#123; github.run_id &#125;&#125;</span></span><br></pre></td></tr></table></figure>
+<p><strong>Reasoning</strong>:</p>
+<ul>
+<li>Fetching credentials from Vault maintains a single source of truth</li>
+<li>Storing as GitHub Secrets enables use with GitHub-hosted runners (Vault is only accessible from on-prem runners)</li>
+<li>Using <code>if: always()</code> ensures notifications are sent even if the build fails</li>
+<li>Including run URL in email body provides quick access to build logs</li>
+</ul>
+<h2 id="Workflow-Execution">Workflow Execution</h2>
+<p>When a markdown file is updated in the content repository:</p>
+<ol>
+<li><strong>Content repo</strong> workflow triggers on push to main</li>
+<li>GitHub Actions sends <code>repository_dispatch</code> events to both site repos</li>
+<li><strong>Site repos</strong> receive the event and trigger their workflows</li>
+<li>Site workflows:
+<ul>
+<li>Check out code with submodules</li>
+<li>Run <code>git submodule update --init --remote</code> to get latest content</li>
+<li>Build Hexo site</li>
+<li>Push generated HTML to public submodule</li>
+<li>Build and push Docker image</li>
+<li>Send email notification</li>
+</ul>
+</li>
+</ol>
+<h2 id="Common-Issues-and-Solutions">Common Issues and Solutions</h2>
+<h3 id="Issue-“refusing-to-merge-unrelated-histories”">Issue: “refusing to merge unrelated histories”</h3>
+<p><strong>Problem</strong>: Using <code>git submodule update --remote --merge</code> causes merge errors.</p>
+<p><strong>Solution</strong>: Remove the <code>--merge</code> flag:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git submodule update --init --remote</span><br></pre></td></tr></table></figure>
+<p><strong>Reasoning</strong>: The submodule just needs to check out the latest commit, not merge changes.</p>
+<h3 id="Issue-Git-push-rejected-during-workflow">Issue: Git push rejected during workflow</h3>
+<p><strong>Problem</strong>: Race condition when pushing to site repo while workflow is running.</p>
+<p><strong>Solution</strong>: This is cosmetic - the important parts (site generation and deployment to public repo) complete successfully. The final push failure doesn’t affect the deployed site.</p>
+<h3 id="Issue-Missing-TRIGGER-TOKEN-secret">Issue: Missing TRIGGER_TOKEN secret</h3>
+<p><strong>Problem</strong>: Content workflow fails with “Bad credentials” error.</p>
+<p><strong>Solution</strong>: Ensure the token is created and stored:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gh auth token | gh secret <span class="built_in">set</span> TRIGGER_TOKEN -R wikip-co/content</span><br></pre></td></tr></table></figure>
+<h2 id="Benefits-of-This-Architecture">Benefits of This Architecture</h2>
+<ol>
+<li><strong>Single Source of Truth</strong>: All markdown content exists in one repository</li>
+<li><strong>Simplified Content Management</strong>: Writers only need to commit to one place</li>
+<li><strong>Automated Deployment</strong>: Changes automatically propagate to all sites</li>
+<li><strong>Version Control</strong>: Full Git history for all content changes</li>
+<li><strong>Separation of Concerns</strong>: Content separated from site configuration and themes</li>
+<li><strong>Flexible Frontends</strong>: Each site can have different themes, configurations, or frameworks</li>
+</ol>
+<h2 id="Alternative-Approaches">Alternative Approaches</h2>
+<h3 id="Manual-Submodule-Updates">Manual Submodule Updates</h3>
+<p>Instead of automatic triggers, sites could manually update submodules:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /home/anthony/wikip.co/site/source/_posts</span><br><span class="line">git pull origin main</span><br><span class="line"><span class="built_in">cd</span> ../../..</span><br><span class="line">git add site/source/_posts</span><br><span class="line">git commit -m <span class="string">&quot;Update content&quot;</span></span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
+<p><strong>Trade-off</strong>: More control but requires manual intervention for every content update.</p>
+<h3 id="Monorepo-Approach">Monorepo Approach</h3>
+<p>All content and site configurations in a single repository with separate build paths.</p>
+<p><strong>Trade-off</strong>: Simpler structure but less flexibility for different site configurations and harder to manage permissions.</p>
+<h3 id="Content-API">Content API</h3>
+<p>Content served via API (headless CMS) instead of Git submodules.</p>
+<p><strong>Trade-off</strong>: More dynamic but adds infrastructure complexity and potential latency.</p>
+<h2 id="Conclusion">Conclusion</h2>
+<p>This Git submodule approach provides an optimal balance between automation and simplicity for managing shared content across multiple static sites. It leverages GitHub Actions for orchestration while maintaining the simplicity and version control benefits of Git.</p>
+<p>The implementation required approximately:</p>
+<ul>
+<li><strong>3,198 markdown files</strong> unified from two repositories</li>
+<li><strong>3 repositories</strong> total (1 content, 2 sites)</li>
+<li><strong>3 GitHub Actions workflows</strong> (1 trigger, 2 deployment)</li>
+<li><strong>1 Personal Access Token</strong> for cross-repository communication</li>
+</ul>
+<h2 id="Sources">Sources</h2>
+
+  </div>
+</article>
+                      
+                        
+
+                          
+                            <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2026
+    Anthony Russano
+  </div>
+
+  <div class="footer-right">
+    <nav>
+      <ul>
+        
+    <div>
+        <a
+            target="_blank" rel="noopener" href='https://github.com/anthonyrussano/anthonyrussano.com/edit/master/site/source/_posts/template'>
+            New</a> -
+        <a
+            target="_blank" rel="noopener" href='https://github.com/anthonyrussano/anthonyrussano.com/edit/master/site/source/_posts/DevOps/CICD/GitHub Actions/implementing-shared-content-repository-with-git-submodules.md'>
+            Edit</a> -
+        <a
+            target="_blank" rel="noopener" href='https://github.com/anthonyrussano/anthonyrussano.com/commits/master/site/source/_posts/DevOps/CICD/GitHub Actions/implementing-shared-content-repository-with-git-submodules.md'>
+            History</a> -
+        <a
+            target="_blank" rel="noopener" href='https://github.com/anthonyrussano/anthonyrussano.com/raw/master/site/source/_posts/DevOps/CICD/GitHub Actions/implementing-shared-content-repository-with-git-submodules.md'>
+            Source</a>
+    </div>
+
+      </ul>
+    </nav>
+  </div>
+
+</footer>
+
+            </div>
+            <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+              <!-- jquery -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+    
+
+          
+
+                        <!-- clipboard -->
+                        
+                          
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script>
+                              
+                                    <script type="text/javascript">
+                                      $(function () {
+                                        // copy-btn HTML
+                                        var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+                                        btn += '<i class="fa-regular fa-clone"></i>';
+                                        btn += '</span>';
+                                        // mount it!
+                                        $(".highlight table").before(btn);
+                                        var clip = new ClipboardJS('.btn-copy', {
+                                          text: function (trigger) {
+                                            return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str, it) => str + it.innerText + '\n', '')
+                                          }
+                                        });
+                                        clip.on('success', function (e) {
+                                          e.trigger.setAttribute('aria-label', "Copied!");
+                                          e.clearSelection();
+                                        })
+                                      })
+                                    </script>
+                                    
+                                      
+<script src="/js/main.js"></script>
+
+                                        <!-- search -->
+                                        
+                                          
+<script src="/js/search.js"></script>
+
+                                            <script type="text/javascript">
+                                              $(function () {
+
+                                                var $inputArea = $("input#search-input");
+                                                var $resultArea = document.querySelector("div#search-result");
+
+                                                $inputArea.focus(function () {
+                                                  var search_path = "search.xml";
+                                                  if (search_path.length == 0) {
+                                                    search_path = "search.xml";
+                                                  }
+                                                  var path = "/" + search_path;
+                                                  searchFunc(path, 'search-input', 'search-result');
+                                                });
+
+                                                $inputArea.keydown(function (e) {
+                                                  if (e.which == 13) {
+                                                    e.preventDefault();
+                                                  }
+                                                });
+
+                                                var observer = new MutationObserver(function (mutationsList, observer) {
+                                                  if (mutationsList.length == 1) {
+                                                    if (mutationsList[0].addedNodes.length) {
+                                                      $(".search-no-result").hide();
+                                                    } else if (mutationsList[0].removedNodes.length) {
+                                                      $(".search-no-result").show(200);
+                                                    }
+                                                  }
+                                                });
+
+                                                observer.observe($resultArea, { childList: true });
+
+                                              });
+                                            </script>
+                                            
+                                              <!-- Baidu Analytics -->
+                                              
+                                                  <!-- Cloudflare Analytics -->
+                                                  
+                                                      <!-- Disqus Comments -->
+                                                      
+                                                          <!-- utterances Comments -->
+                                                          
+    </body>
+
+    </html>
