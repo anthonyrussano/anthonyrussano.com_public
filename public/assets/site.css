@@ -319,6 +319,10 @@ h3 {
   inset: 0;
 }
 
+.map-rings {
+  overflow: hidden;
+}
+
 .map-rings span {
   margin: auto;
   border: 1px solid var(--line);
@@ -471,7 +475,14 @@ h3 {
   grid-template-columns: repeat(2, 1fr);
 }
 
+.pattern-grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(3, 1fr);
+}
+
 .capability-card,
+.pattern-card,
 .project-card,
 .terminal-panel,
 .pulse-panel,
@@ -484,6 +495,7 @@ h3 {
 }
 
 .capability-card,
+.pattern-card,
 .project-card {
   position: relative;
   min-height: 228px;
@@ -505,6 +517,7 @@ h3 {
 }
 
 .capability-card:hover,
+.pattern-card:hover,
 .project-card:hover {
   border-color: var(--line-strong);
   background: rgba(16, 36, 32, 0.82);
@@ -522,6 +535,7 @@ h3 {
 }
 
 .capability-card p:not(.card-code),
+.pattern-card p:not(.card-code),
 .project-card p,
 .timeline-item > p:last-child {
   color: var(--muted);
@@ -545,6 +559,75 @@ h3 {
   font-family: var(--mono);
   font-size: 0.58rem;
   letter-spacing: 0.04em;
+}
+
+.pattern-card {
+  border-color: rgba(85, 214, 190, 0.2);
+}
+
+.pattern-visual {
+  display: grid;
+  min-height: 145px;
+  margin: -11px -11px 21px;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  background:
+    linear-gradient(rgba(155, 255, 176, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(155, 255, 176, 0.035) 1px, transparent 1px),
+    rgba(4, 9, 8, 0.38);
+  background-size: 22px 22px;
+}
+
+.pattern-visual svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.pattern-line,
+.pattern-loop,
+.pattern-branch {
+  fill: none;
+  stroke: rgba(85, 214, 190, 0.76);
+  stroke-width: 2;
+}
+
+.pattern-line {
+  stroke-dasharray: 8 7;
+  animation: dash-flow 10s linear infinite;
+}
+
+.pattern-loop,
+.pattern-branch {
+  stroke: rgba(155, 255, 176, 0.34);
+  stroke-dasharray: 5 6;
+}
+
+.pattern-node {
+  fill: var(--panel-solid);
+  stroke: var(--green);
+  stroke-width: 2;
+}
+
+.pattern-node-core {
+  fill: rgba(85, 214, 190, 0.22);
+  stroke: var(--teal);
+}
+
+.pattern-gate {
+  fill: rgba(255, 189, 91, 0.1);
+  stroke: var(--amber);
+  stroke-width: 2;
+}
+
+.pattern-check {
+  fill: none;
+  stroke: var(--amber);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 3;
 }
 
 .work-layout {
@@ -969,6 +1052,10 @@ h3 {
   50% { opacity: 0; }
 }
 
+@keyframes dash-flow {
+  to { stroke-dashoffset: -120; }
+}
+
 @keyframes rise-in {
   from {
     opacity: 0;
@@ -994,7 +1081,8 @@ h3 {
   }
 
   .work-layout,
-  .signal-section {
+  .signal-section,
+  .pattern-grid {
     grid-template-columns: 1fr;
   }
 

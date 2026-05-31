@@ -44,6 +44,7 @@
       </button>
       <nav class="primary-nav" id="primary-nav" aria-label="Primary navigation">
         <a href="#systems">Systems</a>
+        <a href="#patterns">Patterns</a>
         <a href="#work">Work</a>
         <a href="#projects">Projects</a>
         <a href="#signal">Signal</a>
@@ -94,7 +95,7 @@
       <section class="telemetry-strip" aria-label="Live telemetry">
         <div><span>20+</span><small>YEARS IN IT</small></div>
         <div><span id="repo-count">100+</span><small>PUBLIC REPOS</small></div>
-        <div><span>3</span><small>EKS CLUSTERS OPERATED</small></div>
+        <div><span>IAC</span><small>MULTI-ENV CLOUD OPS</small></div>
         <div><span id="pulse-count">0</span><small>NETWORK SIGNALS</small></div>
       </section>
 
@@ -110,34 +111,105 @@
         <div class="capability-grid">
           <article class="capability-card">
             <p class="card-code">CAP_01</p>
-            <h3>MLOps delivery</h3>
-            <p>Terraform-managed model paths, immutable artifacts, promotion controls, smoke tests, and rollback strategy.</p>
-            <div class="tag-row"><span>SageMaker</span><span>Lambda</span><span>GitHub Actions</span></div>
+            <h3>Secure model promotion</h3>
+            <p>Secure model promotion pipelines with immutable artifacts, infrastructure-as-code, release checks, and rollback-aware operations.</p>
+            <div class="tag-row"><span>Terraform</span><span>Artifacts</span><span>Release gates</span></div>
           </article>
           <article class="capability-card">
             <p class="card-code">CAP_02</p>
-            <h3>Secure cloud platforms</h3>
-            <p>Private networking, least-privilege IAM, encrypted storage, container delivery, and secrets lifecycle automation.</p>
-            <div class="tag-row"><span>AWS</span><span>EKS</span><span>Vault</span></div>
+            <h3>Data platform automation</h3>
+            <p>Snowflake identity and key lifecycle automation through Terraform, role-based access controls, and Vault-backed operations.</p>
+            <div class="tag-row"><span>Snowflake</span><span>Terraform</span><span>Vault</span></div>
           </article>
           <article class="capability-card">
             <p class="card-code">CAP_03</p>
-            <h3>Data infrastructure</h3>
-            <p>Production Snowflake administration through IaC, RBAC, PrivateLink, and automated key-pair rotation.</p>
-            <div class="tag-row"><span>Snowflake</span><span>Terraform</span><span>RBAC</span></div>
+            <h3>Kubernetes operations</h3>
+            <p>Kubernetes platform operations across upgrades, autoscaling, workload delivery, secrets integration, and production diagnostics.</p>
+            <div class="tag-row"><span>EKS</span><span>Autoscaling</span><span>Secrets</span></div>
           </article>
           <article class="capability-card">
             <p class="card-code">CAP_04</p>
-            <h3>Applied AI systems</h3>
-            <p>RAG assistants, OpenAI-enabled release workflows, local inference fleets, and pragmatic model operations.</p>
-            <div class="tag-row"><span>OpenAI</span><span>RAG</span><span>vLLM</span></div>
+            <h3>Private cloud networking</h3>
+            <p>Private cloud networking patterns for service reachability, restricted access, and predictable workload placement.</p>
+            <div class="tag-row"><span>AWS</span><span>Private paths</span><span>IAM</span></div>
+          </article>
+          <article class="capability-card">
+            <p class="card-code">CAP_05</p>
+            <h3>Reliability engineering</h3>
+            <p>Observability and reliability practices that turn operational failures into monitored, repeatable recovery paths.</p>
+            <div class="tag-row"><span>Observability</span><span>Alerting</span><span>Runbooks</span></div>
+          </article>
+          <article class="capability-card">
+            <p class="card-code">CAP_06</p>
+            <h3>Infrastructure automation</h3>
+            <p>Reusable Terraform patterns, delivery governance, and hardened CI workflows.</p>
+            <div class="tag-row"><span>Terraform</span><span>CI</span><span>Policy gates</span></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="content-section pattern-section section-shell reveal" id="patterns">
+        <div class="section-intro">
+          <p class="eyebrow">02 // REUSABLE PATTERNS</p>
+          <h2>Abstract systems. Concrete outcomes.</h2>
+          <p>
+            The implementation details stay private. The engineering patterns
+            are reusable across secure cloud platforms.
+          </p>
+        </div>
+        <div class="pattern-grid">
+          <article class="pattern-card">
+            <div class="pattern-visual" aria-hidden="true">
+              <svg viewBox="0 0 360 150" role="img">
+                <path class="pattern-line" d="M35 75H325"></path>
+                <circle class="pattern-node" cx="42" cy="75" r="14"></circle>
+                <rect class="pattern-gate" x="111" y="57" width="36" height="36" rx="8"></rect>
+                <circle class="pattern-node pattern-node-core" cx="215" cy="75" r="19"></circle>
+                <circle class="pattern-node" cx="318" cy="75" r="14"></circle>
+                <path class="pattern-check" d="m123 75 7 7 14-17"></path>
+              </svg>
+            </div>
+            <p class="card-code">PATTERN_01</p>
+            <h3>Promotion path</h3>
+            <p>Artifact, verification gate, immutable store, controlled promotion, and health signal.</p>
+          </article>
+          <article class="pattern-card">
+            <div class="pattern-visual" aria-hidden="true">
+              <svg viewBox="0 0 360 150" role="img">
+                <path class="pattern-line" d="M38 75H322"></path>
+                <circle class="pattern-node" cx="46" cy="75" r="14"></circle>
+                <circle class="pattern-node pattern-node-core" cx="143" cy="75" r="20"></circle>
+                <rect class="pattern-gate" x="205" y="53" width="44" height="44" rx="13"></rect>
+                <circle class="pattern-node" cx="315" cy="75" r="14"></circle>
+                <path class="pattern-loop" d="M315 100c-35 39-213 39-269 0"></path>
+              </svg>
+            </div>
+            <p class="card-code">PATTERN_02</p>
+            <h3>Private workload mesh</h3>
+            <p>Event-driven workloads moving through private runtime, secrets boundary, data platform, and observability loop.</p>
+          </article>
+          <article class="pattern-card">
+            <div class="pattern-visual" aria-hidden="true">
+              <svg viewBox="0 0 360 150" role="img">
+                <path class="pattern-line" d="M39 75H321"></path>
+                <rect class="pattern-gate" x="27" y="57" width="36" height="36" rx="8"></rect>
+                <rect class="pattern-gate" x="114" y="57" width="36" height="36" rx="8"></rect>
+                <circle class="pattern-node pattern-node-core" cx="230" cy="75" r="20"></circle>
+                <path class="pattern-branch" d="M230 55V30h81M230 95v25h81"></path>
+                <circle class="pattern-node" cx="318" cy="30" r="10"></circle>
+                <circle class="pattern-node" cx="318" cy="120" r="10"></circle>
+              </svg>
+            </div>
+            <p class="card-code">PATTERN_03</p>
+            <h3>Platform control plane</h3>
+            <p>Terraform modules, CI policy gates, cloud services, Kubernetes workloads, and operational telemetry.</p>
           </article>
         </div>
       </section>
 
       <section class="content-section work-section section-shell reveal" id="work">
         <div class="section-intro">
-          <p class="eyebrow">02 // FIELD NOTES</p>
+          <p class="eyebrow">03 // FIELD NOTES</p>
           <h2>Systems shipped under real constraints.</h2>
         </div>
         <div class="work-layout">
@@ -146,7 +218,7 @@
               <p class="timeline-date">2022 - NOW</p>
               <h3>DevOps / Platform Engineer</h3>
               <p class="timeline-org">Children's Hospital of Philadelphia</p>
-              <p>Leading platform and MLOps initiatives across clinical data, AI infrastructure, Snowflake, Kubernetes, and secure cloud delivery.</p>
+              <p>Leading platform engineering initiatives across cloud delivery, data infrastructure, Kubernetes, MLOps, and reliability.</p>
             </article>
             <article class="timeline-item">
               <p class="timeline-date">2021 - 2022</p>
@@ -165,11 +237,12 @@
             <div class="terminal-top"><span></span><span></span><span></span><small>impact.log</small></div>
             <div class="terminal-body">
               <p><i>$</i> tail -f production-paths.log</p>
-              <p><b>[ship]</b> SageMaker promotion pattern for clinical models</p>
-              <p><b>[secure]</b> PrivateLink paths for model and artifact traffic</p>
-              <p><b>[automate]</b> Snowflake RSA key lifecycle service backed by Vault</p>
-              <p><b>[operate]</b> EKS data workloads with Karpenter and External Secrets</p>
-              <p><b>[apply-ai]</b> Internal RAG assistant and AI-generated release notes</p>
+              <p><b>[ship]</b> secure model promotion paths with controlled gates</p>
+              <p><b>[automate]</b> data-platform identity and lifecycle operations</p>
+              <p><b>[operate]</b> Kubernetes upgrades, autoscaling, and delivery paths</p>
+              <p><b>[connect]</b> private cloud reachability with restricted access</p>
+              <p><b>[observe]</b> monitored recovery paths and reusable runbooks</p>
+              <p><b>[enable-ai]</b> practical MLOps guidance and AI-assisted workflows</p>
               <span class="terminal-cursor"></span>
             </div>
           </aside>
@@ -183,7 +256,7 @@
       <section class="content-section project-section section-shell reveal" id="projects">
         <div class="section-intro section-intro-row">
           <div>
-            <p class="eyebrow">03 // BUILD LOG</p>
+            <p class="eyebrow">04 // BUILD LOG</p>
             <h2>Curiosity with an operational bias.</h2>
           </div>
           <div class="github-telemetry" aria-live="polite">
@@ -231,7 +304,7 @@
 
       <section class="content-section signal-section section-shell reveal" id="signal">
         <div class="signal-copy">
-          <p class="eyebrow">04 // LIVE NETWORK PULSE</p>
+          <p class="eyebrow">05 // LIVE NETWORK PULSE</p>
           <h2>What should we talk about?</h2>
           <p>
             Pick the thread worth continuing. Your selection updates an
@@ -261,7 +334,7 @@
       </section>
 
       <section class="content-section connect-section section-shell reveal" id="connect">
-        <p class="eyebrow">05 // OPEN CHANNEL</p>
+        <p class="eyebrow">06 // OPEN CHANNEL</p>
         <h2>Let’s compare notes.</h2>
         <p>
           I’m in San Francisco for Snowflake Summit 26 from June 1-4, 2026.
