@@ -1,0 +1,8 @@
+name = "anthonyrussano-com-public"
+pages_build_output_dir = "./public"
+compatibility_date = "2026-05-31"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "anthonyrussano-network-pulse"
+database_id = "c93d3f8d-7068-4308-af76-6aa8d32e50e2"
