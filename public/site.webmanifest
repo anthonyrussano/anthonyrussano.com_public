@@ -1,10 +1,10 @@
 {
   "name": "Anthony Russano",
-  "short_name": "AR // Systems",
+  "short_name": "Anthony Russano",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#07100f",
-  "theme_color": "#07100f",
+  "background_color": "#0a1413",
+  "theme_color": "#0a1413",
   "icons": [
     {
       "src": "/assets/favicon.svg",

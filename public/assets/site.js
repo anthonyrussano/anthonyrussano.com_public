@@ -53,77 +53,10 @@ function initProjectFilters() {
   });
 }
 
-function initNetworkCanvas() {
-  if (prefersReducedMotion) return;
-  const canvas = document.getElementById("network-canvas");
-  const context = canvas.getContext("2d");
-  let nodes = [];
-  let width = 0;
-  let height = 0;
-  let animationFrame;
-
-  function resize() {
-    const scale = Math.min(window.devicePixelRatio || 1, 2);
-    width = window.innerWidth;
-    height = window.innerHeight;
-    canvas.width = Math.floor(width * scale);
-    canvas.height = Math.floor(height * scale);
-    canvas.style.width = `${width}px`;
-    canvas.style.height = `${height}px`;
-    context.setTransform(scale, 0, 0, scale, 0, 0);
-    const count = Math.min(66, Math.max(28, Math.floor(width / 19)));
-    nodes = Array.from({ length: count }, () => ({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      vx: (Math.random() - 0.5) * 0.16,
-      vy: (Math.random() - 0.5) * 0.16,
-    }));
-  }
-
-  function draw() {
-    context.clearRect(0, 0, width, height);
-    nodes.forEach((node, index) => {
-      node.x += node.vx;
-      node.y += node.vy;
-      if (node.x < 0 || node.x > width) node.vx *= -1;
-      if (node.y < 0 || node.y > height) node.vy *= -1;
-
-      context.beginPath();
-      context.fillStyle = "rgba(155, 255, 176, 0.22)";
-      context.arc(node.x, node.y, 1.35, 0, Math.PI * 2);
-      context.fill();
-
-      for (let nextIndex = index + 1; nextIndex < nodes.length; nextIndex += 1) {
-        const next = nodes[nextIndex];
-        const distance = Math.hypot(node.x - next.x, node.y - next.y);
-        if (distance < 126) {
-          context.beginPath();
-          context.strokeStyle = `rgba(85, 214, 190, ${0.075 * (1 - distance / 126)})`;
-          context.moveTo(node.x, node.y);
-          context.lineTo(next.x, next.y);
-          context.stroke();
-        }
-      }
-    });
-    animationFrame = requestAnimationFrame(draw);
-  }
-
-  resize();
-  draw();
-  window.addEventListener("resize", () => {
-    cancelAnimationFrame(animationFrame);
-    resize();
-    draw();
-  });
-}
-
 function renderPulse(payload) {
   const total = Number(payload.total || 0);
   const bars = document.getElementById("pulse-bars");
-  document.getElementById("pulse-count").textContent = total;
   document.getElementById("panel-pulse-count").textContent = total;
-  document.getElementById("pulse-edge").textContent = payload.edge || "EDGE";
-  document.getElementById("edge-readout").textContent = payload.edge || "SYNC";
 
   bars.innerHTML = "";
   payload.topics.forEach((topic) => {
@@ -208,7 +141,6 @@ document.getElementById("current-year").textContent = new Date().getFullYear();
 initNavigation();
 initReveals();
 initProjectFilters();
-initNetworkCanvas();
 initSignals();
 loadPulse();
 loadGitHubTelemetry();
