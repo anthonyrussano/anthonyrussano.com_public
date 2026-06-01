@@ -216,7 +216,7 @@ h3 {
 .hero-summary,
 .section-intro > p:last-child,
 .signal-copy > p,
-.connect-section > p {
+.connect-copy > p {
   max-width: 690px;
   color: var(--muted);
   font-size: 1.07rem;
@@ -273,6 +273,57 @@ h3 {
   margin-top: 34px;
   color: var(--muted);
   font-size: 0.78rem;
+}
+
+.hero-contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 11px 24px;
+  margin-top: 25px;
+}
+
+.hero-contact a,
+.direct-contact a {
+  display: grid;
+  gap: 1px;
+}
+
+.hero-contact span,
+.direct-contact span {
+  color: var(--green);
+  font-family: var(--mono);
+  font-size: 0.61rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.hero-contact strong,
+.direct-contact strong {
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 650;
+}
+
+.hero-contact a:hover strong,
+.hero-contact a:focus-visible strong,
+.direct-contact a:hover strong,
+.direct-contact a:focus-visible strong {
+  color: var(--text);
+}
+
+.hero-follow-up {
+  display: inline-flex;
+  gap: 7px;
+  margin-top: 14px;
+  color: var(--green);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.hero-follow-up:hover,
+.hero-follow-up:focus-visible {
+  color: var(--green-bright);
 }
 
 .status-light {
@@ -810,8 +861,121 @@ h3 {
   padding-bottom: 87px;
 }
 
-.connect-section > p {
+.connect-layout {
+  display: grid;
+  align-items: start;
+  gap: 31px;
+  grid-template-columns: minmax(0, 1fr) minmax(340px, 0.7fr);
+}
+
+.connect-copy > p {
   max-width: 770px;
+}
+
+.direct-contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 13px 25px;
+  margin-top: 26px;
+}
+
+.follow-up-panel {
+  padding: 23px;
+  border: 1px solid var(--line-strong);
+  border-radius: 18px;
+  background: var(--panel);
+  box-shadow: var(--shadow);
+}
+
+.follow-up-panel h3 {
+  margin-bottom: 8px;
+  font-size: 1.45rem;
+}
+
+.follow-up-panel > p:not(.eyebrow) {
+  margin-bottom: 18px;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.follow-up-form {
+  display: grid;
+  gap: 11px;
+}
+
+.follow-up-form label:not(.consent-field) {
+  display: grid;
+  gap: 5px;
+}
+
+.follow-up-form label > span {
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.follow-up-form small {
+  color: rgba(167, 182, 174, 0.7);
+  font-size: inherit;
+  font-weight: 500;
+}
+
+.follow-up-form input,
+.follow-up-form select {
+  width: 100%;
+  min-height: 43px;
+  padding: 0 11px;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  outline: 0;
+  background: rgba(6, 16, 15, 0.7);
+  color: var(--text);
+  font: inherit;
+  font-size: 0.82rem;
+}
+
+.follow-up-form input:focus,
+.follow-up-form select:focus {
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px rgba(167, 230, 178, 0.08);
+}
+
+.consent-field {
+  display: grid;
+  align-items: start;
+  gap: 8px;
+  margin-top: 3px;
+  grid-template-columns: 16px 1fr;
+}
+
+.consent-field input {
+  width: 15px;
+  min-height: 15px;
+  margin: 3px 0 0;
+  accent-color: var(--green);
+}
+
+.follow-up-form .button {
+  width: 100%;
+  margin-top: 3px;
+  cursor: pointer;
+}
+
+.follow-up-form .button:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+.form-status {
+  min-height: 18px;
+  margin: 0;
+  color: var(--green);
+  font-size: 0.72rem;
+}
+
+.hp-field {
+  position: absolute;
+  left: -10000px;
 }
 
 .social-grid {
@@ -924,7 +1088,8 @@ h3 {
 
   .work-layout,
   .signal-section,
-  .pattern-grid {
+  .pattern-grid,
+  .connect-layout {
     grid-template-columns: 1fr;
   }
 
@@ -999,6 +1164,19 @@ h3 {
   .hero {
     gap: 40px;
     padding-block: 63px 52px;
+  }
+
+  .hero-actions .button-primary {
+    width: 100%;
+  }
+
+  .hero-actions .button-secondary {
+    flex: 1 1 calc(50% - 6px);
+  }
+
+  .hero-contact {
+    display: grid;
+    gap: 9px;
   }
 
   .hero-summary {

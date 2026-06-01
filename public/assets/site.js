@@ -122,6 +122,37 @@ function initSignals() {
   });
 }
 
+function initFollowUpForm() {
+  const form = document.getElementById("follow-up-form");
+  const status = document.getElementById("follow-up-status");
+  if (!form || !status) return;
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const submit = form.querySelector('button[type="submit"]');
+    const values = Object.fromEntries(new FormData(form));
+    values.consent = form.elements.consent.checked;
+    submit.disabled = true;
+    status.textContent = "Sharing your info...";
+
+    try {
+      const response = await fetch("/api/follow-up", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values),
+      });
+      if (!response.ok) throw new Error("Follow-up request failed");
+
+      form.reset();
+      status.textContent = "Thanks. I’ll follow up after Summit.";
+    } catch {
+      status.textContent = "Your info could not be shared. Please use email or LinkedIn instead.";
+    } finally {
+      submit.disabled = false;
+    }
+  });
+}
+
 async function loadGitHubTelemetry() {
   try {
     const response = await fetch("/api/github", { headers: { Accept: "application/json" } });
@@ -142,5 +173,6 @@ initNavigation();
 initReveals();
 initProjectFilters();
 initSignals();
+initFollowUpForm();
 loadPulse();
 loadGitHubTelemetry();

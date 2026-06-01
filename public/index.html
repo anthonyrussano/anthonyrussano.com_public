@@ -23,10 +23,10 @@
       content="DevSecOps, MLOps, and cloud platform engineering."
     >
     <link rel="canonical" href="https://anthonyrussano.com/">
-    <link rel="icon" href="/assets/favicon.svg?v=20260531-2" type="image/svg+xml">
+    <link rel="icon" href="/assets/favicon.svg?v=20260531-3" type="image/svg+xml">
     <link rel="manifest" href="/site.webmanifest">
-    <link rel="stylesheet" href="/assets/site.css?v=20260531-2">
-    <script src="/assets/site.js?v=20260531-2" defer></script>
+    <link rel="stylesheet" href="/assets/site.css?v=20260531-3">
+    <script src="/assets/site.js?v=20260531-3" defer></script>
     <title>Anthony Russano | Platform Engineer</title>
   </head>
   <body>
@@ -65,6 +65,17 @@
             <a class="button button-secondary" href="mailto:anthonyrussano@gmail.com">Send an email</a>
             <a class="button button-secondary" href="sms:+18589977863" aria-label="Text Anthony at 858.997.7863">Send a text</a>
           </div>
+          <div class="hero-contact" aria-label="Anthony Russano contact details">
+            <a href="mailto:anthonyrussano@gmail.com">
+              <span>Email</span>
+              <strong>anthonyrussano@gmail.com</strong>
+            </a>
+            <a href="sms:+18589977863">
+              <span>Phone / SMS</span>
+              <strong>858.997.7863</strong>
+            </a>
+          </div>
+          <a class="hero-follow-up" href="#connect">Want me to follow up? Share your info <span>↓</span></a>
           <div class="summit-note">
             <span class="status-light"></span>
             <span>At Snowflake Summit 2026 · San Francisco · June 1–4</span>
@@ -316,17 +327,91 @@
       </section>
 
       <section class="content-section connect-section section-shell reveal" id="connect">
-        <p class="eyebrow">Connect</p>
-        <h2>Let’s compare notes.</h2>
-        <p>
-          I’m in San Francisco for Snowflake Summit 26 from June 1-4, 2026.
-          I’m interested in the people building serious AI platforms, developer
-          tools, secure infrastructure, and the systems behind them.
-        </p>
-        <div class="connect-links">
-          <a class="button button-primary" href="https://www.linkedin.com/in/anthonyrussano/" target="_blank" rel="noreferrer">Connect on LinkedIn</a>
-          <a class="button button-secondary" href="mailto:anthonyrussano@gmail.com">Send an email</a>
-          <a class="button button-secondary" href="sms:+18589977863" aria-label="Text Anthony at 858.997.7863">Send a text</a>
+        <div class="connect-layout">
+          <div class="connect-copy">
+            <p class="eyebrow">Connect</p>
+            <h2>Let’s compare notes.</h2>
+            <p>
+              I’m in San Francisco for Snowflake Summit 26 from June 1-4, 2026.
+              I’m interested in the people building serious AI platforms, developer
+              tools, secure infrastructure, and the systems behind them.
+            </p>
+            <div class="connect-links">
+              <a class="button button-primary" href="https://www.linkedin.com/in/anthonyrussano/" target="_blank" rel="noreferrer">Connect on LinkedIn</a>
+              <a class="button button-secondary" href="mailto:anthonyrussano@gmail.com">Send an email</a>
+              <a class="button button-secondary" href="sms:+18589977863" aria-label="Text Anthony at 858.997.7863">Send a text</a>
+            </div>
+            <div class="direct-contact" aria-label="Anthony Russano direct contact details">
+              <a href="mailto:anthonyrussano@gmail.com">
+                <span>Email</span>
+                <strong>anthonyrussano@gmail.com</strong>
+              </a>
+              <a href="sms:+18589977863">
+                <span>Phone / SMS</span>
+                <strong>858.997.7863</strong>
+              </a>
+            </div>
+          </div>
+          <aside class="follow-up-panel" aria-labelledby="follow-up-title">
+            <p class="eyebrow">Follow up after Summit</p>
+            <h3 id="follow-up-title">Want me to reach out?</h3>
+            <p>Leave one contact detail and I’ll follow up after the conference.</p>
+            <form class="follow-up-form" id="follow-up-form">
+              <label>
+                <span>Name</span>
+                <input name="name" type="text" autocomplete="name" maxlength="100" required>
+              </label>
+              <label>
+                <span>What best describes you?</span>
+                <select name="role" required>
+                  <option value="">Choose one</option>
+                  <option value="engineer">Engineer</option>
+                  <option value="engineering-leader">Engineering leader</option>
+                  <option value="hiring">Recruiter or hiring manager</option>
+                  <option value="founder">Founder or operator</option>
+                  <option value="researcher">Student or researcher</option>
+                  <option value="other">Other</option>
+                </select>
+              </label>
+              <label>
+                <span>How should I find you?</span>
+                <select name="contactMethod" required>
+                  <option value="">Choose one</option>
+                  <option value="linkedin">LinkedIn</option>
+                  <option value="email">Email</option>
+                  <option value="sms">Phone or SMS</option>
+                  <option value="github">GitHub</option>
+                  <option value="other">Other</option>
+                </select>
+              </label>
+              <label>
+                <span>Your email, phone, or profile URL</span>
+                <input name="contact" type="text" autocomplete="off" maxlength="180" required>
+              </label>
+              <label>
+                <span>Conversation topic <small>optional</small></span>
+                <select name="topic">
+                  <option value="">Choose one</option>
+                  <option value="ai-platforms">AI platforms</option>
+                  <option value="mlops">MLOps</option>
+                  <option value="cloud-security">Cloud security</option>
+                  <option value="snowflake">Snowflake</option>
+                  <option value="builder-tools">Builder tools</option>
+                  <option value="other">Other</option>
+                </select>
+              </label>
+              <label class="hp-field" aria-hidden="true">
+                <span>Website</span>
+                <input name="website" type="text" autocomplete="off" tabindex="-1">
+              </label>
+              <label class="consent-field">
+                <input name="consent" type="checkbox" required>
+                <span>I’m sharing this so Anthony can follow up after the conference.</span>
+              </label>
+              <button class="button button-primary" type="submit">Share my info</button>
+              <p class="form-status" id="follow-up-status" aria-live="polite"></p>
+            </form>
+          </aside>
         </div>
         <div class="social-grid">
           <a href="https://github.com/anthonyrussano" target="_blank" rel="noreferrer"><span>GITHUB</span><strong>@anthonyrussano</strong></a>
